@@ -18,7 +18,7 @@ public class Sketch2 extends PApplet {
    * values here i.e background, stroke, fill etc.
    */
   public void setup() {
-    imgBackground = loadImage("grass.jpg");
+    imgBackground = loadImage("floor.jpg");
 
     imgBackground.resize(width, height);
   }
