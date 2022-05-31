@@ -3,6 +3,7 @@ import processing.core.PImage;
 
 public class Sketch2 extends PApplet {
   PImage imgBackground;
+  
 	
 	
   /**
@@ -18,18 +19,21 @@ public class Sketch2 extends PApplet {
    * values here i.e background, stroke, fill etc.
    */
   public void setup() {
-    imgBackground = loadImage("floor.jpg");
-
-    imgBackground.resize(width, height);
+    // Import background
+    imgBackground = loadImage("ground_04.png");
   }
 
   /**
    * Called repeatedly, anything drawn to the screen goes here
    */
   public void draw() {
-	  image(imgBackground, 0, 0);
-
+    // Draws background (grid)
+	  for(int intRow = 0; intRow < 1300; intRow+=125){
+      for(int intColumn = 0; intColumn <= 700; intColumn+=125){
+        image(imgBackground, intRow, intColumn);
+      }
   }
   
   // define other methods down here.
+ }
 }
