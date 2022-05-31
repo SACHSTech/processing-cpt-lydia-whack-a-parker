@@ -11,10 +11,14 @@ public class Sketch1 extends PApplet {
    */
 
   PImage imgBackground;
-  PImage imgOfficer1;
-  PImage imgOfficer2;
-  PImage imgOfficer3;
-  PImage imgOfficer4;
+  PImage imgOfficerFront1;
+  PImage imgOfficerFront2;
+  PImage imgOfficerBack1;
+  PImage imgOfficerBack2;
+  PImage imgOfficerLeft1;
+  PImage imgOfficerLeft2;
+  PImage imgOfficerRight1;
+  PImage imgOfficerRight2;
   float officerX = 350;
   float officerY = 600;
   float officerXspeed = 3;
@@ -27,12 +31,16 @@ public class Sketch1 extends PApplet {
   }
 
   public void setup() {
-    // Import bg
+    // Import background
     imgBackground = loadImage("ground_04.png");
-    imgOfficer1 = loadImage("player_01.png");
-    imgOfficer2 = loadImage("player_03.png");
-    imgOfficer3 = loadImage("player_09.png");
-    imgOfficer4 = loadImage("player_012.png");
+    imgOfficerBack1 = loadImage("player_01.png");
+    imgOfficerBack2 = loadImage("player_02.png");
+    imgOfficerFront1 = loadImage("player_04.png");
+    imgOfficerFront2 = loadImage("player_05.png");
+    imgOfficerLeft1 = loadImage("player_013.png");
+    imgOfficerLeft2 = loadImage("player_014.png");
+    imgOfficerRight1 = loadImage("player_010.png");
+    imgOfficerRight2 = loadImage("player_011.png");
 
   }
 
@@ -44,12 +52,12 @@ public class Sketch1 extends PApplet {
       }
     }
      // Officer
-     image(imgOfficer1, officerX, officerY);
+     image(imgOfficerFront1, officerX, officerY);
 
      // Move up
      if (keyPressed) {
        if (keyCode == UP) {
-         image(imgOfficer1, officerX, officerY);
+         image(imgOfficerFront1, officerX, officerY);
          officerY -= 3;
      }
    }
