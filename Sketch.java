@@ -1,13 +1,16 @@
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class Sketch extends PApplet {
-	
+
 	/**
    * Assignment: 6.1 Processing in Java CPT
    * Author: Lydia He, Parker Yang
    * Due Jun 13, 11:59 PM
    * Description: WHACK-A-MOLE
    */
+
+  PImage imgBackground;
 
   public void settings() {
 	// put your size call here
@@ -16,7 +19,9 @@ public class Sketch extends PApplet {
   }
 
   public void setup() {
-    background(0);
+    imgBackground = loadImage("floor.jpg");
+
+    imgBackground.resize(width, height);
 
   }
 
