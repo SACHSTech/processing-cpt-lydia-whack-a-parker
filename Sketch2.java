@@ -3,6 +3,12 @@ import processing.core.PImage;
 
 public class Sketch2 extends PApplet {
   PImage imgBackground;
+  PImage imgOfficer1;
+  PImage imgOfficer2;
+  PImage imgOfficer3;
+  PImage imgOfficer4;
+  float officerX = 350;
+  float officerY = 600;
   
 	
 	
@@ -21,6 +27,11 @@ public class Sketch2 extends PApplet {
   public void setup() {
     // Import background
     imgBackground = loadImage("ground_04.png");
+    imgOfficer1 = loadImage("player_01.png");
+    imgOfficer2 = loadImage("player_03.png");
+    imgOfficer3 = loadImage("player_09.png");
+    imgOfficer4 = loadImage("player_012.png");
+
   }
 
   /**
@@ -33,7 +44,34 @@ public class Sketch2 extends PApplet {
         image(imgBackground, intRow, intColumn);
       }
   }
-  
-  // define other methods down here. commit test
+     // Officer
+    image(imgOfficer1, officerX, officerY);
+
+    // Move up
+    if (keyPressed) {
+      if (keyCode == UP) {
+        image(imgOfficer1, officerX, officerY);
+        officerY-=3;
+    }
+  }
+
+    // Move down
+    if (keyPressed) {
+      if (keyCode == DOWN) {
+        officerY+=3;
+  }
+ }
+   // Move left
+   if (keyPressed) {
+    if (keyCode == LEFT) {
+      officerX-=3;
+ }
+}
+    // Move right
+    if (keyPressed) {
+     if (keyCode == RIGHT) {
+      officerX+=3;
+   }
+  } 
  }
 }
