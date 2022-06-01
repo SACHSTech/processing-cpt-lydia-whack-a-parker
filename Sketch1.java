@@ -58,6 +58,7 @@ public class Sketch1 extends PApplet {
 
     // Resize images
     imgGrass.resize(imgGrass.width/2, imgGrass.height/2);
+    imgCrates.resize(imgCrates.width/2, imgCrates.height/2);
 
     /*
     imgOfficerBack1.resize(imgOfficerBack1.width/2, imgOfficerBack1.height/2);
@@ -71,10 +72,6 @@ public class Sketch1 extends PApplet {
     imgOfficerStill.resize(imgOfficerStill.width/2, imgOfficerStill.height/2);
     */
 
-    // Draws Crates Maze
-    // crates(crateX, crateY);
-    crates(1250, 50);
-
   }
 
   public void draw() {
@@ -84,6 +81,7 @@ public class Sketch1 extends PApplet {
         image(imgBackground, intRow, intColumn);
       }
     }
+
      // Officer image based on which way hes talking 
      if(intCount == 1){
        image(imgOfficerBack1, officerX, officerY);
@@ -96,6 +94,10 @@ public class Sketch1 extends PApplet {
      } else if (intCount == 0){
        image(imgOfficerStill, officerX, officerY);
      }
+
+    // Draws Crates Maze
+    // crates(crateX, crateY);
+    crates(1250, 100);
 
      // Move up
      if (keyPressed) {
@@ -114,14 +116,14 @@ public class Sketch1 extends PApplet {
      // Move left
      if (keyPressed) {
       if (keyCode == LEFT) {
-        officerX += 3;
+        officerX -= 3;
         //intCount = 3; 
   }
  }
      // Move right
      if (keyPressed) {
       if (keyCode == RIGHT) {
-       officerX -= 3;
+       officerX += 3;
        //intCount = 4;
        
     }
@@ -153,6 +155,4 @@ public class Sketch1 extends PApplet {
   public void crates(float crateX, float crateY){
     image(imgCrates, crateX, crateY);
   }
-
-  
 }
