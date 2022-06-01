@@ -1,7 +1,7 @@
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Sketch1 extends PApplet {
+public class Sketch extends PApplet {
 
 	/**
    * Assignment: 6.1 Processing in Java CPT
