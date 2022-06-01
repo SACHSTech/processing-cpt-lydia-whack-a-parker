@@ -46,9 +46,7 @@ public class Sketch2 extends PApplet {
     imgOfficerFront1 = loadImage("player_04.png");
     imgOfficerFront2 = loadImage("player_05.png");
     imgOfficerLeft1 = loadImage("player_013.png");
-    imgOfficerLeft2 = loadImage("player_014.png");
     imgOfficerRight1 = loadImage("player_010.png");
-    imgOfficerRight2 = loadImage("player_011.png");
     imgOfficerStill = loadImage("player_03.png");
     imgGrass = loadImage("ground_03.png");
     imgCrates = loadImage("crate_04.png");
@@ -58,6 +56,7 @@ public class Sketch2 extends PApplet {
 
     // Resize images
     imgGrass.resize(imgGrass.width/2, imgGrass.height/2);
+    imgCrates.resize(imgCrates.width/2, imgCrates.height/2);
 
     /*
     imgOfficerBack1.resize(imgOfficerBack1.width/2, imgOfficerBack1.height/2);
@@ -65,9 +64,7 @@ public class Sketch2 extends PApplet {
     imgOfficerFront1.resize(imgOfficerFront1.width/2, imgOfficerFront1.height/2);
     imgOfficerFront2.resize(imgOfficerFront2.width/2, imgOfficerFront2.height/2);
     imgOfficerLeft1.resize(imgOfficerLeft1.width/2, imgOfficerLeft1.height/2);
-    imgOfficerLeft2.resize(imgOfficerLeft2.width/2, imgOfficerLeft2.height/2);
     imgOfficerRight1.resize(imgOfficerRight1.width/2, imgOfficerRight1.height/2);
-    imgOfficerRight2.resize(imgOfficerRight2.width/2, imgOfficerRight2.height/2);
     imgOfficerStill.resize(imgOfficerStill.width/2, imgOfficerStill.height/2);
     */
 
@@ -122,7 +119,6 @@ public class Sketch2 extends PApplet {
        
     }
    }
-   intCount = 0;
 
    // Border 
    if (officerY > 620){
