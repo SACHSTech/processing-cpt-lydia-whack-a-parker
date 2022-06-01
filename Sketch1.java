@@ -97,7 +97,10 @@ public class Sketch1 extends PApplet {
 
     // Draws Crates Maze
     // crates(crateX, crateY);
-    crates(1250, 100);
+    // Top Row (21 Crates)
+    for (int i = 0; i < 21; i++) {
+      crates((127/2)*i, 63);
+    }
 
      // Move up
      if (keyPressed) {
