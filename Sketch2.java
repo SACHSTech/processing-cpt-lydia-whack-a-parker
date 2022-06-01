@@ -12,20 +12,14 @@ public class Sketch2 extends PApplet {
 
   PImage imgBackground;
   PImage imgOfficerFront1;
-  PImage imgOfficerFront2;
   PImage imgOfficerBack1;
-  PImage imgOfficerBack2;
   PImage imgOfficerLeft1;
-  PImage imgOfficerLeft2;
   PImage imgOfficerRight1;
-  PImage imgOfficerRight2;
   PImage imgOfficerStill;
   PImage imgCrates;
   PImage imgGrass;
   float officerX = 650;
   float officerY = 350;
-  float officerXspeed = 3;
-  float officerYspeed = 3;
   int intCount;
 
   // Make array
@@ -42,9 +36,7 @@ public class Sketch2 extends PApplet {
     // Import images
     imgBackground = loadImage("ground_04.png");
     imgOfficerBack1 = loadImage("player_01.png");
-    imgOfficerBack2 = loadImage("player_02.png");
     imgOfficerFront1 = loadImage("player_04.png");
-    imgOfficerFront2 = loadImage("player_05.png");
     imgOfficerLeft1 = loadImage("player_013.png");
     imgOfficerRight1 = loadImage("player_010.png");
     imgOfficerStill = loadImage("player_03.png");
@@ -60,9 +52,7 @@ public class Sketch2 extends PApplet {
 
     /*
     imgOfficerBack1.resize(imgOfficerBack1.width/2, imgOfficerBack1.height/2);
-    imgOfficerBack2.resize(imgOfficerBack2.width/2, imgOfficerBack2.height/2);
     imgOfficerFront1.resize(imgOfficerFront1.width/2, imgOfficerFront1.height/2);
-    imgOfficerFront2.resize(imgOfficerFront2.width/2, imgOfficerFront2.height/2);
     imgOfficerLeft1.resize(imgOfficerLeft1.width/2, imgOfficerLeft1.height/2);
     imgOfficerRight1.resize(imgOfficerRight1.width/2, imgOfficerRight1.height/2);
     imgOfficerStill.resize(imgOfficerStill.width/2, imgOfficerStill.height/2);
@@ -77,6 +67,7 @@ public class Sketch2 extends PApplet {
         image(imgBackground, intRow, intColumn);
       }
     }
+
      // Officer image based on which way hes talking 
      if(intCount == 1){
        image(imgOfficerBack1, officerX, officerY);
@@ -89,6 +80,17 @@ public class Sketch2 extends PApplet {
      } else if (intCount == 0){
        image(imgOfficerStill, officerX, officerY);
      }
+
+    // Draws Crates (Crates are 63x63)
+    // crates(crateX, crateY);
+    // Top Row (21 Crates)
+    for (int i = 0; i < 21; i++) {
+      crates(63*i, 63);
+    }
+    // Left Column (17 Crates) 
+    for (int i = 0; i < 17; i++) {
+      crates(63, 63 + 40*i);
+    }
 
      // Move up
      if (keyPressed) {
@@ -107,35 +109,36 @@ public class Sketch2 extends PApplet {
      // Move left
      if (keyPressed) {
       if (keyCode == LEFT) {
-        officerX += 3;
+        officerX -= 3;
         //intCount = 3; 
   }
  }
      // Move right
      if (keyPressed) {
       if (keyCode == RIGHT) {
-       officerX -= 3;
-       //intCount = 4; //please!!
+       officerX += 3;
+       //intCount = 4;
        
     }
    }
+   // intCount = 0;
 
    // Border 
-   if (officerY > 620){
-     officerY = 620;
-   } else if (officerY < 52){
-     officerY = 52;
-   } else if (officerX > 1225){
-     officerX = 1225;
-   } else if (officerX < 47){
-     officerX = 47;
+   if (officerY > 682){
+     officerY = 682;
+   } else if (officerY < 112){
+     officerY = 112;
+   } else if (officerX > 1288){
+     officerX = 1288;
+   } else if (officerX < 110){
+     officerX = 110;
    }
    // Loop to draw grass on the border
    for(int intRow = 0; intRow < width; intRow+=62.5){
       image(imgGrass, intRow, 0);
       image(imgGrass, intRow, 737);
    }
-   for(int intColumn = 0; intColumn < height; intColumn+=64){
+   for(int intColumn = 0; intColumn < height; intColumn+=63){
     image(imgGrass, 0, intColumn);
     image(imgGrass, 1336, intColumn);
    }
@@ -145,4 +148,4 @@ public class Sketch2 extends PApplet {
   public void crates(float crateX, float crateY){
     image(imgCrates, crateX, crateY);
   }
- }
+}
