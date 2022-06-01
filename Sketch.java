@@ -7,7 +7,7 @@ public class Sketch extends PApplet {
    * Assignment: 6.1 Processing in Java CPT
    * Author: Lydia He, Parker Yang
    * Due Jun 13, 11:59 PM
-   * Description: WHACK-A-MOLE
+   * Description: 
    */
 
   PImage imgBackground;
@@ -35,7 +35,7 @@ public class Sketch extends PApplet {
   }
 
   public void setup() {
-    // Import background
+    // Import images
     imgBackground = loadImage("ground_04.png");
     imgOfficerBack1 = loadImage("player_01.png");
     imgOfficerBack2 = loadImage("player_02.png");
@@ -64,7 +64,6 @@ public class Sketch extends PApplet {
      // Move up
      if (keyPressed) {
        if (keyCode == UP) {
-         image(imgOfficerFront1, officerX, officerY);
          officerY -= 3;
      }
    }
