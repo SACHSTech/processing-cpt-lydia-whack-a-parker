@@ -95,11 +95,15 @@ public class Sketch1 extends PApplet {
        image(imgOfficerStill, officerX, officerY);
      }
 
-    // Draws Crates Maze
+    // Draws Crates (Crates are 63x63)
     // crates(crateX, crateY);
     // Top Row (21 Crates)
     for (int i = 0; i < 21; i++) {
-      crates((127/2)*i, 63);
+      crates(63*i, 63);
+    }
+    // Left Column (17 Crates) 
+    for (int i = 0; i < 17; i++) {
+      crates(63, 63 + 40*i);
     }
 
      // Move up
