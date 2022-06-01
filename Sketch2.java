@@ -21,6 +21,7 @@ public class Sketch2 extends PApplet {
   PImage imgOfficerRight2;
   PImage imgOfficerStill;
   PImage imgCrates;
+  PImage imgGrass;
   float officerX = 650;
   float officerY = 350;
   float officerXspeed = 3;
@@ -33,7 +34,7 @@ public class Sketch2 extends PApplet {
 
   public void settings() {
 	// put your size call here
-    size(1300, 700);
+    size(1400, 800);
 
   }
 
@@ -49,20 +50,33 @@ public class Sketch2 extends PApplet {
     imgOfficerRight1 = loadImage("player_010.png");
     imgOfficerRight2 = loadImage("player_011.png");
     imgOfficerStill = loadImage("player_03.png");
+    imgGrass = loadImage("ground_03.png");
     imgCrates = loadImage("crate_04.png");
 
     // Load frames
     officer_frames = new PImage[intOfficer_frames];
 
     // Resize images
-    imgCrates.resize(imgCrates.width/2, imgCrates.height/2);
+    imgGrass.resize(imgGrass.width/2, imgGrass.height/2);
+
+    /*
+    imgOfficerBack1.resize(imgOfficerBack1.width/2, imgOfficerBack1.height/2);
+    imgOfficerBack2.resize(imgOfficerBack2.width/2, imgOfficerBack2.height/2);
+    imgOfficerFront1.resize(imgOfficerFront1.width/2, imgOfficerFront1.height/2);
+    imgOfficerFront2.resize(imgOfficerFront2.width/2, imgOfficerFront2.height/2);
+    imgOfficerLeft1.resize(imgOfficerLeft1.width/2, imgOfficerLeft1.height/2);
+    imgOfficerLeft2.resize(imgOfficerLeft2.width/2, imgOfficerLeft2.height/2);
+    imgOfficerRight1.resize(imgOfficerRight1.width/2, imgOfficerRight1.height/2);
+    imgOfficerRight2.resize(imgOfficerRight2.width/2, imgOfficerRight2.height/2);
+    imgOfficerStill.resize(imgOfficerStill.width/2, imgOfficerStill.height/2);
+    */
 
   }
 
   public void draw() {
     // Draws background
-    for(int intRow = 0; intRow < 1300; intRow+=125){
-      for(int intColumn = 0; intColumn <= 700; intColumn+=125){
+    for(int intRow = 0; intRow < 1500; intRow+=125){
+      for(int intColumn = 0; intColumn <= 900; intColumn+=125){
         image(imgBackground, intRow, intColumn);
       }
     }
@@ -111,23 +125,23 @@ public class Sketch2 extends PApplet {
    // intCount = 0;
 
    // Border 
-   if (officerY > 537){
-     officerY = 537;
-   } else if (officerY < 62){
-     officerY = 62;
-   } else if (officerX > 1138){
-     officerX = 1138;
-   } else if (officerX < 62){
-     officerX = 62;
+   if (officerY > 620){
+     officerY = 620;
+   } else if (officerY < 52){
+     officerY = 52;
+   } else if (officerX > 1225){
+     officerX = 1225;
+   } else if (officerX < 47){
+     officerX = 47;
    }
-   // Loop to draw crates in the border
+   // Loop to draw grass on the border
    for(int intRow = 0; intRow < width; intRow+=62.5){
-      image(imgCrates, intRow, 0);
-      image(imgCrates, intRow, 637);
+      image(imgGrass, intRow, 0);
+      image(imgGrass, intRow, 737);
    }
    for(int intColumn = 0; intColumn < height; intColumn+=64){
-    image(imgCrates, 0, intColumn);
-    image(imgCrates, 1238, intColumn);
+    image(imgGrass, 0, intColumn);
+    image(imgGrass, 1336, intColumn);
    }
   }
   
