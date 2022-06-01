@@ -115,7 +115,7 @@ public class Sketch2 extends PApplet {
      if (keyPressed) {
       if (keyCode == RIGHT) {
        officerX -= 3;
-       //intCount = 4;
+       //intCount = 4; //please!!
        
     }
    }
