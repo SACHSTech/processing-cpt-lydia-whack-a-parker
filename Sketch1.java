@@ -147,6 +147,7 @@ public class Sketch1 extends PApplet {
    } else if (officerX < 47){
      officerX = 47;
    }
+
    // Loop to draw grass on the border
    for(int intRow = 0; intRow < width; intRow+=62.5){
       image(imgGrass, intRow, 0);
@@ -157,7 +158,12 @@ public class Sketch1 extends PApplet {
     image(imgGrass, 1336, intColumn);
    }
   }
-  
+
+  // Method to create grass
+  public void grass(float grassX, float grassY){
+    image(imgCrates, grassX, grassY);
+  }
+
   // Method to create crates (aka, walls)
   public void crates(float crateX, float crateY){
     image(imgCrates, crateX, crateY);
