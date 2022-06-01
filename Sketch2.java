@@ -110,19 +110,19 @@ public class Sketch2 extends PApplet {
      // Move left
      if (keyPressed) {
       if (keyCode == LEFT) {
-        officerX -= 3;
-        intCount = 3; 
+        officerX += 3;
+        //intCount = 3; 
   }
  }
      // Move right
      if (keyPressed) {
       if (keyCode == RIGHT) {
-       officerX += 3;
-       intCount = 4;
+       officerX -= 3;
+       //intCount = 4;
        
     }
    }
-   // intCount = 0;
+   intCount = 0;
 
    // Border 
    if (officerY > 620){
