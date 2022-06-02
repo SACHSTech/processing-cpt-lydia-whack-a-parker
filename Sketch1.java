@@ -105,6 +105,10 @@ public class Sketch1 extends PApplet {
     for (int i = 0; i < 17; i++) {
       crates(63, 63 + 40*i);
     }
+    // Bottom Row (21 Crates) (Opp activity (parker))
+    for (int i = 0; i < 21; i++) {
+      crates(63*i, 800 + 40);
+    }
 
      // Move up
      if (keyPressed) {
@@ -123,29 +127,26 @@ public class Sketch1 extends PApplet {
      // Move left
      if (keyPressed) {
       if (keyCode == LEFT) {
-        officerX -= 3;
-        //intCount = 3; 
+        officerX -= 3; 
   }
  }
      // Move right
      if (keyPressed) {
       if (keyCode == RIGHT) {
        officerX += 3;
-       //intCount = 4;
        
     }
    }
-   // intCount = 0;
 
    // Border 
-   if (officerY > 620){
-     officerY = 620;
-   } else if (officerY < 52){
-     officerY = 52;
-   } else if (officerX > 1225){
-     officerX = 1225;
-   } else if (officerX < 47){
-     officerX = 47;
+   if (officerY > 684){
+     officerY = 684;
+   } else if (officerY < 114){
+     officerY = 114;
+   } else if (officerX > 1289){
+     officerX = 1289;
+   } else if (officerX < 111){
+     officerX = 111;
    }
 
    // Loop to draw grass on the border
