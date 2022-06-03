@@ -95,9 +95,11 @@ public class Sketch1 extends PApplet {
        image(imgOfficerStill, officerX, officerY);
      }
     
-    // Draws Grass (Outer Border Grass is 63 x 63)
-    // grass(grassX, grassY);
-    // Top row (23) Grass
+    /**
+     * Draws Grass (Outer Border Grass is 63 x 63)
+     * grass(grassX, grassY);
+     * Top row (23) Grass
+     */
     for (int i = 0; i < 23; i++) {
       grass(63*i, 0);
     }
@@ -115,9 +117,11 @@ public class Sketch1 extends PApplet {
       grass(63*i, 780);
     }
 
-    // Draws Crates (Crates are 63 x 63, top of crate is 40, side is 23)
-    // crates(crateX, crateY);
-    // Top Row (20 Crates)
+    /** 
+     * Draws Crates (Crates are 63 x 63, top of crate is 40, side is 23)
+     * crates(crateX, crateY);
+     * Top Row (20 Crates)
+     * */
     for (int i = 0; i < 20; i++) {
       crates(63 + 63*i, 40);
     }
@@ -142,42 +146,41 @@ public class Sketch1 extends PApplet {
       crates(63 + 63*i, 720);
     }
 
-     // Move up
-     if (keyPressed) {
-       if (keyCode == UP) {
-         officerY -= 3;
-         intCount = 1;
-     }
-   }
-     // Move down
-     if (keyPressed) {
-       if (keyCode == DOWN) {
-         officerY += 3;
-         intCount = 2;
-   }
-  }
-     // Move left
-     if (keyPressed) {
+    // Move up
+    if (keyPressed) {
+      if (keyCode == UP) {
+        officerY -= 3;
+        intCount = 1;
+      }
+    }
+    // Move down
+    if (keyPressed) {
+      if (keyCode == DOWN) {
+        officerY += 3;
+        intCount = 2;
+      }
+    }
+    // Move left
+    if (keyPressed) {
       if (keyCode == LEFT) {
         officerX -= 3; 
-  }
- }
-     // Move right
-     if (keyPressed) {
-      if (keyCode == RIGHT) {
-       officerX += 3;
-       
+      }
     }
-   }
+    // Move right
+    if (keyPressed) {
+      if (keyCode == RIGHT) {
+        officerX += 3;
+      }
+    }
 
    // Border 
-   if (officerY > 684){
+   if (officerY > 684) {
      officerY = 684;
-   } else if (officerY < 114){
+   } else if (officerY < 114) {
      officerY = 114;
-   } else if (officerX > 1289){
+   } else if (officerX > 1289) {
      officerX = 1289;
-   } else if (officerX < 111){
+   } else if (officerX < 111) {
      officerX = 111;
    }
 
