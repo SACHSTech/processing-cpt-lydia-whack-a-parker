@@ -8,8 +8,6 @@ public class Sketch1 extends PApplet {
    * Due Jun 13, 11:59 PM
    * Description: 
    */
-
-   // comment 12:25 
    
   // Variables
   PImage imgBackground;
