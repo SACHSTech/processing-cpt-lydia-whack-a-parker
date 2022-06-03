@@ -124,14 +124,14 @@ public class Sketch2 extends PApplet {
    // intCount = 0;
 
    // Border 
-   if (officerY > 682){
-     officerY = 682;
+   if (officerY > 674){
+     officerY = 674;
    } else if (officerY < 112){
      officerY = 112;
-   } else if (officerX > 1288){
-     officerX = 1288;
-   } else if (officerX < 110){
-     officerX = 110;
+   } else if (officerX > 1272){
+     officerX = 1272;
+   } else if (officerX < 128){
+     officerX = 128;
    }
    // Loop to draw grass on the border
    for(int intRow = 0; intRow < width; intRow+=62.5){
@@ -147,5 +147,6 @@ public class Sketch2 extends PApplet {
   // Method to create crates (aka, walls)
   public void crates(float crateX, float crateY){
     image(imgCrates, crateX, crateY);
+    // commit test 2
   }
 }
