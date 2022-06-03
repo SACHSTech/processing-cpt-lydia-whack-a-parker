@@ -2,7 +2,6 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Sketch1 extends PApplet {
-
 	/**
    * Assignment: 6.1 Processing in Java CPT
    * Author: Lydia He, Parker Yang
@@ -10,6 +9,7 @@ public class Sketch1 extends PApplet {
    * Description: 
    */
 
+  // Variables
   PImage imgBackground;
   PImage imgOfficerFront1;
   PImage imgOfficerFront2;
@@ -27,7 +27,6 @@ public class Sketch1 extends PApplet {
   float officerXspeed = 3;
   float officerYspeed = 3;
   int intCount;
-
   // Make array
   PImage[] officer_frames;
   int intOfficer_frames = 8;
@@ -61,6 +60,7 @@ public class Sketch1 extends PApplet {
     imgCrates.resize(imgCrates.width/2, imgCrates.height/2);
 
     /*
+    NOT SURE WHAT THIS IS FOR, PARKER!
     imgOfficerBack1.resize(imgOfficerBack1.width/2, imgOfficerBack1.height/2);
     imgOfficerBack2.resize(imgOfficerBack2.width/2, imgOfficerBack2.height/2);
     imgOfficerFront1.resize(imgOfficerFront1.width/2, imgOfficerFront1.height/2);
@@ -95,101 +95,127 @@ public class Sketch1 extends PApplet {
        image(imgOfficerStill, officerX, officerY);
      }
     
-    // Draws Grass (Outer Border Grass is 63 x 63)
-    // grass(grassX, grassY);
+    /**
+     * Draws Grass (Outer Border Grass is 63 x 63)
+     * grass(grassX, grassY);
+     */
     // Top row (23) Grass
-    for (int i = 0; i < 23; i++) {
+    for (int i = 0; i < 23; i++) 
+    {
       grass(63*i, 0);
     }
     // Left Column Grass
-    for (int i = 0; i < 19; i++) {
+    for (int i = 0; i < 19; i++) 
+    {
       grass(0, 63*i);
     }
     // Right Column Grass
-    for (int i = 0; i < 19; i++) {
+    for (int i = 0; i < 19; i++) 
+    {
       grass(1323, 63*i);
       grass(1386, 63*i);
     }
     // Bottom Row ✋ Grass (starts at 780)
-    for (int i = 0; i < 23; i++) {
+    for (int i = 0; i < 23; i++) 
+    {
       grass(63*i, 780);
     }
 
-    // Draws Crates (Crates are 63 x 63, top of crate is 40, side is 23)
-    // crates(crateX, crateY);
+    /** 
+     * Draws Crates (Crates are 63 x 63, top of crate is 40, side is 23)
+     * crates(crateX, crateY);
+     * */
     // Top Row (20 Crates)
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 20; i++) 
+    {
       crates(63 + 63*i, 40);
     }
     // Left Column Pt1 (7 Crates) 
-    for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < 7; i++) 
+    {
       crates(63, 40 + 40*i);
     }
     // Left Column Pt2 (8 Crates) (40*8 + 63 + 57 = 400)
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 8; i++) 
+    {
       crates(63, 400 + 40*i);
     }
     // Right Column Pt1 (9 Crates) 
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < 9; i++) 
+    {
       crates(1260, 40 + 40*i);
     }
     // Right Column Pt2 (6 Crates) (40*9 + 63 + 57 = 480)
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 6; i++) 
+    {
       crates(1260, 480 + 40*i);
     }
     // Bottom Row (20 Crates)
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 20; i++) 
+    {
       crates(63 + 63*i, 720);
     }
+    // Maze wall under left exit
+    for (int i = 0; i < 4; i++) 
+    {
+      crates(63 + 63 + 63*i, 480 - 40 - 40);
+    }
+    // Maze wall above left exit
+    for (int i = 0; i < 5; i++) 
+    {
+      crates(63 + 128 + 63*i, 280);
+    }
+    for (int i = 0; i < 3; i++) 
+    {
+      crates(63*7 + 2, 400 - 80 + 40*i);
+    }
 
-     // Move up
-     if (keyPressed) {
-       if (keyCode == UP) {
-         officerY -= 3;
-         intCount = 1;
-     }
-   }
-     // Move down
-     if (keyPressed) {
-       if (keyCode == DOWN) {
-         officerY += 3;
-         intCount = 2;
-   }
-  }
-     // Move left
-     if (keyPressed) {
+    // Move up
+    if (keyPressed) {
+      if (keyCode == UP) {
+        officerY -= 3;
+        intCount = 1;
+      }
+    }
+    // Move down
+    if (keyPressed) {
+      if (keyCode == DOWN) {
+        officerY += 3;
+        intCount = 2;
+      }
+    }
+    // Move left
+    if (keyPressed) {
       if (keyCode == LEFT) {
         officerX -= 3; 
-  }
- }
-     // Move right
-     if (keyPressed) {
-      if (keyCode == RIGHT) {
-       officerX += 3;
-       
+      }
     }
-   }
+    // Move right
+    if (keyPressed) {
+      if (keyCode == RIGHT) {
+        officerX += 3;
+      }
+    }
 
    // Border 
-   if (officerY > 684){
+   if (officerY > 684) {
      officerY = 684;
-   } else if (officerY < 114){
+   } else if (officerY < 114) {
      officerY = 114;
-   } else if (officerX > 1289){
+   } else if (officerX > 1289) {
      officerX = 1289;
-   } else if (officerX < 111){
+   } else if (officerX < 111) {
      officerX = 111;
    }
-
   }
 
   // Method to create grass
-  public void grass(float grassX, float grassY){
+  public void grass(float grassX, float grassY) {
     image(imgGrass, grassX, grassY);
   }
 
   // Method to create crates (aka, walls)
-  public void crates(float crateX, float crateY){
+  public void crates(float crateX, float crateY) {
     image(imgCrates, crateX, crateY);
   }
 }
