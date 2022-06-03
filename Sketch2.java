@@ -147,5 +147,6 @@ public class Sketch2 extends PApplet {
   // Method to create crates (aka, walls)
   public void crates(float crateX, float crateY){
     image(imgCrates, crateX, crateY);
+    // commit test
   }
 }
