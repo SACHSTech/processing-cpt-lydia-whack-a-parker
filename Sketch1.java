@@ -94,16 +94,36 @@ public class Sketch1 extends PApplet {
      } else if (intCount == 0){
        image(imgOfficerStill, officerX, officerY);
      }
+    
+    // Draws Grass (Outer Border Grass is 63 x 63)
+    // grass(grassX, grassY);
+    // Top row (23) Grass
+    for (int i = 0; i < 23; i++) {
+      grass(63*i, 0);
+    }
+    // Left Column Grass
+    for (int i = 0; i < 19; i++) {
+      grass(0, 63*i);
+    }
+    // Right Column Grass
+    for (int i = 0; i < 19; i++) {
+      grass(1323, 63*i);
+      grass(1386, 63*i);
+    }
+    // Bottom Row ✋ Grass
+    for (int i = 0; i < 23; i++) {
+      grass(63*i, 740);
+    }
 
-    // Draws Crates (Crates are 63x63)
+    // Draws Crates (Crates are 63 x 63)
     // crates(crateX, crateY);
-    // Top Row (21 Crates)
-    for (int i = 0; i < 21; i++) {
-      crates(63*i, 63);
+    // Top Row (20 Crates)
+    for (int i = 0; i < 20; i++) {
+      crates(63 + 63*i, 40);
     }
     // Left Column (17 Crates) 
     for (int i = 0; i < 17; i++) {
-      crates(63, 63 + 40*i);
+      crates(63, 40 + 40*i);
     }
     // Bottom Row (21 Crates) (Opp activity (parker))
     for (int i = 0; i < 21; i++) {
@@ -149,20 +169,11 @@ public class Sketch1 extends PApplet {
      officerX = 111;
    }
 
-   // Loop to draw grass on the border
-   for(int intRow = 0; intRow < width; intRow+=62.5){
-      image(imgGrass, intRow, 0);
-      image(imgGrass, intRow, 737);
-   }
-   for(int intColumn = 0; intColumn < height; intColumn+=64){
-    image(imgGrass, 0, intColumn);
-    image(imgGrass, 1336, intColumn);
-   }
   }
 
   // Method to create grass
   public void grass(float grassX, float grassY){
-    image(imgCrates, grassX, grassY);
+    image(imgGrass, grassX, grassY);
   }
 
   // Method to create crates (aka, walls)
