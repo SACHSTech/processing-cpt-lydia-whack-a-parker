@@ -165,6 +165,10 @@ public class Sketch1 extends PApplet {
     {
       crates(63 + 128 + 63*i, 280);
     }
+    for (int i = 0; i < 3; i++) 
+    {
+      crates(63*7 + 2, 400 - 80 + 40*i);
+    }
 
     // Move up
     if (keyPressed) {
