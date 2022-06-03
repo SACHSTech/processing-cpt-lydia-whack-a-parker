@@ -121,13 +121,21 @@ public class Sketch1 extends PApplet {
     for (int i = 0; i < 20; i++) {
       crates(63 + 63*i, 40);
     }
-    // Left Column (17 Crates) 
-    for (int i = 0; i < 17; i++) {
+    // Left Column Pt1 (7 Crates) 
+    for (int i = 0; i < 7; i++) {
       crates(63, 40 + 40*i);
     }
-    // Right Column (17 Crates) 
-    for (int i = 0; i < 17; i++) {
+    // Left Column Pt2 (8 Crates) (40*8 + 63 + 57 = 400)
+    for (int i = 0; i < 8; i++) {
+      crates(63, 400 + 40*i);
+    }
+    // Right Column Pt1 (9 Crates) 
+    for (int i = 0; i < 9; i++) {
       crates(1260, 40 + 40*i);
+    }
+    // Right Column Pt2 (6 Crates) (40*9 + 63 + 57 = 480)
+    for (int i = 0; i < 6; i++) {
+      crates(1260, 480 + 40*i);
     }
     // Bottom Row (20 Crates)
     for (int i = 0; i < 20; i++) {
