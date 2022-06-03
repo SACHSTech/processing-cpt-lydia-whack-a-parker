@@ -34,7 +34,7 @@ public class Sketch1 extends PApplet {
 
   public void settings() {
 	// put your size call here
-    size(1400, 800);
+    size(1400, 820);
 
   }
 
@@ -110,12 +110,12 @@ public class Sketch1 extends PApplet {
       grass(1323, 63*i);
       grass(1386, 63*i);
     }
-    // Bottom Row ✋ Grass
+    // Bottom Row ✋ Grass (starts at 780)
     for (int i = 0; i < 23; i++) {
-      grass(63*i, 740);
+      grass(63*i, 780);
     }
 
-    // Draws Crates (Crates are 63 x 63)
+    // Draws Crates (Crates are 63 x 63, top of crate is 40, side is 23)
     // crates(crateX, crateY);
     // Top Row (20 Crates)
     for (int i = 0; i < 20; i++) {
@@ -125,9 +125,13 @@ public class Sketch1 extends PApplet {
     for (int i = 0; i < 17; i++) {
       crates(63, 40 + 40*i);
     }
-    // Bottom Row (21 Crates) (Opp activity (parker))
-    for (int i = 0; i < 21; i++) {
-      crates(63*i, 800 + 40);
+    // Right Column (17 Crates) 
+    for (int i = 0; i < 17; i++) {
+      crates(1260, 40 + 40*i);
+    }
+    // Bottom Row (20 Crates)
+    for (int i = 0; i < 20; i++) {
+      crates(63 + 63*i, 720);
     }
 
      // Move up
