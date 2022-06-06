@@ -161,6 +161,18 @@ public class Sketch1 extends PApplet {
     {
       crates(63 + 63 + 63*i, 480 - 40 - 40);
     }
+    for (int i = 0; i < 3; i++) 
+    {
+      crates(63 + 63 + 63 + 63*i, 520);
+    }
+    for (int i = 0; i < 2; i++) 
+    {
+      crates(63*5, 560 + 40*i);
+    }
+    for (int i = 0; i < 3; i++) 
+    {
+      crates(63*3, 640 + 40*i);
+    }
     // Maze wall above left exit
     for (int i = 0; i < 3; i++) 
     {
