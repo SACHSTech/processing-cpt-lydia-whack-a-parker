@@ -8,7 +8,7 @@ public class Sketch extends PApplet {
    * Due Jun 13, 11:59 PM
    * Description: 
    */
-
+   
   // Variables
   PImage imgBackground;
   PImage imgOfficerFront1;
@@ -124,7 +124,8 @@ public class Sketch extends PApplet {
     /** 
      * Draws Crates (Crates are 63 x 63, top of crate is 40, side is 23)
      * crates(crateX, crateY);
-     * */
+     * Note: work from up to down to make sure crates dont stack
+     */
     // Top Row (20 Crates)
     for (int i = 0; i < 20; i++) 
     {
@@ -161,13 +162,25 @@ public class Sketch extends PApplet {
       crates(63 + 63 + 63*i, 480 - 40 - 40);
     }
     // Maze wall above left exit
+    for (int i = 0; i < 3; i++) 
+    {
+      crates(63*3 + 2 + 63*i, 160);
+    }
     for (int i = 0; i < 5; i++) 
     {
       crates(63 + 128 + 63*i, 280);
     }
-    for (int i = 0; i < 3; i++) 
+    for (int i = 0; i < 5; i++) 
     {
-      crates(63*7 + 2, 400 - 80 + 40*i);
+      crates(63*7 + 2, 400 - 160 + 40*i);
+    }
+    for (int i = 0; i < 2; i++) 
+    {
+      crates(63*7, 400 - 320 + 40*i);
+    }
+    for (int i = 0; i < 5; i++) 
+    {
+      crates(63*7 + 63 + 63 + 2, 200 + 40*i);
     }
 
     // Move up
