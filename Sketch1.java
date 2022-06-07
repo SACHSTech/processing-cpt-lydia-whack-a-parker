@@ -190,9 +190,10 @@ public class Sketch1 extends PApplet {
     {
       crates(63*7, 400 - 320 + 40*i);
     }
-    for (int i = 0; i < 5; i++) 
+    // Nearing the middle now... 
+    for (int i = 0; i < 6; i++) 
     {
-      crates(63*7 + 63 + 63 + 2, 200 + 40*i);
+      crates(63*7 + 63 + 63 + 2, 160 + 40*i);
     }
 
     // Move up
