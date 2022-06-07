@@ -130,6 +130,14 @@ public class Sketch1 extends PApplet {
      * Draws Grass (Outer Border Grass is 63 x 63)
      * grass(grassX, grassY);
      */
+    // Draws 2 grass tiles
+    for (int i = 0; i < 2; i++) {
+      // at (1, 17) going down
+      grass(63, 40*17 + 40*i);
+      // at (2, 17) going down
+      grass(63*2, 40*17 + 40*i);
+    }
+
     // Draws 23 grass tiles
     for (int i = 0; i < 23; i++) 
     {
@@ -191,7 +199,8 @@ public class Sketch1 extends PApplet {
     {
       // at (14, 2) going nowhere cause its 1 block my guy
       crates(63*14, 40*2);
-      // 
+      // at (2, 16) 
+      crates(63*2, 40*16);
     }
 
     // Method for walls 2 blocks long!
