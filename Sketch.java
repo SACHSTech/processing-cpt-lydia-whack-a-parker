@@ -1,7 +1,7 @@
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Sketch extends PApplet {
+public class Sketch1 extends PApplet {
 	/**
    * Assignment: 6.1 Processing in Java CPT
    * Author: Lydia He, Parker Yang
@@ -122,6 +122,16 @@ public class Sketch extends PApplet {
      * crates(crateX, crateY);
      */
 
+    // Draws 20 crates
+    // Note: this MUST be first before the 7 and 9 method to ensure the crates don't overlap
+    for (int i = 0; i < 20; i++) 
+    {
+      // Bottom Row at (18, 1) going right
+      crates(63 + 63*i, 720);
+      // Top Row at (1, 1) going right
+      crates(63 + 63*i, 40);
+    }
+
      // Draws 7 crates
     for (int i = 0; i < 7; i++) 
     {
@@ -138,15 +148,6 @@ public class Sketch extends PApplet {
       crates(63*20, 40 + 40*i);
       // Left Column Pt2 at (1, 10) going down
       crates(63, 40*10 + 40*i);
-    }
-
-    // Draws 20 crates
-    for (int i = 0; i < 20; i++) 
-    {
-      // Bottom Row at (18, 1) going right
-      crates(63 + 63*i, 720);
-      // Top Row at (1, 1) going right
-      crates(63 + 63*i, 40);
     }
 
     // The next few methods create the maze...
