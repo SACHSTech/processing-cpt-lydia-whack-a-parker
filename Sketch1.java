@@ -156,43 +156,50 @@ public class Sketch1 extends PApplet {
     {
       crates(63 + 63*i, 720);
     }
-    // Maze wall under left exit
-    for (int i = 0; i < 4; i++) 
+
+    // Creating the maze...:
+    // Method for walls 2 blocks long!
+    for (int i = 0; i < 2; i++) 
     {
-      crates(63 + 63 + 63*i, 480 - 40 - 40);
-    }
-    for (int i = 0; i < 3; i++) 
-    {
+      // at (7, 12) going down
+      crates(63*7, 520 + 40*i);
+      // at (7, 0) going down
+      crates(63*7, 400 - 320 + 40*i);
+      // at (3, 12) going right
       crates(63 + 63 + 63 + 63*i, 520);
     }
-    for (int i = 0; i < 2; i++) 
-    {
-      crates(63*5, 560 + 40*i);
-    }
+
+    // Method for walls 3 blocks long!
     for (int i = 0; i < 3; i++) 
     {
-      crates(63*3, 640 + 40*i);
-    }
-    // Maze wall above left exit
-    for (int i = 0; i < 3; i++) 
-    {
+      // at (3, 4) going right
       crates(63*3 + 2 + 63*i, 160);
+      // at (3, 15) going down (+1 to cover up the bottom row)
+      crates(63*3, 640 + 40*i);
+      // at (5, 18) going down
+      crates(63*5, 520 + 40*i);
     }
-    for (int i = 0; i < 5; i++) 
+
+    // Method for walls 4 blocks long!
+    for (int i = 0; i < 4; i++) 
     {
+      // at (2, 9) going right
+      crates(63 + 63 + 63*i, 480 - 40 - 40);
+      // at (3. 6) going right
       crates(63 + 128 + 63*i, 280);
     }
+
+    // Method for walls 5 blocks long!
     for (int i = 0; i < 5; i++) 
     {
+      // at (7. 5) going down
       crates(63*7 + 2, 400 - 160 + 40*i);
     }
-    for (int i = 0; i < 2; i++) 
-    {
-      crates(63*7, 400 - 320 + 40*i);
-    }
-    // Nearing the middle now... 
+
+    // Method for walls 6 blocks long!
     for (int i = 0; i < 6; i++) 
     {
+      // at (9, 3) going down
       crates(63*7 + 63 + 63 + 2, 160 + 40*i);
     }
 
