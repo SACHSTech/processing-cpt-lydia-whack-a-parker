@@ -15,5 +15,4 @@ class Main {
 	  
 	  PApplet.runSketch(processingArgs, mySketch);
   }
-  
 }
