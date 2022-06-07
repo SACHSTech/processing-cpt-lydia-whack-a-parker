@@ -2,7 +2,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Sketch extends PApplet {
-  
+
 	/**
    * Assignment: 6.1 Processing in Java CPT
    * Author: Lydia He, Parker Yang
@@ -36,6 +36,10 @@ public class Sketch extends PApplet {
   float prisonerY = 300;
   float officerXspeed = 3;
   float officerYspeed = 3;
+  float crateX;
+  float crateY;
+  float grassX;
+  float grassY;
   int intGCount;
   int intPCount;
 
@@ -131,10 +135,10 @@ public class Sketch extends PApplet {
     // Draws 23 grass tiles
     for (int i = 0; i < 23; i++) 
     {
-      // Top row (23) Grass
+      // Top row Grass
       grass(63*i, 0);
       // Bottom Row ✋ Grass (starts at 780)
-      grass(63*i, 780);
+      grass(63*i, 40*19 + 20);
     }
 
     // Draws 19 grass tiles
@@ -143,8 +147,8 @@ public class Sketch extends PApplet {
       // Left Column Grass
       grass(0, 63*i);
       // Right Column Grass
-      grass(1323, 63*i);
-      grass(1386, 63*i);
+      grass(63*21, 63*i);
+      grass(63*22, 63*i);
     }
 
     /** 
@@ -263,65 +267,55 @@ public class Sketch extends PApplet {
       crates(63*14 + 2, 40*9 + 40*i);
     }
 
-    // Method for walls 6 blocks long!
-    for (int i = 0; i < 6; i++) 
-    {
-      // Null rn....
-    }
-
-    // Move up
     if (keyPressed) {
+      // Officer movement
+      // Move up
       if (keyCode == UP) {
         officerY -= 3;
         intGCount = 1;
       }
-    }
-    // Move down
-    if (keyPressed) {
+      // Move down
       if (keyCode == DOWN) {
         officerY += 3;
         intGCount = 2;
       }
-    }
-    // Move left
-    if (keyPressed) {
+      // Move left
       if (keyCode == LEFT) {
         officerX -= 3; 
       }
-    }
-    // Move right
-    if (keyPressed) {
+      // Move right
       if (keyCode == RIGHT) {
         officerX += 3;
       }
     }
-    // Prisoner move up
+
+    // Prisoner movement
     if (keyPressed) {
-      if (keyCode == 'w') {
+      // Move up
+      if (key == 'w') {
         prisonerY -= 4;
         intPCount = 1;
        }
       }
-    // Prisoner move down
     if (keyPressed) {
-      if (keyCode == 's') {
+      // Move down
+      if (key == 's') {
         prisonerY += 4;
         intPCount = 2;
        }
       }
-    // Prisoner move left
     if (keyPressed) {
-      if (keyCode == 'a') {
+      // Move left
+      if (key == 'a') {
         prisonerX -= 4; 
        }
       }
-
-    // Prisoner move right
-      if (keyPressed) {
-        if (keyCode == 'd') {
-          prisonerX += 4; 
-       }
+    if (keyPressed) {
+      // Move right
+      if (key == 'd') {
+        prisonerX += 4; 
       }
+    }
 
    // Border 
    if (officerY > 684) {
@@ -346,12 +340,20 @@ public class Sketch extends PApplet {
     }
   }
 
-  // Method to create grass
+  /**
+   * Method to create grass
+   * @param grassX is a float that determines the x-value or horizontal value of the grass image
+   * @param grassY is a float that determines the y-value or vertical value of the grass image
+  */
   public void grass(float grassX, float grassY) {
     image(imgGrass, grassX, grassY);
   }
 
-  // Method to create crates (aka, walls)
+  /**
+   * Method to create crates
+   * @param crateX is a float that determines the x-value or horizontal value of the crate image
+   * @param crateY is a float that determines the y-value or vertical value of the crate image
+  */
   public void crates(float crateX, float crateY) {
     image(imgCrates, crateX, crateY);
   }

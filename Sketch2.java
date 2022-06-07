@@ -14,6 +14,7 @@ public class Sketch2 extends PApplet {
    * or prisoin guard, wins the best out of three, wins the game. 
    */
 
+  // Variables
   PImage imgBackground;
   PImage imgOfficerFront1;
   PImage imgOfficerBack1;
@@ -102,7 +103,6 @@ public class Sketch2 extends PApplet {
       } else {
         image(imgPrisonerStill, prisonerX, prisonerY);
       }
-
     /**
      * Draws Grass (Outer Border Grass is 63 x 63)
      * grass(grassX, grassY);
@@ -110,10 +110,10 @@ public class Sketch2 extends PApplet {
     // Draws 23 grass tiles
     for (int i = 0; i < 23; i++) 
     {
-      // Top row (23) Grass
+      // Top row Grass
       grass(63*i, 0);
       // Bottom Row ✋ Grass (starts at 780)
-      grass(63*i, 780);
+      grass(63*i, 40*19 + 20);
     }
 
     // Draws 19 grass tiles
@@ -122,8 +122,8 @@ public class Sketch2 extends PApplet {
       // Left Column Grass
       grass(0, 63*i);
       // Right Column Grass
-      grass(1323, 63*i);
-      grass(1386, 63*i);
+      grass(63*21, 63*i);
+      grass(63*22, 63*i);
     }
 
     /** 
