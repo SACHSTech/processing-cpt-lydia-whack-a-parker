@@ -166,17 +166,17 @@ public class Sketch1 extends PApplet {
     // Method for walls 2 blocks long!
     for (int i = 0; i < 2; i++) 
     {
-      // at (7, 12) going down
+      // at (7, 13) going down
       crates(63*7, 40*13 + 40*i);
-      // at (7, 0) going down
+      // at (7, 1) going down
       crates(63*7, 40*2 + 40*i);
-      // at (3, 12) going right
+      // at (3, 13) going right
       crates(63*3 + 63*i, 40*13);
       // at (7, 17) (1 block long, must be 2 to cover up the bottom row)
       crates(63*7, 40*17 + 40*i);
-      // at (10, 10) going right
+      // at (10, 11) going right
       crates(63*10 + 2 + 63*i, 40*11);
-      // at (10, 13) going right
+      // at (10, 14) going right
       crates(63*10 + 2 + 63*i, 40*14);
       // at (9, 14) going down
       crates(63*9 + 2, 40*14 + 40*i);
@@ -190,31 +190,31 @@ public class Sketch1 extends PApplet {
     {
       // at (3, 4) going right
       crates(63*3 + 2 + 63*i, 40*4);
-      // at (3, 15) going down (+1 to cover up the bottom row)
+      // at (3, 16) going down (+1 to cover up the bottom row)
       crates(63*3, 40*16 + 40*i);
-      // at (5, 18) going down
+      // at (5, 13) going down
       crates(63*5, 40*13 + 40*i);
     }
 
     // Method for walls 4 blocks long!
     for (int i = 0; i < 4; i++) 
     {
-      // at (2, 9) going right
+      // at (2, 10) going right
       crates(63*2 + 63*i, 40*10);
-      // at (3. 6) going right
+      // at (3. 7) going right
       crates(63*3 + 2 + 63*i, 40*7);
-      // at (9, 3) going right
+      // at (9, 4) going right
       crates(63*9 + 2 + 63*i, 40*4);
     }
 
     // Method for walls 5 blocks long!
     for (int i = 0; i < 5; i++) 
     {
-      // at (7. 5) going down
+      // at (7. 6) going down
       crates(63*7 + 2, 40*6 + 40*i);
-      // at (12. 6) going down
+      // at (12. 7) going down
       crates(63*12 + 2, 40*7 + 40*i);
-      // at (9, 6) going down
+      // at (9, 7) going down
       crates(63*9 + 2, 40*7 + 40*i);
     }
 
