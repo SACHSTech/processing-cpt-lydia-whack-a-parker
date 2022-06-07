@@ -98,6 +98,7 @@ public class Sketch1 extends PApplet {
      * Draws Grass (Outer Border Grass is 63 x 63)
      * grass(grassX, grassY);
      */
+    // Draws 23 grass tiles
     for (int i = 0; i < 23; i++) 
     {
       // Top row (23) Grass
@@ -105,6 +106,8 @@ public class Sketch1 extends PApplet {
       // Bottom Row ✋ Grass (starts at 780)
       grass(63*i, 780);
     }
+
+    // Draws 19 grass tiles
     for (int i = 0; i < 19; i++) 
     {
       // Left Column Grass
@@ -117,40 +120,36 @@ public class Sketch1 extends PApplet {
     /** 
      * Draws Crates (Crates are 63 x 63, top of crate is 40, side is 23)
      * crates(crateX, crateY);
-     * Note: work from up to down to make sure crates dont stack
      */
-    // Top Row (20 Crates)
-    for (int i = 0; i < 20; i++) 
-    {
-      crates(63 + 63*i, 40);
-    }
-    // Left Column Pt1 (7 Crates) 
+
+     // Draws 7 crates
     for (int i = 0; i < 7; i++) 
     {
+      // Left Column Pt1 at (1,1) going down
       crates(63, 40 + 40*i);
-    }
-    // Left Column Pt2 (8 Crates) (40*8 + 63 + 57 = 400)
-    for (int i = 0; i < 8; i++) 
-    {
-      crates(63, 400 + 40*i);
-    }
-    // Right Column Pt1 (9 Crates) 
-    for (int i = 0; i < 9; i++) 
-    {
-      crates(1260, 40 + 40*i);
-    }
-    // Right Column Pt2 (6 Crates) (40*9 + 63 + 57 = 480)
-    for (int i = 0; i < 6; i++) 
-    {
+      // Right Column Pt2 at (20, 10) going down
       crates(1260, 480 + 40*i);
     }
-    // Bottom Row (20 Crates)
-    for (int i = 0; i < 20; i++) 
+
+    // Draws 9 crates
+    for (int i = 0; i < 9; i++) 
     {
-      crates(63 + 63*i, 720);
+      // Right Column Pt1 at (20, 1) going down
+      crates(63*20, 40 + 40*i);
+      // Left Column Pt2 at (1, 10) going down
+      crates(63, 40*10 + 40*i);
     }
 
-    // Creating the maze...:
+    // Draws 20 crates
+    for (int i = 0; i < 20; i++) 
+    {
+      // Bottom Row at (18, 1) going right
+      crates(63 + 63*i, 720);
+      // Top Row at (1, 1) going right
+      crates(63 + 63*i, 40);
+    }
+
+    // The next few methods create the maze...
     // Method for walls 1 block long..... 😟
     for (int i = 0; i < 1; i++) 
     {
