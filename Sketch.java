@@ -182,6 +182,8 @@ public class Sketch extends PApplet {
       crates(63*14, 40*5 + 40*i);
       // at (16, 4) going right
       crates(63*16 + 2 + 63*i, 40*4);
+      // at (16, 5) going down
+      crates(63*16 + 2, 40*5 + 40*i);
 
     }
 
