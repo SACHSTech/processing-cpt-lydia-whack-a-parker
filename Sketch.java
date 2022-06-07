@@ -156,43 +156,66 @@ public class Sketch extends PApplet {
     {
       crates(63 + 63*i, 720);
     }
-    // Maze wall under left exit
+
+    // Creating the maze...:
+    // Method for walls 1 block long..... 😟
+    for (int i = 0; i < 1; i++) 
+    {
+      // nothing yet...
+    }
+    // Method for walls 2 blocks long!
+    for (int i = 0; i < 2; i++) 
+    {
+      // at (7, 12) going down
+      crates(63*7, 40*13 + 40*i);
+      // at (7, 0) going down
+      crates(63*7, 40*2 + 40*i);
+      // at (3, 12) going right
+      crates(63*3 + 63*i, 40*13);
+      // at (7, 17) (1 block long, must be 2 to cover up the bottom row)
+      crates(63*7, 40*17 + 40*i);
+      // at (10, 10) going right
+      crates(63*10 + 2 + 63*i, 40*11);
+
+    }
+
+    // Method for walls 3 blocks long!
+    for (int i = 0; i < 3; i++) 
+    {
+      // at (3, 4) going right
+      crates(63*3 + 2 + 63*i, 40*4);
+      // at (3, 15) going down (+1 to cover up the bottom row)
+      crates(63*3, 40*16 + 40*i);
+      // at (5, 18) going down
+      crates(63*5, 40*13 + 40*i);
+    }
+
+    // Method for walls 4 blocks long!
     for (int i = 0; i < 4; i++) 
     {
-      crates(63 + 63 + 63*i, 480 - 40 - 40);
+      // at (2, 9) going right
+      crates(63*2 + 63*i, 40*10);
+      // at (3. 6) going right
+      crates(63*3 + 2 + 63*i, 40*7);
+      // at (9, 3) going right
+      crates(63*9 + 2 + 63*i, 40*4);
     }
-    for (int i = 0; i < 3; i++) 
-    {
-      crates(63 + 63 + 63 + 63*i, 520);
-    }
-    for (int i = 0; i < 2; i++) 
-    {
-      crates(63*5, 560 + 40*i);
-    }
-    for (int i = 0; i < 3; i++) 
-    {
-      crates(63*3, 640 + 40*i);
-    }
-    // Maze wall above left exit
-    for (int i = 0; i < 3; i++) 
-    {
-      crates(63*3 + 2 + 63*i, 160);
-    }
+
+    // Method for walls 5 blocks long!
     for (int i = 0; i < 5; i++) 
     {
-      crates(63 + 128 + 63*i, 280);
+      // at (7. 5) going down
+      crates(63*7 + 2, 40*6 + 40*i);
+      // at (12. 6) going down
+      crates(63*12 + 2, 40*7 + 40*i);
+      // at (9, 6) going down
+      crates(63*9 + 2, 40*7 + 40*i);
     }
-    for (int i = 0; i < 5; i++) 
+
+    // Method for walls 6 blocks long!
+    for (int i = 0; i < 6; i++) 
     {
-      crates(63*7 + 2, 400 - 160 + 40*i);
-    }
-    for (int i = 0; i < 2; i++) 
-    {
-      crates(63*7, 400 - 320 + 40*i);
-    }
-    for (int i = 0; i < 5; i++) 
-    {
-      crates(63*7 + 63 + 63 + 2, 200 + 40*i);
+      // Null rn....
     }
 
     // Move up
