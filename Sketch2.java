@@ -18,9 +18,15 @@ public class Sketch2 extends PApplet {
   PImage imgOfficerStill;
   PImage imgCrates;
   PImage imgGrass;
+  PImage imgPrisonerFront1;
+  PImage imgPrisonerBack1;
+  PImage imgPrisonerStill;
   float officerX = 650;
   float officerY = 350;
-  int intCount;
+  float prisonerX = 150;
+  float prisonerY = 350;
+  int intGCount;
+  int intPCount;
 
   // Make array
   PImage[] officer_frames;
@@ -40,6 +46,9 @@ public class Sketch2 extends PApplet {
     imgOfficerLeft1 = loadImage("player_013.png");
     imgOfficerRight1 = loadImage("player_010.png");
     imgOfficerStill = loadImage("player_03.png");
+    imgPrisonerFront1 = loadImage("prisoner_04.png");
+    imgPrisonerBack1 = loadImage("prisoner_01.png");
+    imgPrisonerStill = loadImage("prisoner_03.png");
     imgGrass = loadImage("ground_03.png");
     imgCrates = loadImage("crate_04.png");
 
@@ -69,17 +78,26 @@ public class Sketch2 extends PApplet {
     }
 
      // Officer image based on which way hes talking 
-     if(intCount == 1){
+     if(intGCount == 1){
        image(imgOfficerBack1, officerX, officerY);
-     } else if (intCount == 2){
+     } else if (intGCount == 2){
        image(imgOfficerFront1, officerX, officerY);
-     } else if (intCount == 3){
+     } else if (intGCount == 3){
        image(imgOfficerLeft1, officerX, officerY);
-     } else if (intCount == 4){
+     } else if (intGCount == 4){
        image(imgOfficerRight1, officerX, officerY);
-     } else if (intCount == 0){
+     } else {
        image(imgOfficerStill, officerX, officerY);
      }
+
+      // Prisoner image based on which way hes talking 
+      if(intPCount == 1){
+        image(imgPrisonerBack1, prisonerX, prisonerY);
+      } else if (intPCount == 2){
+        image(imgPrisonerFront1, prisonerX, prisonerY);
+      } else {
+        image(imgPrisonerStill, prisonerX, prisonerY);
+      }
 
     // Draws Crates (Crates are 63x63)
     // crates(crateX, crateY);
@@ -92,38 +110,61 @@ public class Sketch2 extends PApplet {
       crates(63, 63 + 40*i);
     }
 
-     // Move up
+     // Officer move up
      if (keyPressed) {
        if (keyCode == UP) {
          officerY -= 3;
-         intCount = 1;
-     }
+         intGCount = 1;
    }
-     // Move down
+  }
+     // Officer move down
      if (keyPressed) {
        if (keyCode == DOWN) {
          officerY += 3;
-         intCount = 2;
+         intGCount = 2;
    }
   }
-     // Move left
+     // Officer move left
      if (keyPressed) {
       if (keyCode == LEFT) {
-        officerX -= 3;
-        //intCount = 3; 
+        officerX -= 3; 
+   }
   }
- }
-     // Move right
+     // Officer move right
      if (keyPressed) {
       if (keyCode == RIGHT) {
-       officerX += 3;
-       //intCount = 4;
+        officerX += 4;
        
-    }
    }
-   // intCount = 0;
+  }
+       // Prisoner move up
+       if (keyPressed) {
+        if (keyCode == 'w') {
+          prisonerY -= 4;
+          intPCount = 1;
+   }
+  }
+       // Prisoner move down
+       if (keyPressed) {
+        if (keyCode == 's') {
+          prisonerY += 4;
+          intPCount = 2;
+   }
+  }
+       // Prisoner move left
+       if (keyPressed) {
+        if (keyCode == 'a') {
+          prisonerX -= 4; 
+   }
+  }
+       // Prisoner move right
+       if (keyPressed) {
+        if (keyCode == 'd') {
+          prisonerX += 4; 
+   }
+  }
 
-   // Border 
+   // Border for guard
    if (officerY > 674){
      officerY = 674;
    } else if (officerY < 112){
@@ -132,6 +173,17 @@ public class Sketch2 extends PApplet {
      officerX = 1272;
    } else if (officerX < 128){
      officerX = 128;
+   }
+
+   // Border for prisoner
+   if (prisonerY > 674){
+     prisonerY = 674;
+   } else if (prisonerY < 112){
+     prisonerY = 112;
+   } else if (prisonerX > 1272){
+     prisonerX = 1272;
+   } else if (prisonerX < 128){
+     prisonerX = 128;
    }
    // Loop to draw grass on the border
    for(int intRow = 0; intRow < width; intRow+=62.5){
@@ -147,6 +199,5 @@ public class Sketch2 extends PApplet {
   // Method to create crates (aka, walls)
   public void crates(float crateX, float crateY){
     image(imgCrates, crateX, crateY);
-    // commit test 3
   }
 }
