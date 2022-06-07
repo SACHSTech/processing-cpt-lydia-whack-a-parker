@@ -38,6 +38,8 @@ public class Sketch1 extends PApplet {
   float officerYspeed = 3;
   int intGCount;
   int intPCount;
+  int intHeight = 1400;
+  int intWidth = 820;
 
   // Make array
   PImage[] officer_frames;
@@ -45,7 +47,7 @@ public class Sketch1 extends PApplet {
 
   public void settings() {
 	// put your size call here
-    size(1400, 820);
+    size(intHeight, intWidth);
 
   }
 
@@ -157,10 +159,12 @@ public class Sketch1 extends PApplet {
     // Note: this MUST be first before the 7 and 9 method to ensure the crates don't overlap
     for (int i = 0; i < 20; i++) 
     {
-      // Bottom Row at (18, 1) going right
-      crates(63 + 63*i, 40*18);
       // Top Row at (1, 1) going right
       crates(63 + 63*i, 40);
+    }
+    for (int i = 0; i < 18; i++) {
+      // Bottom Row at (3, 18) going right
+      crates(63*3 + 63*i, 40*18);
     }
 
      // Draws 7 crates
@@ -170,6 +174,8 @@ public class Sketch1 extends PApplet {
       crates(63, 40 + 40*i);
       // Right Column Pt2 at (20, 10) going down
       crates(1260, 480 + 40*i);
+      // Left Column Pt2 at (1, 10) going down
+      crates(63, 40*10 + 40*i);
     }
 
     // Draws 9 crates
@@ -177,8 +183,6 @@ public class Sketch1 extends PApplet {
     {
       // Right Column Pt1 at (20, 1) going down
       crates(63*20, 40 + 40*i);
-      // Left Column Pt2 at (1, 10) going down
-      crates(63, 40*10 + 40*i);
     }
 
     // The next few methods create the maze...
@@ -187,6 +191,7 @@ public class Sketch1 extends PApplet {
     {
       // at (14, 2) going nowhere cause its 1 block my guy
       crates(63*14, 40*2);
+      // 
     }
 
     // Method for walls 2 blocks long!
