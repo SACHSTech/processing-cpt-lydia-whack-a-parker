@@ -161,7 +161,7 @@ public class Sketch1 extends PApplet {
     // Method for walls 1 block long..... 😟
     for (int i = 0; i < 1; i++) 
     {
-      // nothing yet...
+      // nothin yet...
     }
     // Method for walls 2 blocks long!
     for (int i = 0; i < 2; i++) 
@@ -176,6 +176,12 @@ public class Sketch1 extends PApplet {
       crates(63*7, 40*17 + 40*i);
       // at (10, 10) going right
       crates(63*10 + 2 + 63*i, 40*11);
+      // at (10, 13) going right
+      crates(63*10 + 2 + 63*i, 40*14);
+      // at (9, 14) going down
+      crates(63*9 + 2, 40*14 + 40*i);
+      // at (12, 14) going down
+      crates(63*12 + 2, 40*14 + 40*i);
 
     }
 
