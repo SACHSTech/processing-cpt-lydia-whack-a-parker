@@ -6,7 +6,11 @@ public class Sketch2 extends PApplet {
    * Assignment: 6.1 Processing in Java CPT
    * Author: Lydia He, Parker Yang
    * Due Jun 13, 11:59 PM
-   * Description: 
+   * Description: Prison Escape is a 2-player minigame where the police officer tries 
+   * to stop the prisoner from escaping. You can play as either the prisoner (using WASD) 
+   * or the prison guard (arrow keys). The prisoner must collect all 5 keys and escape to 
+   * win, while the prison guard must tag the prisoner to win. Whichever role, prisoner 
+   * or prisoin guard, wins the best out of three, wins the game. 
    */
    
   // Variables
@@ -103,6 +107,7 @@ public class Sketch2 extends PApplet {
       }
     }
     if (blnStart == true){
+
     // Draws background
     for(int intRow = 0; intRow < 1500; intRow+=125){
       for(int intColumn = 0; intColumn <= 900; intColumn+=125){

@@ -2,11 +2,16 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Sketch extends PApplet {
+  
 	/**
    * Assignment: 6.1 Processing in Java CPT
    * Author: Lydia He, Parker Yang
    * Due Jun 13, 11:59 PM
-   * Description: 
+   * Description: Prison Escape is a 2-player minigame where the police officer tries 
+   * to stop the prisoner from escaping. You can play as either the prisoner (using WASD) 
+   * or the prison guard (arrow keys). The prisoner must collect all 5 keys and escape to 
+   * win, while the prison guard must tag the prisoner to win. Whichever role, prisoner 
+   * or prisoin guard, wins the best out of three, wins the game. 
    */
    
   // Variables
@@ -27,12 +32,14 @@ public class Sketch extends PApplet {
   PImage imgGrass;
   float officerX = 650;
   float officerY = 350;
-  float prisonerX = 150;
-  float prisonerY = 300;
+  float prisonerX = height/2;
+  float prisonerY = width/2;
   float officerXspeed = 3;
   float officerYspeed = 3;
   int intGCount;
   int intPCount;
+  int intHeight = 1400;
+  int intWidth = 820;
 
   // Make array
   PImage[] officer_frames;
@@ -40,7 +47,7 @@ public class Sketch extends PApplet {
 
   public void settings() {
 	// put your size call here
-    size(1400, 820);
+    size(intHeight, intWidth);
 
   }
 
@@ -70,7 +77,7 @@ public class Sketch extends PApplet {
     imgCrates.resize(imgCrates.width/2, imgCrates.height/2);
 
     
-    // Resize officer
+    // Resize officer (red and green guy)
     imgOfficerBack1.resize(imgOfficerBack1.width/2, imgOfficerBack1.height/2);
     //imgOfficerBack2.resize(imgOfficerBack2.width/2, imgOfficerBack2.height/2);
     imgOfficerFront1.resize(imgOfficerFront1.width/2, imgOfficerFront1.height/2);
@@ -83,7 +90,7 @@ public class Sketch extends PApplet {
     */
     imgOfficerStill.resize(imgOfficerStill.width/2, imgOfficerStill.height/2);
     
-    // Resize prisoner
+    // Resize prisoner (orange guy)
     imgPrisonerBack1.resize(imgPrisonerBack1.width/2, imgPrisonerBack1.height/2);
     imgPrisonerFront1.resize(imgPrisonerFront1.width/2, imgPrisonerFront1.height/2);
     imgPrisonerStill.resize(imgPrisonerStill.width/2, imgPrisonerStill.height/2);
@@ -98,22 +105,22 @@ public class Sketch extends PApplet {
     }
 
      // Officer image based on which way hes talking 
-     if(intGCount == 1){
+     if(intGCount == 1) {
       image(imgOfficerBack1, officerX, officerY);
-    } else if (intGCount == 2){
+    } else if (intGCount == 2) {
       image(imgOfficerFront1, officerX, officerY);
-    } else if (intGCount == 3){
+    } else if (intGCount == 3) {
       image(imgOfficerLeft1, officerX, officerY);
-    } else if (intGCount == 4){
+    } else if (intGCount == 4) {
       image(imgOfficerRight1, officerX, officerY);
     } else {
       image(imgOfficerStill, officerX, officerY);
     }
     
     // Prisoner image based on which way hes talking 
-    if(intPCount == 1){
+    if(intPCount == 1) {
       image(imgPrisonerBack1, prisonerX, prisonerY);
-    } else if (intPCount == 2){
+    } else if (intPCount == 2) {
       image(imgPrisonerFront1, prisonerX, prisonerY);
     } else {
       image(imgPrisonerStill, prisonerX, prisonerY);
@@ -123,13 +130,21 @@ public class Sketch extends PApplet {
      * Draws Grass (Outer Border Grass is 63 x 63)
      * grass(grassX, grassY);
      */
+    // Draws 2 grass tiles
+    for (int i = 0; i < 2; i++) {
+      // at (1, 17) going down
+      grass(63, 40*17 + 40*i);
+      // at (2, 17) going down
+      grass(63*2, 40*17 + 40*i);
+    }
+
     // Draws 23 grass tiles
     for (int i = 0; i < 23; i++) 
     {
-      // Top row (23) Grass
+      // Top row Grass
       grass(63*i, 0);
       // Bottom Row ✋ Grass (starts at 780)
-      grass(63*i, 780);
+      grass(63*i, 40*19 + 20);
     }
 
     // Draws 19 grass tiles
@@ -138,8 +153,8 @@ public class Sketch extends PApplet {
       // Left Column Grass
       grass(0, 63*i);
       // Right Column Grass
-      grass(1323, 63*i);
-      grass(1386, 63*i);
+      grass(63*21, 63*i);
+      grass(63*22, 63*i);
     }
 
     /** 
@@ -152,10 +167,12 @@ public class Sketch extends PApplet {
     // Note: this MUST be first before the 7 and 9 method to ensure the crates don't overlap
     for (int i = 0; i < 20; i++) 
     {
-      // Bottom Row at (18, 1) going right
-      crates(63 + 63*i, 720);
       // Top Row at (1, 1) going right
       crates(63 + 63*i, 40);
+    }
+    for (int i = 0; i < 18; i++) {
+      // Bottom Row at (3, 18) going right
+      crates(63*3 + 63*i, 40*18);
     }
 
      // Draws 7 crates
@@ -165,6 +182,8 @@ public class Sketch extends PApplet {
       crates(63, 40 + 40*i);
       // Right Column Pt2 at (20, 10) going down
       crates(1260, 480 + 40*i);
+      // Left Column Pt2 at (1, 10) going down
+      crates(63, 40*10 + 40*i);
     }
 
     // Draws 9 crates
@@ -172,8 +191,6 @@ public class Sketch extends PApplet {
     {
       // Right Column Pt1 at (20, 1) going down
       crates(63*20, 40 + 40*i);
-      // Left Column Pt2 at (1, 10) going down
-      crates(63, 40*10 + 40*i);
     }
 
     // The next few methods create the maze...
@@ -182,6 +199,8 @@ public class Sketch extends PApplet {
     {
       // at (14, 2) going nowhere cause its 1 block my guy
       crates(63*14, 40*2);
+      // at (2, 16) 
+      crates(63*2, 40*16);
     }
 
     // Method for walls 2 blocks long!
@@ -258,65 +277,61 @@ public class Sketch extends PApplet {
       crates(63*14 + 2, 40*9 + 40*i);
     }
 
-    // Method for walls 6 blocks long!
-    for (int i = 0; i < 6; i++) 
-    {
-      // Null rn....
-    }
-
-    // Move up
+    // Officer movement
     if (keyPressed) {
+      // Move up
       if (keyCode == UP) {
         officerY -= 3;
         intGCount = 1;
       }
     }
-    // Move down
     if (keyPressed) {
+      // Move down
       if (keyCode == DOWN) {
         officerY += 3;
         intGCount = 2;
       }
     }
-    // Move left
     if (keyPressed) {
+      // Move left
       if (keyCode == LEFT) {
         officerX -= 3; 
       }
     }
-    // Move right
     if (keyPressed) {
+      // Move right
       if (keyCode == RIGHT) {
         officerX += 3;
       }
     }
-    // Prisoner move up
+
+    // Prisoner movement
     if (keyPressed) {
+      // Move up
       if (keyCode == 'w') {
         prisonerY -= 4;
         intPCount = 1;
        }
       }
-    // Prisoner move down
     if (keyPressed) {
+      // Move down
       if (keyCode == 's') {
         prisonerY += 4;
         intPCount = 2;
        }
       }
-    // Prisoner move left
     if (keyPressed) {
+      // Move left
       if (keyCode == 'a') {
         prisonerX -= 4; 
        }
       }
-
-    // Prisoner move right
-      if (keyPressed) {
-        if (keyCode == 'd') {
-          prisonerX += 4; 
-       }
+    if (keyPressed) {
+      // Move right
+      if (keyCode == 'd') {
+        prisonerX += 4; 
       }
+    }
 
    // Border 
    if (officerY > 684) {
