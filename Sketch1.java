@@ -71,7 +71,6 @@ public class Sketch1 extends PApplet {
     imgOfficerRight2.resize(imgOfficerRight2.width/2, imgOfficerRight2.height/2);
     imgOfficerStill.resize(imgOfficerStill.width/2, imgOfficerStill.height/2);
     */
-
   }
 
   public void draw() {
@@ -99,26 +98,20 @@ public class Sketch1 extends PApplet {
      * Draws Grass (Outer Border Grass is 63 x 63)
      * grass(grassX, grassY);
      */
-    // Top row (23) Grass
     for (int i = 0; i < 23; i++) 
     {
+      // Top row (23) Grass
       grass(63*i, 0);
+      // Bottom Row ✋ Grass (starts at 780)
+      grass(63*i, 780);
     }
-    // Left Column Grass
     for (int i = 0; i < 19; i++) 
     {
+      // Left Column Grass
       grass(0, 63*i);
-    }
-    // Right Column Grass
-    for (int i = 0; i < 19; i++) 
-    {
+      // Right Column Grass
       grass(1323, 63*i);
       grass(1386, 63*i);
-    }
-    // Bottom Row ✋ Grass (starts at 780)
-    for (int i = 0; i < 23; i++) 
-    {
-      grass(63*i, 780);
     }
 
     /** 
