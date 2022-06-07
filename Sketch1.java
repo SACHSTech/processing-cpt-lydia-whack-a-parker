@@ -2,11 +2,15 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Sketch1 extends PApplet {
+
 	/**
    * Assignment: 6.1 Processing in Java CPT
    * Author: Lydia He, Parker Yang
    * Due Jun 13, 11:59 PM
-   * Description: 
+   * Description: Prison Escape is a 2-player minigame where the police officer tries to stop the prisoner from escaping. 
+   * You can play as either the prisoner (using WASD) or the prison guard (arrow keys). 
+   * The prisoner must collect all 5 keys and escape to win, while the prison guard must tag the prisoner to win. 
+   * Whichever role, prisoner or prisoin guard, wins the best out of three, wins the game. 
    */
    
   // Variables
@@ -27,6 +31,7 @@ public class Sketch1 extends PApplet {
   float officerXspeed = 3;
   float officerYspeed = 3;
   int intCount;
+
   // Make array
   PImage[] officer_frames;
   int intOfficer_frames = 8;
@@ -58,19 +63,7 @@ public class Sketch1 extends PApplet {
     // Resize images
     imgGrass.resize(imgGrass.width/2, imgGrass.height/2);
     imgCrates.resize(imgCrates.width/2, imgCrates.height/2);
-
-    /*
-    NOT SURE WHAT THIS IS FOR, PARKER!
-    imgOfficerBack1.resize(imgOfficerBack1.width/2, imgOfficerBack1.height/2);
-    imgOfficerBack2.resize(imgOfficerBack2.width/2, imgOfficerBack2.height/2);
-    imgOfficerFront1.resize(imgOfficerFront1.width/2, imgOfficerFront1.height/2);
-    imgOfficerFront2.resize(imgOfficerFront2.width/2, imgOfficerFront2.height/2);
-    imgOfficerLeft1.resize(imgOfficerLeft1.width/2, imgOfficerLeft1.height/2);
-    imgOfficerLeft2.resize(imgOfficerLeft2.width/2, imgOfficerLeft2.height/2);
-    imgOfficerRight1.resize(imgOfficerRight1.width/2, imgOfficerRight1.height/2);
-    imgOfficerRight2.resize(imgOfficerRight2.width/2, imgOfficerRight2.height/2);
-    imgOfficerStill.resize(imgOfficerStill.width/2, imgOfficerStill.height/2);
-    */
+        
   }
 
   public void draw() {
@@ -182,6 +175,8 @@ public class Sketch1 extends PApplet {
       crates(63*14, 40*5 + 40*i);
       // at (16, 4) going right
       crates(63*16 + 2 + 63*i, 40*4);
+      // at (16, 5) going down
+      crates(63*16 + 2, 40*5 + 40*i);
 
     }
 

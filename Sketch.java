@@ -31,9 +31,14 @@ public class Sketch extends PApplet {
   float prisonerY = 300;
   float officerXspeed = 3;
   float officerYspeed = 3;
+<<<<<<< HEAD
   int intGCount;
   int intPCount;
 
+=======
+  int intCount;
+  
+>>>>>>> 2c16696c7158b1f265f567c5d993f11efeb9bde7
   // Make array
   PImage[] officer_frames;
   int intOfficer_frames = 8;
@@ -207,6 +212,8 @@ public class Sketch extends PApplet {
       crates(63*14, 40*5 + 40*i);
       // at (16, 4) going right
       crates(63*16 + 2 + 63*i, 40*4);
+      // at (16, 5) going down
+      crates(63*16 + 2, 40*5 + 40*i);
 
     }
 
