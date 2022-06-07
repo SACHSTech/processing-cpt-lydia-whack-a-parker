@@ -7,10 +7,7 @@ public class Sketch1 extends PApplet {
    * Assignment: 6.1 Processing in Java CPT
    * Author: Lydia He, Parker Yang
    * Due Jun 13, 11:59 PM
-   * Description: Prison Escape is a 2-player minigame where the police officer tries to stop the prisoner from escaping. 
-   * You can play as either the prisoner (using WASD) or the prison guard (arrow keys). 
-   * The prisoner must collect all 5 keys and escape to win, while the prison guard must tag the prisoner to win. 
-   * Whichever role, prisoner or prisoin guard, wins the best out of three, wins the game. 
+   * Description: 
    */
    
   // Variables
@@ -24,13 +21,19 @@ public class Sketch1 extends PApplet {
   PImage imgOfficerRight1;
   PImage imgOfficerRight2;
   PImage imgOfficerStill;
+  PImage imgPrisonerFront1;
+  PImage imgPrisonerBack1;
+  PImage imgPrisonerStill;
   PImage imgCrates;
   PImage imgGrass;
   float officerX = 650;
   float officerY = 350;
+  float prisonerX = height/2;
+  float prisonerY = width/2;
   float officerXspeed = 3;
   float officerYspeed = 3;
-  int intCount;
+  int intGCount;
+  int intPCount;
 
   // Make array
   PImage[] officer_frames;
@@ -54,6 +57,9 @@ public class Sketch1 extends PApplet {
     imgOfficerRight1 = loadImage("player_010.png");
     imgOfficerRight2 = loadImage("player_011.png");
     imgOfficerStill = loadImage("player_03.png");
+    imgPrisonerFront1 = loadImage("prisoner_04.png");
+    imgPrisonerBack1 = loadImage("prisoner_01.png");
+    imgPrisonerStill = loadImage("prisoner_03.png");
     imgGrass = loadImage("ground_03.png");
     imgCrates = loadImage("crate_04.png");
 
@@ -63,7 +69,25 @@ public class Sketch1 extends PApplet {
     // Resize images
     imgGrass.resize(imgGrass.width/2, imgGrass.height/2);
     imgCrates.resize(imgCrates.width/2, imgCrates.height/2);
-        
+
+    
+    // Resize officer (red and green guy)
+    imgOfficerBack1.resize(imgOfficerBack1.width/2, imgOfficerBack1.height/2);
+    //imgOfficerBack2.resize(imgOfficerBack2.width/2, imgOfficerBack2.height/2);
+    imgOfficerFront1.resize(imgOfficerFront1.width/2, imgOfficerFront1.height/2);
+    /* 
+    imgOfficerFront2.resize(imgOfficerFront2.width/2, imgOfficerFront2.height/2);
+    imgOfficerLeft1.resize(imgOfficerLeft1.width/2, imgOfficerLeft1.height/2);
+    imgOfficerLeft2.resize(imgOfficerLeft2.width/2, imgOfficerLeft2.height/2);
+    imgOfficerRight1.resize(imgOfficerRight1.width/2, imgOfficerRight1.height/2);
+    imgOfficerRight2.resize(imgOfficerRight2.width/2, imgOfficerRight2.height/2);
+    */
+    imgOfficerStill.resize(imgOfficerStill.width/2, imgOfficerStill.height/2);
+    
+    // Resize prisoner (orange guy)
+    imgPrisonerBack1.resize(imgPrisonerBack1.width/2, imgPrisonerBack1.height/2);
+    imgPrisonerFront1.resize(imgPrisonerFront1.width/2, imgPrisonerFront1.height/2);
+    imgPrisonerStill.resize(imgPrisonerStill.width/2, imgPrisonerStill.height/2);
   }
 
   public void draw() {
@@ -75,18 +99,27 @@ public class Sketch1 extends PApplet {
     }
 
      // Officer image based on which way hes talking 
-     if(intCount == 1){
-       image(imgOfficerBack1, officerX, officerY);
-     } else if (intCount == 2){
-       image(imgOfficerFront1, officerX, officerY);
-     } else if (intCount == 3){
-       image(imgOfficerLeft1, officerX, officerY);
-     } else if (intCount == 4){
-       image(imgOfficerRight1, officerX, officerY);
-     } else if (intCount == 0){
-       image(imgOfficerStill, officerX, officerY);
-     }
+     if(intGCount == 1){
+      image(imgOfficerBack1, officerX, officerY);
+    } else if (intGCount == 2){
+      image(imgOfficerFront1, officerX, officerY);
+    } else if (intGCount == 3){
+      image(imgOfficerLeft1, officerX, officerY);
+    } else if (intGCount == 4){
+      image(imgOfficerRight1, officerX, officerY);
+    } else {
+      image(imgOfficerStill, officerX, officerY);
+    }
     
+    // Prisoner image based on which way hes talking 
+    if(intPCount == 1){
+      image(imgPrisonerBack1, prisonerX, prisonerY);
+    } else if (intPCount == 2){
+      image(imgPrisonerFront1, prisonerX, prisonerY);
+    } else {
+      image(imgPrisonerStill, prisonerX, prisonerY);
+    }
+
     /**
      * Draws Grass (Outer Border Grass is 63 x 63)
      * grass(grassX, grassY);
@@ -236,14 +269,14 @@ public class Sketch1 extends PApplet {
     if (keyPressed) {
       if (keyCode == UP) {
         officerY -= 3;
-        intCount = 1;
+        intGCount = 1;
       }
     }
     // Move down
     if (keyPressed) {
       if (keyCode == DOWN) {
         officerY += 3;
-        intCount = 2;
+        intGCount = 2;
       }
     }
     // Move left
@@ -258,6 +291,33 @@ public class Sketch1 extends PApplet {
         officerX += 3;
       }
     }
+    // Prisoner move up
+    if (keyPressed) {
+      if (keyCode == 'w') {
+        prisonerY -= 4;
+        intPCount = 1;
+       }
+      }
+    // Prisoner move down
+    if (keyPressed) {
+      if (keyCode == 's') {
+        prisonerY += 4;
+        intPCount = 2;
+       }
+      }
+    // Prisoner move left
+    if (keyPressed) {
+      if (keyCode == 'a') {
+        prisonerX -= 4; 
+       }
+      }
+
+    // Prisoner move right
+      if (keyPressed) {
+        if (keyCode == 'd') {
+          prisonerX += 4; 
+       }
+      }
 
    // Border 
    if (officerY > 684) {
@@ -269,6 +329,17 @@ public class Sketch1 extends PApplet {
    } else if (officerX < 111) {
      officerX = 111;
    }
+   
+   // Border for prisoner
+   if (prisonerY > 674){
+     prisonerY = 674;
+   } else if (prisonerY < 112){
+     prisonerY = 112;
+   } else if (prisonerX > 1272){
+     prisonerX = 1272;
+   } else if (prisonerX < 128){
+     prisonerX = 128;
+    }
   }
 
   // Method to create grass

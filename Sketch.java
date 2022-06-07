@@ -31,14 +31,9 @@ public class Sketch extends PApplet {
   float prisonerY = 300;
   float officerXspeed = 3;
   float officerYspeed = 3;
-<<<<<<< HEAD
   int intGCount;
   int intPCount;
 
-=======
-  int intCount;
-  
->>>>>>> 2c16696c7158b1f265f567c5d993f11efeb9bde7
   // Make array
   PImage[] officer_frames;
   int intOfficer_frames = 8;
