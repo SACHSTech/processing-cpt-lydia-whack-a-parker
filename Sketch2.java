@@ -115,7 +115,7 @@ public class Sketch2 extends PApplet {
     }
     if (blnStart == true){
 
-        // Draws background
+    // Draws background
     for(int intRow = 0; intRow < 1500; intRow+=125){
       for(int intColumn = 0; intColumn <= 900; intColumn+=125){
         image(imgBackground, intRow, intColumn);
