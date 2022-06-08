@@ -141,13 +141,21 @@ public class Sketch2 extends PApplet {
      * Draws Grass (Outer Border Grass is 63 x 63)
      * grass(grassX, grassY);
      */
+    // Draws 2 grass tiles
+    for (int i = 0; i < 2; i++) {
+      // at (1, 17) going down
+      grass(63, 40*17 + 40*i);
+      // at (2, 17) going down
+      grass(63*2, 40*17 + 40*i);
+    }
+
     // Draws 23 grass tiles
     for (int i = 0; i < 23; i++) 
     {
-      // Top row (23) Grass
+      // Top row Grass
       grass(63*i, 0);
       // Bottom Row ✋ Grass (starts at 780)
-      grass(63*i, 780);
+      grass(63*i, 40*19 + 20);
     }
 
     // Draws 19 grass tiles
@@ -156,8 +164,8 @@ public class Sketch2 extends PApplet {
       // Left Column Grass
       grass(0, 63*i);
       // Right Column Grass
-      grass(1323, 63*i);
-      grass(1386, 63*i);
+      grass(63*21, 63*i);
+      grass(63*22, 63*i);
     }
 
     /** 
@@ -170,10 +178,12 @@ public class Sketch2 extends PApplet {
     // Note: this MUST be first before the 7 and 9 method to ensure the crates don't overlap
     for (int i = 0; i < 20; i++) 
     {
-      // Bottom Row at (18, 1) going right
-      crates(63 + 63*i, 720);
       // Top Row at (1, 1) going right
       crates(63 + 63*i, 40);
+    }
+    for (int i = 0; i < 18; i++) {
+      // Bottom Row at (3, 18) going right
+      crates(63*3 + 63*i, 40*18);
     }
 
      // Draws 7 crates
@@ -183,6 +193,8 @@ public class Sketch2 extends PApplet {
       crates(63, 40 + 40*i);
       // Right Column Pt2 at (20, 10) going down
       crates(1260, 480 + 40*i);
+      // Left Column Pt2 at (1, 10) going down
+      crates(63, 40*10 + 40*i);
     }
 
     // Draws 9 crates
@@ -190,8 +202,6 @@ public class Sketch2 extends PApplet {
     {
       // Right Column Pt1 at (20, 1) going down
       crates(63*20, 40 + 40*i);
-      // Left Column Pt2 at (1, 10) going down
-      crates(63, 40*10 + 40*i);
     }
 
     // The next few methods create the maze...
@@ -200,6 +210,8 @@ public class Sketch2 extends PApplet {
     {
       // at (14, 2) going nowhere cause its 1 block my guy
       crates(63*14, 40*2);
+      // at (2, 16) 
+      crates(63*2, 40*16);
     }
 
     // Method for walls 2 blocks long!
