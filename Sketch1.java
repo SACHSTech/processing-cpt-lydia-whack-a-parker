@@ -279,58 +279,18 @@ public class Sketch1 extends PApplet {
 
     // Officer movement
     if (keyPressed) {
-      // Move up
-      if (keyCode == UP) {
-        officerY -= 3;
-        intGCount = 1;
-      }
-    }
-    if (keyPressed) {
-      // Move down
-      if (keyCode == DOWN) {
-        officerY += 3;
-        intGCount = 2;
-      }
-    }
-    if (keyPressed) {
-      // Move left
-      if (keyCode == LEFT) {
-        officerX -= 3; 
-      }
-    }
-    if (keyPressed) {
-      // Move right
-      if (keyCode == RIGHT) {
-        officerX += 3;
-      }
+      moveOfficer("UP", 1, 3);
+      moveOfficer("DOWN", 2, 3);
+      moveOfficer("LEFT", 0, 3);
+      moveOfficer("RIGHT", 0, 3);
     }
 
     // Prisoner movement
     if (keyPressed) {
-      // Move up
-      if (keyCode == 'w') {
-        prisonerY -= 4;
-        intPCount = 1;
-       }
-      }
-    if (keyPressed) {
-      // Move down
-      if (keyCode == 's') {
-        prisonerY += 4;
-        intPCount = 2;
-       }
-      }
-    if (keyPressed) {
-      // Move left
-      if (keyCode == 'a') {
-        prisonerX -= 4; 
-       }
-      }
-    if (keyPressed) {
-      // Move right
-      if (keyCode == 'd') {
-        prisonerX += 4; 
-      }
+      movePrisoner("w", 1, 4);
+      movePrisoner("s", 2, 4);
+      movePrisoner("a", 0, 4);
+      movePrisoner("d", 0, 4);
     }
 
    // Border 
@@ -371,4 +331,63 @@ public class Sketch1 extends PApplet {
     //image(imgKeys, keyX, keyY);
   }
 
+  // Method to make officer move
+  public void moveOfficer(String strOfficerDirection, int intOfficerGCount, int intOfficerSpeed) {
+    // Move up
+    if (strOfficerDirection == "UP") {
+      if (keyCode == UP) {
+        officerY -= intOfficerSpeed;
+        intGCount = intOfficerGCount;
+      }
+    }
+    // Move down
+    if (strOfficerDirection == "DOWN") {
+      if (keyCode == DOWN) {
+        officerY += intOfficerSpeed;
+        intGCount = intOfficerGCount;
+      }
+    }
+    // Move left
+    if (strOfficerDirection == "LEFT") {
+      if (keyCode == LEFT) {
+        officerX -= intOfficerSpeed;
+      }
+    }
+    // Move right
+    if (strOfficerDirection == "RIGHT") {
+      if (keyCode == RIGHT) {
+        officerX += intOfficerSpeed;
+      }
+    }
+  }
+
+  // Method to make prisoner move
+  public void movePrisoner(String strPrisonerDirection, int intPrisonerPCount, int intPrisonerSpeed) {
+    // Move up
+    if (strPrisonerDirection == "w") {
+      if (key == 'w') {
+        prisonerY -= intPrisonerSpeed;
+        intPCount = intPrisonerPCount;
+       }
+      }
+    // Move down
+    if (strPrisonerDirection == "s") {
+      if (key == 's') {
+        prisonerY += intPrisonerSpeed;
+        intPCount = intPrisonerPCount;
+       }
+      }
+    // Move left
+    if (strPrisonerDirection == "a") {
+      if (key == 'a') {
+        prisonerX -= intPrisonerSpeed; 
+       }
+      }
+    // Move right
+    if (strPrisonerDirection == "d") {
+      if (key == 'd') {
+        prisonerX += intPrisonerSpeed; 
+      }
+    }
+  }
 }
