@@ -365,4 +365,10 @@ public class Sketch1 extends PApplet {
   public void crates(float crateX, float crateY) {
     image(imgCrates, crateX, crateY);
   }
+
+  // Method to create a key 
+  public void keys(float keyX, float keyY){
+    image(imgKeys, keyX, keyY);
+  }
+
 }
