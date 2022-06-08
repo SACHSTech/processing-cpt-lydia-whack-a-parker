@@ -316,22 +316,39 @@ public class Sketch1 extends PApplet {
     }
   }
 
-  // Method to create grass
+  /**
+   * Method to create grass
+   * @param grassX is a float that reads the x-value of the grass image
+   * @param grassY is a float that reads the y-value of the grass image
+   */
   public void grass(float grassX, float grassY) {
     image(imgGrass, grassX, grassY);
   }
 
-  // Method to create crates (aka, walls)
+  /**
+   * Method to create crates (aka, walls)
+   * @param crateX is a float that reads the x-value of the crate image
+   * @param crateY is a float that reads the y-value of the crate image
+   */
   public void crates(float crateX, float crateY) {
     image(imgCrates, crateX, crateY);
   }
 
-  // Method to create a key 
+  /**
+   * Method to create a key 
+   * @param keyX is a float that reads the x-value of the key image
+   * @param keyY is a float that reads the y-value of the key image
+   */
   public void keys(float keyX, float keyY){
     //image(imgKeys, keyX, keyY);
   }
 
-  // Method to make officer move
+  /**
+   * Method to make officer move
+   * @param strOfficerDirection is a string that reads the direction of the officer (UP, DOWN, LEFT, RIGHT)
+   * @param intOfficerGCount is a integer that assigns an image to the officer
+   * @param intOfficerSpeed is an integer that assigns a speed to the officer
+   */
   public void moveOfficer(String strOfficerDirection, int intOfficerGCount, int intOfficerSpeed) {
     // Move up
     if (strOfficerDirection == "UP") {
@@ -361,7 +378,12 @@ public class Sketch1 extends PApplet {
     }
   }
 
-  // Method to make prisoner move
+  /**
+   * Method to make prisoner move
+   * @param strPrisonerDirection is a string that reads the direction of the prisoner (w, s, a, d)
+   * @param intPrisonerPCount is a integer that assigns an image to the prisoner
+   * @param intPrisonerSpeed is an integer that assigns a speed to the prisoner
+   */
   public void movePrisoner(String strPrisonerDirection, int intPrisonerPCount, int intPrisonerSpeed) {
     // Move up
     if (strPrisonerDirection == "w") {
