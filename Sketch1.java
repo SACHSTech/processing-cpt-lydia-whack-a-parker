@@ -368,7 +368,7 @@ public class Sketch1 extends PApplet {
 
   // Method to create a key 
   public void keys(float keyX, float keyY){
-    image(imgKeys, keyX, keyY);
+    //image(imgKeys, keyX, keyY);
   }
 
 }

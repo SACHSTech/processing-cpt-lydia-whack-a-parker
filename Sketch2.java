@@ -328,27 +328,27 @@ public class Sketch2 extends PApplet {
     // Prisoner movement
     if (keyPressed) {
       // Move up
-      if (keyCode == 'w') {
+      if (key == 'w') {
         prisonerY -= 4;
         intPCount = 1;
        }
       }
     if (keyPressed) {
       // Move down
-      if (keyCode == 's') {
+      if (key == 's') {
         prisonerY += 4;
         intPCount = 2;
        }
       }
     if (keyPressed) {
       // Move left
-      if (keyCode == 'a') {
+      if (key == 'a') {
         prisonerX -= 4; 
        }
       }
     if (keyPressed) {
       // Move right
-      if (keyCode == 'd') {
+      if (key == 'd') {
         prisonerX += 4; 
       }
     }
