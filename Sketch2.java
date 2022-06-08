@@ -295,7 +295,7 @@ public class Sketch2 extends PApplet {
       crates(63*14 + 2, 40*9 + 40*i);
     }
 
-    keys(252, 160);
+    //keys(252, 160);
 
     // Officer movement
     if (keyPressed) {
@@ -386,6 +386,7 @@ public class Sketch2 extends PApplet {
   public void crates(float crateX, float crateY) {
     image(imgCrates, crateX, crateY);
   }
+  
   // Method to create a key 
   public void keys(float keyX, float keyY){
     image(imgKeys, keyX, keyY);
