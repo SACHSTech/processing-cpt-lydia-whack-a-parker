@@ -97,6 +97,21 @@ public class Sketch1 extends PApplet {
   }
 
   public void draw() {
+    /** Start screen
+    image(imgMenu, 0, 0);
+    fill(186, 186, 186);
+    rect(200, 210, 1000, 400);
+    fill(0);
+    textSize(150);
+    text("Prison Escape", 250, 450);
+    if (keyPressed){
+      if (key == 'p'){
+        blnStart = true;
+      }
+    }
+    if (blnStart == true){
+    */
+
     // Draws background
     for(int intRow = 0; intRow < 1500; intRow+=125){
       for(int intColumn = 0; intColumn <= 900; intColumn+=125){
@@ -279,58 +294,18 @@ public class Sketch1 extends PApplet {
 
     // Officer movement
     if (keyPressed) {
-      // Move up
-      if (keyCode == UP) {
-        officerY -= 3;
-        intGCount = 1;
-      }
-    }
-    if (keyPressed) {
-      // Move down
-      if (keyCode == DOWN) {
-        officerY += 3;
-        intGCount = 2;
-      }
-    }
-    if (keyPressed) {
-      // Move left
-      if (keyCode == LEFT) {
-        officerX -= 3; 
-      }
-    }
-    if (keyPressed) {
-      // Move right
-      if (keyCode == RIGHT) {
-        officerX += 3;
-      }
+      moveOfficer("UP", 1, 3);
+      moveOfficer("DOWN", 2, 3);
+      moveOfficer("LEFT", 0, 3);
+      moveOfficer("RIGHT", 0, 3);
     }
 
     // Prisoner movement
     if (keyPressed) {
-      // Move up
-      if (keyCode == 'w') {
-        prisonerY -= 4;
-        intPCount = 1;
-       }
-      }
-    if (keyPressed) {
-      // Move down
-      if (keyCode == 's') {
-        prisonerY += 4;
-        intPCount = 2;
-       }
-      }
-    if (keyPressed) {
-      // Move left
-      if (keyCode == 'a') {
-        prisonerX -= 4; 
-       }
-      }
-    if (keyPressed) {
-      // Move right
-      if (keyCode == 'd') {
-        prisonerX += 4; 
-      }
+      movePrisoner("w", 1, 4);
+      movePrisoner("s", 2, 4);
+      movePrisoner("a", 0, 4);
+      movePrisoner("d", 0, 4);
     }
 
    // Border 
@@ -356,19 +331,100 @@ public class Sketch1 extends PApplet {
     }
   }
 
-  // Method to create grass
+  /**
+   * Method to create grass
+   * @param grassX is a float that reads the x-value of the grass image
+   * @param grassY is a float that reads the y-value of the grass image
+   */
   public void grass(float grassX, float grassY) {
     image(imgGrass, grassX, grassY);
   }
 
-  // Method to create crates (aka, walls)
+  /**
+   * Method to create crates (aka, walls)
+   * @param crateX is a float that reads the x-value of the crate image
+   * @param crateY is a float that reads the y-value of the crate image
+   */
   public void crates(float crateX, float crateY) {
     image(imgCrates, crateX, crateY);
   }
-/* 
-  // Method to create a key 
+
+  /**
+   * Method to create a key 
+   * @param keyX is a float that reads the x-value of the key image
+   * @param keyY is a float that reads the y-value of the key image
+   */
   public void keys(float keyX, float keyY){
-    image(imgKeys, keyX, keyY);
+    //image(imgKeys, keyX, keyY);
   }
-*/
+
+  /**
+   * Method to make officer move
+   * @param strOfficerDirection is a string that reads the direction of the officer (UP, DOWN, LEFT, RIGHT)
+   * @param intOfficerGCount is a integer that assigns an image to the officer
+   * @param intOfficerSpeed is an integer that assigns a speed to the officer
+   */
+  public void moveOfficer(String strOfficerDirection, int intOfficerGCount, int intOfficerSpeed) {
+    // Move up
+    if (strOfficerDirection == "UP") {
+      if (keyCode == UP) {
+        officerY -= intOfficerSpeed;
+        intGCount = intOfficerGCount;
+      }
+    }
+    // Move down
+    if (strOfficerDirection == "DOWN") {
+      if (keyCode == DOWN) {
+        officerY += intOfficerSpeed;
+        intGCount = intOfficerGCount;
+      }
+    }
+    // Move left
+    if (strOfficerDirection == "LEFT") {
+      if (keyCode == LEFT) {
+        officerX -= intOfficerSpeed;
+      }
+    }
+    // Move right
+    if (strOfficerDirection == "RIGHT") {
+      if (keyCode == RIGHT) {
+        officerX += intOfficerSpeed;
+      }
+    }
+  }
+
+  /**
+   * Method to make prisoner move
+   * @param strPrisonerDirection is a string that reads the direction of the prisoner (w, s, a, d)
+   * @param intPrisonerPCount is a integer that assigns an image to the prisoner
+   * @param intPrisonerSpeed is an integer that assigns a speed to the prisoner
+   */
+  public void movePrisoner(String strPrisonerDirection, int intPrisonerPCount, int intPrisonerSpeed) {
+    // Move up
+    if (strPrisonerDirection == "w") {
+      if (key == 'w') {
+        prisonerY -= intPrisonerSpeed;
+        intPCount = intPrisonerPCount;
+       }
+      }
+    // Move down
+    if (strPrisonerDirection == "s") {
+      if (key == 's') {
+        prisonerY += intPrisonerSpeed;
+        intPCount = intPrisonerPCount;
+       }
+      }
+    // Move left
+    if (strPrisonerDirection == "a") {
+      if (key == 'a') {
+        prisonerX -= intPrisonerSpeed; 
+       }
+      }
+    // Move right
+    if (strPrisonerDirection == "d") {
+      if (key == 'd') {
+        prisonerX += intPrisonerSpeed; 
+      }
+    }
+  }
 }

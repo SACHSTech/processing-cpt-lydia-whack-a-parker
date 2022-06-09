@@ -3,6 +3,7 @@ import processing.core.PFont;
 import processing.core.PImage;
 
 public class Sketch2 extends PApplet {
+
 	/**
    * Assignment: 6.1 Processing in Java CPT
    * Author: Lydia He, Parker Yang
@@ -52,7 +53,6 @@ public class Sketch2 extends PApplet {
   public void settings() {
 	// put your size call here
     size(1400, 820);
-
   }
 
   public void setup() {
