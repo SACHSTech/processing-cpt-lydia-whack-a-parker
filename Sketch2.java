@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.core.PImage;
 
 public class Sketch2 extends PApplet {
@@ -39,7 +40,10 @@ public class Sketch2 extends PApplet {
   float officerYspeed = 3;
   int intGCount;
   int intPCount;
+  int intTimer;
   boolean blnStart = false; 
+  boolean blnEnd = false;
+
 
   // Make array
   PImage[] officer_frames;
@@ -70,6 +74,7 @@ public class Sketch2 extends PApplet {
     imgCrates = loadImage("crate_04.png");
     imgMenu = loadImage("menu.png");
     imgKeys = loadImage("keys.png");
+    //font = createFont("", 150);
 
     // Load frames
     officer_frames = new PImage[intOfficer_frames];
@@ -100,12 +105,13 @@ public class Sketch2 extends PApplet {
   }
 
   public void draw() {
-  
+
     // Start screen
     image(imgMenu, 0, 0);
     fill(186, 186, 186);
     rect(200, 210, 1000, 400);
     fill(0);
+    //textFont(font);
     textSize(150);
     text("Prison Escape", 250, 450);
     if (keyPressed){
@@ -113,6 +119,7 @@ public class Sketch2 extends PApplet {
         blnStart = true;
       }
     }
+
     if (blnStart == true){
 
     // Draws background
@@ -121,6 +128,7 @@ public class Sketch2 extends PApplet {
         image(imgBackground, intRow, intColumn);
       }
     }
+    
 
      // Officer image based on which way hes talking 
      if(intGCount == 1) {
@@ -174,7 +182,7 @@ public class Sketch2 extends PApplet {
       grass(63*21, 63*i);
       grass(63*22, 63*i);
     }
-
+  
     /** 
      * Draws Crates (Crates are 63 x 63, top of crate is 40, side is 23)
      * crates(crateX, crateY);
@@ -295,7 +303,18 @@ public class Sketch2 extends PApplet {
       crates(63*14 + 2, 40*9 + 40*i);
     }
 
-    //keys(252, 160);
+    intTimer = second();
+
+    // Timer
+    textSize(60);
+    text(intTimer, 50, 780);
+    
+    if((intTimer + 10) < intTimer){
+      blnEnd = true;
+    }
+    while(blnEnd == true){
+      background(0);
+    }
 
     // Officer movement
     if (keyPressed) {
@@ -373,10 +392,10 @@ public class Sketch2 extends PApplet {
      prisonerX = 1272;
    } else if (prisonerX < 128){
      prisonerX = 128;
-   }
-   }
-  }
-
+      }
+     }
+    }
+  
   // Method to create grass
   public void grass(float grassX, float grassY) {
     image(imgGrass, grassX, grassY);
