@@ -97,6 +97,21 @@ public class Sketch1 extends PApplet {
   }
 
   public void draw() {
+    /** Start screen
+    image(imgMenu, 0, 0);
+    fill(186, 186, 186);
+    rect(200, 210, 1000, 400);
+    fill(0);
+    textSize(150);
+    text("Prison Escape", 250, 450);
+    if (keyPressed){
+      if (key == 'p'){
+        blnStart = true;
+      }
+    }
+    if (blnStart == true){
+    */
+
     // Draws background
     for(int intRow = 0; intRow < 1500; intRow+=125){
       for(int intColumn = 0; intColumn <= 900; intColumn+=125){
