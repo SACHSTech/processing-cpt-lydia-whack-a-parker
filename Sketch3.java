@@ -38,9 +38,10 @@ public class Sketch3 extends PApplet {
   float officerYspeed = 3;
   int intGCount;
   int intPCount;
-  int intHeight = 1400;
-  int intWidth = 820;
+  int intWidth = 1408;
+  int intHeight = 850;
   int[][] intArray;
+  int intArrayValue;
 
   // Make array
   PImage[] officer_frames;
@@ -48,7 +49,7 @@ public class Sketch3 extends PApplet {
 
   public void settings() {
 	// put your size call here
-    size(intHeight, intWidth);
+    size(intWidth, intHeight);
     intArray = arrayGame();
 
   }
@@ -57,13 +58,13 @@ public class Sketch3 extends PApplet {
     // Import images
     imgBackground = loadImage("ground_04.png");
     imgOfficerBack1 = loadImage("player_01.png");
-    imgOfficerBack2 = loadImage("player_02.png");
+    //imgOfficerBack2 = loadImage("player_02.png");
     imgOfficerFront1 = loadImage("player_04.png");
-    imgOfficerFront2 = loadImage("player_05.png");
-    imgOfficerLeft1 = loadImage("player_013.png");
-    imgOfficerLeft2 = loadImage("player_014.png");
-    imgOfficerRight1 = loadImage("player_010.png");
-    imgOfficerRight2 = loadImage("player_011.png");
+    //imgOfficerFront2 = loadImage("player_05.png");
+    //imgOfficerLeft1 = loadImage("player_013.png");
+    //imgOfficerLeft2 = loadImage("player_014.png");
+    //imgOfficerRight1 = loadImage("player_010.png");
+    //imgOfficerRight2 = loadImage("player_011.png");
     imgOfficerStill = loadImage("player_03.png");
     imgPrisonerFront1 = loadImage("prisoner_04.png");
     imgPrisonerBack1 = loadImage("prisoner_01.png");
@@ -91,7 +92,7 @@ public class Sketch3 extends PApplet {
     imgOfficerRight2.resize(imgOfficerRight2.width/2, imgOfficerRight2.height/2);
     */
     imgOfficerStill.resize(imgOfficerStill.width/2, imgOfficerStill.height/2);
-    
+    //imgBackground.resize(imgBackground.width/2, imgBackground.height/2);
     // Resize prisoner (orange guy)
     imgPrisonerBack1.resize(imgPrisonerBack1.width/2, imgPrisonerBack1.height/2);
     imgPrisonerFront1.resize(imgPrisonerFront1.width/2, imgPrisonerFront1.height/2);
@@ -99,6 +100,7 @@ public class Sketch3 extends PApplet {
   }
 
   public void draw() {
+    drawGame();
 
     // Draws background
     for(int intRow = 0; intRow < 1500; intRow+=125){
@@ -265,25 +267,37 @@ public class Sketch3 extends PApplet {
     }
   }
 
+  // Method for 2d array
+  public void drawGame() {
+    for (int y = 0; y < intArray.length; y++) {
+      for (int x = 0; x < intArray[0].length; x++) {
+        if (intArray[y][x] == 1) {
+          grass(32, 25);
+        }
+      }
+    }
+  }
+
   // Array for drawing everything
   public int[][] arrayGame() {
-      return new int[][] {
-        {1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
-        {1,2,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,2,1},
-        {1,2,0,2,2,2,0,0,0,2,3,0,2,0,2,0,2,2,2,0,2,1},
-        {1,2,0,0,3,0,0,2,0,2,2,2,2,0,0,0,2,3,2,0,2,1},
-        {1,2,0,2,2,0,2,2,0,0,0,0,0,0,2,0,2,0,2,0,2,1},
-        {1,0,0,0,0,0,0,2,0,2,2,2,2,0,2,0,0,0,0,0,2,1},
-        {1,2,2,0,2,2,0,2,0,2,0,0,2,0,0,0,2,2,2,2,2,1},
-        {1,2,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,1},
-        {1,2,0,2,2,2,0,2,0,2,0,0,2,0,2,0,2,2,0,2,2,1},
-        {1,2,0,0,0,0,0,0,0,2,2,2,2,0,2,0,0,0,0,0,2,1},
-        {1,2,0,2,3,2,0,2,0,0,0,0,0,0,2,2,0,2,2,0,2,1},
-        {1,2,0,0,0,2,0,2,0,2,2,2,2,0,2,0,0,0,3,0,2,1},
-        {1,2,2,2,0,2,0,0,0,2,0,3,2,0,0,0,2,2,2,0,2,1},
-        {1,1,1,2,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,2,1},
-        {1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
-        {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-      };
+    return new int[][] {
+      {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+      {1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
+      {1,2,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,2,1},
+      {1,2,0,2,2,2,0,0,0,2,3,0,2,0,2,0,2,2,2,0,2,1},
+      {1,2,0,0,3,0,0,2,0,2,2,2,2,0,0,0,2,3,2,0,2,1},
+      {1,2,0,2,2,0,2,2,0,0,0,0,0,0,2,0,2,0,2,0,2,1},
+      {1,0,0,0,0,0,0,2,0,2,2,2,2,0,2,0,0,0,0,0,2,1},
+      {1,2,2,0,2,2,0,2,0,2,0,0,2,0,0,0,2,2,2,2,2,1},
+      {1,2,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,1},
+      {1,2,0,2,2,2,0,2,0,2,0,0,2,0,2,0,2,2,0,2,2,1},
+      {1,2,0,0,0,0,0,0,0,2,2,2,2,0,2,0,0,0,0,0,2,1},
+      {1,2,0,2,3,2,0,2,0,0,0,0,0,0,2,2,0,2,2,0,2,1},
+      {1,2,0,0,0,2,0,2,0,2,2,2,2,0,2,0,0,0,3,0,2,1},
+      {1,2,2,2,0,2,0,0,0,2,0,3,2,0,0,0,2,2,2,0,2,1},
+      {1,1,1,2,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,2,1},
+      {1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
+      {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+    };
   }
 }
