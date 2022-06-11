@@ -38,8 +38,8 @@ public class Sketch3 extends PApplet {
   float officerYspeed = 3;
   int intGCount;
   int intPCount;
-  int intWidth = 1408;
-  int intHeight = 850;
+  int SCREEN_WIDTH = 1408;
+  int SCREEN_HEIGHT = 850;
   int[][] intArray;
   int intArrayValue;
 
@@ -48,8 +48,7 @@ public class Sketch3 extends PApplet {
   int intOfficer_frames = 8;
 
   public void settings() {
-	// put your size call here
-    size(intWidth, intHeight);
+    size(SCREEN_WIDTH, SCREEN_HEIGHT);
     intArray = arrayGame();
 
   }
@@ -58,13 +57,7 @@ public class Sketch3 extends PApplet {
     // Import images
     imgBackground = loadImage("ground_04.png");
     imgOfficerBack1 = loadImage("player_01.png");
-    //imgOfficerBack2 = loadImage("player_02.png");
     imgOfficerFront1 = loadImage("player_04.png");
-    //imgOfficerFront2 = loadImage("player_05.png");
-    //imgOfficerLeft1 = loadImage("player_013.png");
-    //imgOfficerLeft2 = loadImage("player_014.png");
-    //imgOfficerRight1 = loadImage("player_010.png");
-    //imgOfficerRight2 = loadImage("player_011.png");
     imgOfficerStill = loadImage("player_03.png");
     imgPrisonerFront1 = loadImage("prisoner_04.png");
     imgPrisonerBack1 = loadImage("prisoner_01.png");
@@ -76,24 +69,12 @@ public class Sketch3 extends PApplet {
     officer_frames = new PImage[intOfficer_frames];
 
     // Resize images
-    imgGrass.resize(imgGrass.width/2, imgGrass.height/2);
-    imgCrates.resize(imgCrates.width/2, imgCrates.height/2);
-
-    
-    // Resize officer (red and green guy)
+    imgGrass.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
+    imgCrates.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
+    imgBackground.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgOfficerBack1.resize(imgOfficerBack1.width/2, imgOfficerBack1.height/2);
-    //imgOfficerBack2.resize(imgOfficerBack2.width/2, imgOfficerBack2.height/2);
     imgOfficerFront1.resize(imgOfficerFront1.width/2, imgOfficerFront1.height/2);
-    /* 
-    imgOfficerFront2.resize(imgOfficerFront2.width/2, imgOfficerFront2.height/2);
-    imgOfficerLeft1.resize(imgOfficerLeft1.width/2, imgOfficerLeft1.height/2);
-    imgOfficerLeft2.resize(imgOfficerLeft2.width/2, imgOfficerLeft2.height/2);
-    imgOfficerRight1.resize(imgOfficerRight1.width/2, imgOfficerRight1.height/2);
-    imgOfficerRight2.resize(imgOfficerRight2.width/2, imgOfficerRight2.height/2);
-    */
     imgOfficerStill.resize(imgOfficerStill.width/2, imgOfficerStill.height/2);
-    //imgBackground.resize(imgBackground.width/2, imgBackground.height/2);
-    // Resize prisoner (orange guy)
     imgPrisonerBack1.resize(imgPrisonerBack1.width/2, imgPrisonerBack1.height/2);
     imgPrisonerFront1.resize(imgPrisonerFront1.width/2, imgPrisonerFront1.height/2);
     imgPrisonerStill.resize(imgPrisonerStill.width/2, imgPrisonerStill.height/2);
@@ -101,13 +82,6 @@ public class Sketch3 extends PApplet {
 
   public void draw() {
     drawGame();
-
-    // Draws background
-    for(int intRow = 0; intRow < 1500; intRow+=125){
-      for(int intColumn = 0; intColumn <= 900; intColumn+=125){
-        image(imgBackground, intRow, intColumn);
-      }
-    }
 
      // Officer image based on which way hes talking 
      if(intGCount == 1) {
@@ -135,16 +109,16 @@ public class Sketch3 extends PApplet {
     if (keyPressed) {
       moveOfficer("UP", 1, 3);
       moveOfficer("DOWN", 2, 3);
-      moveOfficer("LEFT", 0, 3);
-      moveOfficer("RIGHT", 0, 3);
+      moveOfficer("LEFT", 3, 3);
+      moveOfficer("RIGHT", 4, 3);
     }
 
     // Prisoner movement
     if (keyPressed) {
       movePrisoner("w", 1, 4);
       movePrisoner("s", 2, 4);
-      movePrisoner("a", 0, 4);
-      movePrisoner("d", 0, 4);
+      movePrisoner("a", 3, 4);
+      movePrisoner("d", 4, 4);
     }
 
    // Border 
@@ -188,6 +162,14 @@ public class Sketch3 extends PApplet {
     image(imgCrates, crateX, crateY);
   }
   
+  /**
+   * Method to create tiles (aka, background)
+   * @param tileX is a float that reads the x-value of the tile image
+   * @param tileY is a float that reads the y-value of the tile image
+   */
+  public void tiles(float tileX, float tileY) {
+    image(imgBackground, tileX, tileY);
+  }
   /**
    * Method to create a key 
    * @param keyX is a float that reads the x-value of the key image
@@ -271,13 +253,19 @@ public class Sketch3 extends PApplet {
   public void drawGame() {
     for (int y = 0; y < intArray.length; y++) {
       for (int x = 0; x < intArray[0].length; x++) {
-        if (intArray[y][x] == 1) {
-          grass(32, 25);
+        // If the array value is 0, draw tiles
+        if (intArray[y][x] == 0) {
+          tiles((SCREEN_WIDTH / 22) * x, (SCREEN_HEIGHT / 17) * y);
+        // If the array value is 1, draw grass
+        } else if (intArray[y][x] == 1) {
+          grass((SCREEN_WIDTH / 22) * x, (SCREEN_HEIGHT / 17) * y);
+        // If the array value is 2, draw wall
+        } else if (intArray[y][x] == 2) {
+          crates((SCREEN_WIDTH / 22) * x, (SCREEN_HEIGHT / 17) * y);
         }
       }
     }
   }
-
   // Array for drawing everything
   public int[][] arrayGame() {
     return new int[][] {
