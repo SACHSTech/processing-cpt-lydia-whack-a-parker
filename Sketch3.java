@@ -30,6 +30,7 @@ public class Sketch3 extends PApplet {
   PImage imgPrisonerStill;
   PImage imgCrates;
   PImage imgGrass;
+  PImage imgKey;
   float officerX = 650;
   float officerY = 350;
   float prisonerX = height/2;
@@ -63,7 +64,8 @@ public class Sketch3 extends PApplet {
     imgPrisonerBack1 = loadImage("prisoner_01.png");
     imgPrisonerStill = loadImage("prisoner_03.png");
     imgGrass = loadImage("ground_03.png");
-    imgCrates = loadImage("crate_04.png");
+    imgCrates = loadImage("crate_19.png");
+    imgKey = loadImage("key_on_tile.png");
 
     // Load frames
     officer_frames = new PImage[intOfficer_frames];
@@ -72,6 +74,7 @@ public class Sketch3 extends PApplet {
     imgGrass.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgCrates.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgBackground.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
+    imgKey.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgOfficerBack1.resize(imgOfficerBack1.width/2, imgOfficerBack1.height/2);
     imgOfficerFront1.resize(imgOfficerFront1.width/2, imgOfficerFront1.height/2);
     imgOfficerStill.resize(imgOfficerStill.width/2, imgOfficerStill.height/2);
@@ -170,13 +173,14 @@ public class Sketch3 extends PApplet {
   public void tiles(float tileX, float tileY) {
     image(imgBackground, tileX, tileY);
   }
+
   /**
    * Method to create a key 
    * @param keyX is a float that reads the x-value of the key image
    * @param keyY is a float that reads the y-value of the key image
    */
   public void keys(float keyX, float keyY){
-    //image(imgKeys, keyX, keyY);
+    image(imgKey, keyX, keyY);
   }
   
   /**
@@ -262,6 +266,9 @@ public class Sketch3 extends PApplet {
         // If the array value is 2, draw wall
         } else if (intArray[y][x] == 2) {
           crates((SCREEN_WIDTH / 22) * x, (SCREEN_HEIGHT / 17) * y);
+        // If the array value is 3, draw key
+        } else if (intArray[y][x] == 3) {
+          keys((SCREEN_WIDTH / 22) * x, (SCREEN_HEIGHT / 17) * y);
         }
       }
     }
