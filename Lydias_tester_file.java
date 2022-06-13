@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.core.PImage;
 
 public class Lydias_tester_file extends PApplet {
@@ -29,8 +30,10 @@ public class Lydias_tester_file extends PApplet {
   PImage imgPrisonerBack1;
   PImage imgPrisonerStill;
   PImage imgCrates;
+  PImage imgMenu;
   PImage imgGrass;
   PImage imgKey;
+  PFont font;
   float officerX = 650;
   float officerY = 350;
   float prisonerX = height/2;
@@ -41,17 +44,23 @@ public class Lydias_tester_file extends PApplet {
   int intPCount;
   int SCREEN_WIDTH = 1408;
   int SCREEN_HEIGHT = 850;
+  int ROW_COUNT = 22;
+  int COLUMN_COUNT = 17;
+  int TILE_HEIGHT = 25;
+  int TILE_WIDTH = 32;
+  int intCrateX;
+  int intCrateY;
+  int intOfficer_frames = 8;
   int[][] intArray;
   int intArrayValue;
-
-  // Make array
+  boolean blnStart = false;
+  boolean blnGuardWin = false;
+  boolean blnPrisonerWin = false;
   PImage[] officer_frames;
-  int intOfficer_frames = 8;
 
   public void settings() {
     size(SCREEN_WIDTH, SCREEN_HEIGHT);
     intArray = arrayGame();
-
   }
 
   public void setup() {
@@ -66,6 +75,7 @@ public class Lydias_tester_file extends PApplet {
     imgGrass = loadImage("ground_03.png");
     imgCrates = loadImage("crate_19.png");
     imgKey = loadImage("key_on_tile.png");
+    imgMenu = loadImage("menu.png");
 
     // Load frames
     officer_frames = new PImage[intOfficer_frames];
@@ -75,26 +85,53 @@ public class Lydias_tester_file extends PApplet {
     imgCrates.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgBackground.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgKey.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
-    imgOfficerBack1.resize(imgOfficerBack1.width/2, imgOfficerBack1.height/2);
-    imgOfficerFront1.resize(imgOfficerFront1.width/2, imgOfficerFront1.height/2);
-    imgOfficerStill.resize(imgOfficerStill.width/2, imgOfficerStill.height/2);
-    imgPrisonerBack1.resize(imgPrisonerBack1.width/2, imgPrisonerBack1.height/2);
-    imgPrisonerFront1.resize(imgPrisonerFront1.width/2, imgPrisonerFront1.height/2);
-    imgPrisonerStill.resize(imgPrisonerStill.width/2, imgPrisonerStill.height/2);
+    imgOfficerBack1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgOfficerFront1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgOfficerStill.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgPrisonerBack1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgPrisonerFront1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgPrisonerStill.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgMenu.resize(SCREEN_WIDTH, SCREEN_HEIGHT);
   }
 
   public void draw() {
+    // Start screen
+    image(imgMenu, 0, 0);
+    fill(0);
+    rect(200, 210, 1000, 400);
+    fill(255);
+    font = createFont("Peepo.ttf", 140);
+    textFont(font);
+    text("Prison Escape", 255, 430);
+    fill(255);
+    textSize(60);
+    text("Press P to start", 470, 520);
+    fill(255);
+    textSize(25);
+    text("By: Lydia & Parker", 620, 580);
+
+    if (keyPressed){
+      if (key == 'p'){
+        blnStart = true;
+      }
+    }
+    if (blnStart == true){
     drawGame();
 
-     // Officer image based on which way hes talking 
-     if(intGCount == 1) {
+    // Officer image based on which way hes walking 
+      // Going up
+    if(intGCount == 1) {
       image(imgOfficerBack1, officerX, officerY);
+      // Going down
     } else if (intGCount == 2) {
       image(imgOfficerFront1, officerX, officerY);
+      // Going left
     } else if (intGCount == 3) {
       image(imgOfficerLeft1, officerX, officerY);
+      // Going right
     } else if (intGCount == 4) {
       image(imgOfficerRight1, officerX, officerY);
+      // Standing still
     } else {
       image(imgOfficerStill, officerX, officerY);
     }
@@ -123,28 +160,27 @@ public class Lydias_tester_file extends PApplet {
       movePrisoner("a", 3, 4);
       movePrisoner("d", 4, 4);
     }
-
-   // Border 
-   if (officerY > 684) {
-     officerY = 684;
-   } else if (officerY < 114) {
-     officerY = 114;
-   } else if (officerX > 1289) {
-     officerX = 1289;
-   } else if (officerX < 111) {
-     officerX = 111;
-   }
-   
-   // Border for prisoner
-   if (prisonerY > 674){
-     prisonerY = 674;
-   } else if (prisonerY < 112){
-     prisonerY = 112;
-   } else if (prisonerX > 1272){
-     prisonerX = 1272;
-   } else if (prisonerX < 128){
-     prisonerX = 128;
+  }
+  
+  // Player collision
+  if((officerY + 40 >= prisonerY) && (officerY + 40 <= prisonerY + 40)){
+    if((officerX + 40 >= prisonerX) && (officerX + 40 <= prisonerX + 40)){
+      blnPrisonerWin = true;
     }
+  } 
+
+  if (blnPrisonerWin == true){
+    image(imgMenu, 0, 0);
+    fill(0);
+    rect(200, 210, 1000, 400);
+    textFont(font);
+    fill(255);
+    textSize(150);
+    text("GAME OVER", 340, 460);
+    fill(255);
+    textSize(60);
+    text("The Guard Won!", 490, 550);
+   }
   }
 
   /**
@@ -193,8 +229,14 @@ public class Lydias_tester_file extends PApplet {
     // Move up
     if (strOfficerDirection == "UP") {
       if (keyCode == UP) {
-        officerY -= intOfficerSpeed;
         intGCount = intOfficerGCount;
+        if(officerY > intCrateY) {
+          if(officerY < intCrateY + TILE_HEIGHT) {
+            officerY += 1;
+          } 
+        } else {
+          officerY -= intOfficerSpeed;
+        }
       }
     }
     // Move down
@@ -259,20 +301,23 @@ public class Lydias_tester_file extends PApplet {
       for (int x = 0; x < intArray[0].length; x++) {
         // If the array value is 0, draw tiles
         if (intArray[y][x] == 0) {
-          tiles((SCREEN_WIDTH / 22) * x, (SCREEN_HEIGHT / 17) * y);
+          tiles((SCREEN_WIDTH / ROW_COUNT) * x, (SCREEN_HEIGHT / COLUMN_COUNT) * y);
         // If the array value is 1, draw grass
         } else if (intArray[y][x] == 1) {
-          grass((SCREEN_WIDTH / 22) * x, (SCREEN_HEIGHT / 17) * y);
+          grass((SCREEN_WIDTH / ROW_COUNT) * x, (SCREEN_HEIGHT / COLUMN_COUNT) * y);
         // If the array value is 2, draw wall
         } else if (intArray[y][x] == 2) {
-          crates((SCREEN_WIDTH / 22) * x, (SCREEN_HEIGHT / 17) * y);
+          crates((SCREEN_WIDTH / ROW_COUNT) * x, (SCREEN_HEIGHT / COLUMN_COUNT) * y);
+          intCrateX = (SCREEN_WIDTH / ROW_COUNT) * x;
+          intCrateY = (SCREEN_HEIGHT / COLUMN_COUNT) * y;
         // If the array value is 3, draw key
         } else if (intArray[y][x] == 3) {
-          keys((SCREEN_WIDTH / 22) * x, (SCREEN_HEIGHT / 17) * y);
+          keys((SCREEN_WIDTH / ROW_COUNT) * x, (SCREEN_HEIGHT / COLUMN_COUNT) * y);
         }
       }
     }
   }
+
   // Array for drawing everything
   public int[][] arrayGame() {
     return new int[][] {

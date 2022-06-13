@@ -162,9 +162,12 @@ public class Sketch1 extends PApplet {
     }
   }
   
-  if((officerY <= prisonerY + 40) && (officerX <= prisonerX + 40)){
-    blnPrisonerWin = true;
-  }
+  // Player collision
+  if((officerY + 40 >= prisonerY) && (officerY + 40 <= prisonerY + 40)){
+    if((officerX + 40 >= prisonerX) && (officerX + 40 <= prisonerX + 40)){
+      blnPrisonerWin = true;
+    }
+  } 
 
   if (blnPrisonerWin == true){
     image(imgMenu, 0, 0);
