@@ -50,15 +50,13 @@ public class Sketch1 extends PApplet {
   int TILE_WIDTH = 32;
   int intCrateX;
   int intCrateY;
+  int intOfficer_frames = 8;
   int[][] intArray;
   int intArrayValue;
   boolean blnStart = false;
   boolean blnGuardWin = false;
   boolean blnPrisonerWin = false;
-
-  // Make array
   PImage[] officer_frames;
-  int intOfficer_frames = 8;
 
   public void settings() {
     size(SCREEN_WIDTH, SCREEN_HEIGHT);
