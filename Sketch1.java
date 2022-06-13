@@ -44,6 +44,12 @@ public class Sketch1 extends PApplet {
   int intPCount;
   int SCREEN_WIDTH = 1408;
   int SCREEN_HEIGHT = 850;
+  int ROW_COUNT = 22;
+  int COLUMN_COUNT = 17;
+  int TILE_HEIGHT = 25;
+  int TILE_WIDTH = 32;
+  int intCrateX;
+  int intCrateY;
   int[][] intArray;
   int intArrayValue;
   boolean blnStart = false;
@@ -114,15 +120,20 @@ public class Sketch1 extends PApplet {
     if (blnStart == true){
     drawGame();
 
-     // Officer image based on which way hes talking 
-     if(intGCount == 1) {
+    // Officer image based on which way hes walking 
+      // Going up
+    if(intGCount == 1) {
       image(imgOfficerBack1, officerX, officerY);
+      // Going down
     } else if (intGCount == 2) {
       image(imgOfficerFront1, officerX, officerY);
+      // Going left
     } else if (intGCount == 3) {
       image(imgOfficerLeft1, officerX, officerY);
+      // Going right
     } else if (intGCount == 4) {
       image(imgOfficerRight1, officerX, officerY);
+      // Standing still
     } else {
       image(imgOfficerStill, officerX, officerY);
     }
@@ -217,8 +228,13 @@ public class Sketch1 extends PApplet {
     // Move up
     if (strOfficerDirection == "UP") {
       if (keyCode == UP) {
-        officerY -= intOfficerSpeed;
         intGCount = intOfficerGCount;
+        officerY -= intOfficerSpeed;
+        if(officerY > intCrateY) {
+          if(officerY < intCrateY + TILE_HEIGHT) {
+            officerY += 1;
+          }
+        }
       }
     }
     // Move down
@@ -283,20 +299,23 @@ public class Sketch1 extends PApplet {
       for (int x = 0; x < intArray[0].length; x++) {
         // If the array value is 0, draw tiles
         if (intArray[y][x] == 0) {
-          tiles((SCREEN_WIDTH / 22) * x, (SCREEN_HEIGHT / 17) * y);
+          tiles((SCREEN_WIDTH / ROW_COUNT) * x, (SCREEN_HEIGHT / COLUMN_COUNT) * y);
         // If the array value is 1, draw grass
         } else if (intArray[y][x] == 1) {
-          grass((SCREEN_WIDTH / 22) * x, (SCREEN_HEIGHT / 17) * y);
+          grass((SCREEN_WIDTH / ROW_COUNT) * x, (SCREEN_HEIGHT / COLUMN_COUNT) * y);
         // If the array value is 2, draw wall
         } else if (intArray[y][x] == 2) {
-          crates((SCREEN_WIDTH / 22) * x, (SCREEN_HEIGHT / 17) * y);
+          crates((SCREEN_WIDTH / ROW_COUNT) * x, (SCREEN_HEIGHT / COLUMN_COUNT) * y);
+          intCrateX = (SCREEN_WIDTH / ROW_COUNT) * x;
+          intCrateY = (SCREEN_HEIGHT / COLUMN_COUNT) * y;
         // If the array value is 3, draw key
         } else if (intArray[y][x] == 3) {
-          keys((SCREEN_WIDTH / 22) * x, (SCREEN_HEIGHT / 17) * y);
+          keys((SCREEN_WIDTH / ROW_COUNT) * x, (SCREEN_HEIGHT / COLUMN_COUNT) * y);
         }
       }
     }
   }
+
   // Array for drawing everything
   public int[][] arrayGame() {
     return new int[][] {
