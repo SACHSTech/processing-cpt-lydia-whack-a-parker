@@ -47,7 +47,8 @@ public class Sketch extends PApplet {
   int[][] intArray;
   int intArrayValue;
   boolean blnStart = false;
-  boolean blnOver = false;
+  boolean blnGuardWin = false;
+  boolean blnPrisonerWin = false;
 
   // Make array
   PImage[] officer_frames;
@@ -56,7 +57,6 @@ public class Sketch extends PApplet {
   public void settings() {
     size(SCREEN_WIDTH, SCREEN_HEIGHT);
     intArray = arrayGame();
-
   }
 
   public void setup() {
@@ -81,12 +81,12 @@ public class Sketch extends PApplet {
     imgCrates.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgBackground.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgKey.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
-    imgOfficerBack1.resize(imgOfficerBack1.width/2, imgOfficerBack1.height/2);
-    imgOfficerFront1.resize(imgOfficerFront1.width/2, imgOfficerFront1.height/2);
-    imgOfficerStill.resize(imgOfficerStill.width/2, imgOfficerStill.height/2);
-    imgPrisonerBack1.resize(imgPrisonerBack1.width/2, imgPrisonerBack1.height/2);
-    imgPrisonerFront1.resize(imgPrisonerFront1.width/2, imgPrisonerFront1.height/2);
-    imgPrisonerStill.resize(imgPrisonerStill.width/2, imgPrisonerStill.height/2);
+    imgOfficerBack1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgOfficerFront1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgOfficerStill.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgPrisonerBack1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgPrisonerFront1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgPrisonerStill.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
     imgMenu.resize(SCREEN_WIDTH, SCREEN_HEIGHT);
   }
 
@@ -154,10 +154,10 @@ public class Sketch extends PApplet {
   }
   
   if((officerY <= prisonerY + 40) && (officerX <= prisonerX + 40)){
-    blnOver = true;
+    blnPrisonerWin = true;
   }
 
-  if (blnOver == true){
+  if (blnPrisonerWin == true){
     image(imgMenu, 0, 0);
     fill(0);
     rect(200, 210, 1000, 400);
@@ -167,8 +167,8 @@ public class Sketch extends PApplet {
     text("GAME OVER", 340, 460);
     fill(255);
     textSize(60);
-    text("Exit screen", 550, 550);
-  }
+    text("The Guard Won!", 490, 550);
+   }
   }
 
   /**

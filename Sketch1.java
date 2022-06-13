@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.core.PImage;
 
 public class Sketch1 extends PApplet {
@@ -29,8 +30,10 @@ public class Sketch1 extends PApplet {
   PImage imgPrisonerBack1;
   PImage imgPrisonerStill;
   PImage imgCrates;
+  PImage imgMenu;
   PImage imgGrass;
   PImage imgKey;
+  PFont font;
   float officerX = 650;
   float officerY = 350;
   float prisonerX = height/2;
@@ -43,6 +46,9 @@ public class Sketch1 extends PApplet {
   int SCREEN_HEIGHT = 850;
   int[][] intArray;
   int intArrayValue;
+  boolean blnStart = false;
+  boolean blnGuardWin = false;
+  boolean blnPrisonerWin = false;
 
   // Make array
   PImage[] officer_frames;
@@ -51,7 +57,6 @@ public class Sketch1 extends PApplet {
   public void settings() {
     size(SCREEN_WIDTH, SCREEN_HEIGHT);
     intArray = arrayGame();
-
   }
 
   public void setup() {
@@ -66,6 +71,7 @@ public class Sketch1 extends PApplet {
     imgGrass = loadImage("ground_03.png");
     imgCrates = loadImage("crate_19.png");
     imgKey = loadImage("key_on_tile.png");
+    imgMenu = loadImage("menu.png");
 
     // Load frames
     officer_frames = new PImage[intOfficer_frames];
@@ -75,15 +81,37 @@ public class Sketch1 extends PApplet {
     imgCrates.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgBackground.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgKey.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
-    imgOfficerBack1.resize(imgOfficerBack1.width/2, imgOfficerBack1.height/2);
-    imgOfficerFront1.resize(imgOfficerFront1.width/2, imgOfficerFront1.height/2);
-    imgOfficerStill.resize(imgOfficerStill.width/2, imgOfficerStill.height/2);
-    imgPrisonerBack1.resize(imgPrisonerBack1.width/2, imgPrisonerBack1.height/2);
-    imgPrisonerFront1.resize(imgPrisonerFront1.width/2, imgPrisonerFront1.height/2);
-    imgPrisonerStill.resize(imgPrisonerStill.width/2, imgPrisonerStill.height/2);
+    imgOfficerBack1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgOfficerFront1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgOfficerStill.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgPrisonerBack1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgPrisonerFront1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgPrisonerStill.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgMenu.resize(SCREEN_WIDTH, SCREEN_HEIGHT);
   }
 
   public void draw() {
+    // Start screen
+    image(imgMenu, 0, 0);
+    fill(0);
+    rect(200, 210, 1000, 400);
+    fill(255);
+    font = createFont("Peepo.ttf", 140);
+    textFont(font);
+    text("Prison Escape", 255, 430);
+    fill(255);
+    textSize(60);
+    text("Press P to start", 470, 520);
+    fill(255);
+    textSize(25);
+    text("By: Lydia & Parker", 620, 580);
+
+    if (keyPressed){
+      if (key == 'p'){
+        blnStart = true;
+      }
+    }
+    if (blnStart == true){
     drawGame();
 
      // Officer image based on which way hes talking 
@@ -123,28 +151,24 @@ public class Sketch1 extends PApplet {
       movePrisoner("a", 3, 4);
       movePrisoner("d", 4, 4);
     }
+  }
+  
+  if((officerY <= prisonerY + 40) && (officerX <= prisonerX + 40)){
+    blnPrisonerWin = true;
+  }
 
-   // Border 
-   if (officerY > 684) {
-     officerY = 684;
-   } else if (officerY < 114) {
-     officerY = 114;
-   } else if (officerX > 1289) {
-     officerX = 1289;
-   } else if (officerX < 111) {
-     officerX = 111;
+  if (blnPrisonerWin == true){
+    image(imgMenu, 0, 0);
+    fill(0);
+    rect(200, 210, 1000, 400);
+    textFont(font);
+    fill(255);
+    textSize(150);
+    text("GAME OVER", 340, 460);
+    fill(255);
+    textSize(60);
+    text("The Guard Won!", 490, 550);
    }
-   
-   // Border for prisoner
-   if (prisonerY > 674){
-     prisonerY = 674;
-   } else if (prisonerY < 112){
-     prisonerY = 112;
-   } else if (prisonerX > 1272){
-     prisonerX = 1272;
-   } else if (prisonerX < 128){
-     prisonerX = 128;
-    }
   }
 
   /**
