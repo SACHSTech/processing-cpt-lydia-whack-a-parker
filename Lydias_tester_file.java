@@ -34,10 +34,10 @@ public class Lydias_tester_file extends PApplet {
   PImage imgGrass;
   PImage imgKey;
   PFont font;
-  float officerX = 650;
-  float officerY = 350;
-  float prisonerX = height/2;
-  float prisonerY = width/2;
+  float officerX = 130;
+  float officerY = 110;
+  float prisonerX = 640;
+  float prisonerY = 350;
   float officerXspeed = 3;
   float officerYspeed = 3;
   int intGCount;
