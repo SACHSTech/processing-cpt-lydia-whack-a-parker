@@ -18,13 +18,7 @@ public class Sketch2 extends PApplet {
   // Variables
   PImage imgBackground;
   PImage imgOfficerFront1;
-  PImage imgOfficerFront2;
   PImage imgOfficerBack1;
-  PImage imgOfficerBack2;
-  PImage imgOfficerLeft1;
-  PImage imgOfficerLeft2;
-  PImage imgOfficerRight1;
-  PImage imgOfficerRight2;
   PImage imgOfficerStill;
   PImage imgPrisonerFront1;
   PImage imgPrisonerBack1;
@@ -34,10 +28,10 @@ public class Sketch2 extends PApplet {
   PImage imgGrass;
   PImage imgKey;
   PFont font;
-  float officerX = 650;
-  float officerY = 350;
-  float prisonerX = height/2;
-  float prisonerY = width/2;
+  float officerX = 130;
+  float officerY = 110;
+  float prisonerX = 640;
+  float prisonerY = 350;
   float officerXspeed = 3;
   float officerYspeed = 3;
   int intGCount;
@@ -81,12 +75,12 @@ public class Sketch2 extends PApplet {
     imgCrates.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgBackground.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgKey.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
-    imgOfficerBack1.resize(imgOfficerBack1.width/2, imgOfficerBack1.height/2);
-    imgOfficerFront1.resize(imgOfficerFront1.width/2, imgOfficerFront1.height/2);
-    imgOfficerStill.resize(imgOfficerStill.width/2, imgOfficerStill.height/2);
-    imgPrisonerBack1.resize(imgPrisonerBack1.width/2, imgPrisonerBack1.height/2);
-    imgPrisonerFront1.resize(imgPrisonerFront1.width/2, imgPrisonerFront1.height/2);
-    imgPrisonerStill.resize(imgPrisonerStill.width/2, imgPrisonerStill.height/2);
+    imgOfficerBack1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgOfficerFront1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgOfficerStill.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgPrisonerBack1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgPrisonerFront1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgPrisonerStill.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
     imgMenu.resize(SCREEN_WIDTH, SCREEN_HEIGHT);
   }
 
@@ -119,10 +113,6 @@ public class Sketch2 extends PApplet {
       image(imgOfficerBack1, officerX, officerY);
     } else if (intGCount == 2) {
       image(imgOfficerFront1, officerX, officerY);
-    } else if (intGCount == 3) {
-      image(imgOfficerLeft1, officerX, officerY);
-    } else if (intGCount == 4) {
-      image(imgOfficerRight1, officerX, officerY);
     } else {
       image(imgOfficerStill, officerX, officerY);
     }
@@ -151,13 +141,17 @@ public class Sketch2 extends PApplet {
       movePrisoner("a", 3, 4);
       movePrisoner("d", 4, 4);
     }
-  
-  
-  if((officerY <= prisonerY + 40) && (officerX <= prisonerX + 40)){
-    blnPrisonerWin = true;
-  } else if ((officerY <= prisonerY - 40) && (officerX <= prisonerX - 40 )){
-    blnPrisonerWin = true;
   }
+  // Player collision
+  if((officerY <= prisonerY + 40) && (officerX >= prisonerX + 40)){
+    blnPrisonerWin = true;
+  } else if ((officerY <= prisonerY - 40) && (officerX >= prisonerX - 40 )){
+    blnPrisonerWin = true;
+  } else if ((officerY <= prisonerY + 40) && (officerX >= prisonerX - 40 )){
+    blnPrisonerWin = true;
+  } else if ((officerY <= prisonerY - 40) && (officerX >= prisonerX + 40 )){
+    blnPrisonerWin = true;
+  } 
 
   if (blnPrisonerWin == true){
     image(imgMenu, 0, 0);
@@ -170,7 +164,6 @@ public class Sketch2 extends PApplet {
     fill(255);
     textSize(60);
     text("The Guard Won!", 490, 550);
-    }
    }
   }
 

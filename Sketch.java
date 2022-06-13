@@ -155,6 +155,8 @@ public class Sketch extends PApplet {
   
   if((officerY <= prisonerY + 40) && (officerX <= prisonerX + 40)){
     blnPrisonerWin = true;
+  } else if ((officerY <= prisonerY - 40) && (officerX <= prisonerX - 40 )){
+    blnPrisonerWin = true;
   }
 
   if (blnPrisonerWin == true){
