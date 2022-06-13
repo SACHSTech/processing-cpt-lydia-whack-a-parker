@@ -151,9 +151,11 @@ public class Sketch2 extends PApplet {
       movePrisoner("a", 3, 4);
       movePrisoner("d", 4, 4);
     }
-  }
+  
   
   if((officerY <= prisonerY + 40) && (officerX <= prisonerX + 40)){
+    blnPrisonerWin = true;
+  } else if ((officerY <= prisonerY - 40) && (officerX <= prisonerX - 40 )){
     blnPrisonerWin = true;
   }
 
@@ -168,6 +170,7 @@ public class Sketch2 extends PApplet {
     fill(255);
     textSize(60);
     text("The Guard Won!", 490, 550);
+    }
    }
   }
 
