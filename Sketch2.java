@@ -3,7 +3,7 @@ import processing.core.PFont;
 import processing.core.PImage;
 
 public class Sketch2 extends PApplet {
-
+  
 	/**
    * Assignment: 6.1 Processing in Java CPT
    * Author: Lydia He, Parker Yang
@@ -30,21 +30,22 @@ public class Sketch2 extends PApplet {
   PImage imgPrisonerBack1;
   PImage imgPrisonerStill;
   PImage imgCrates;
+  PImage imgMenu;
   PImage imgGrass;
-  PImage imgKeys;
-  PImage imgMenu; 
-  float prisonerX = 650;
-  float prisonerY = 350;
-  float officerX = 150;
-  float officerY = 300;
+  PFont font;
+  float officerX = 650;
+  float officerY = 350;
+  float prisonerX = height/2;
+  float prisonerY = width/2;
   float officerXspeed = 3;
   float officerYspeed = 3;
   int intGCount;
   int intPCount;
-  int intTimer;
-  boolean blnStart = false; 
-  boolean blnEnd = false;
-
+  int intHeight = 1400;
+  int intWidth = 820;
+  boolean blnStart = false;
+  boolean blnOver = false;
+  boolean blnRestart = false;
 
   // Make array
   PImage[] officer_frames;
@@ -52,7 +53,8 @@ public class Sketch2 extends PApplet {
 
   public void settings() {
 	// put your size call here
-    size(1400, 820);
+    size(intHeight, intWidth);
+
   }
 
   public void setup() {
@@ -73,8 +75,6 @@ public class Sketch2 extends PApplet {
     imgGrass = loadImage("ground_03.png");
     imgCrates = loadImage("crate_04.png");
     imgMenu = loadImage("menu.png");
-    imgKeys = loadImage("keys.png");
-    //font = createFont("", 150);
 
     // Load frames
     officer_frames = new PImage[intOfficer_frames];
@@ -85,7 +85,7 @@ public class Sketch2 extends PApplet {
     imgMenu.resize(width, height);
 
     
-    // Resize officer
+    // Resize officer (red and green guy)
     imgOfficerBack1.resize(imgOfficerBack1.width/2, imgOfficerBack1.height/2);
     //imgOfficerBack2.resize(imgOfficerBack2.width/2, imgOfficerBack2.height/2);
     imgOfficerFront1.resize(imgOfficerFront1.width/2, imgOfficerFront1.height/2);
@@ -98,28 +98,33 @@ public class Sketch2 extends PApplet {
     */
     imgOfficerStill.resize(imgOfficerStill.width/2, imgOfficerStill.height/2);
     
-    // Resize prisoner
+    // Resize prisoner (orange guy)
     imgPrisonerBack1.resize(imgPrisonerBack1.width/2, imgPrisonerBack1.height/2);
     imgPrisonerFront1.resize(imgPrisonerFront1.width/2, imgPrisonerFront1.height/2);
     imgPrisonerStill.resize(imgPrisonerStill.width/2, imgPrisonerStill.height/2);
   }
 
   public void draw() {
-
     // Start screen
     image(imgMenu, 0, 0);
-    fill(186, 186, 186);
-    rect(200, 210, 1000, 400);
     fill(0);
-    //textFont(font);
-    textSize(150);
-    text("Prison Escape", 250, 450);
+    rect(200, 210, 1000, 400);
+    fill(255);
+    font = createFont("Peepo.ttf", 140);
+    textFont(font);
+    text("Prison Escape", 255, 430);
+    fill(255);
+    textSize(60);
+    text("Press P to start", 470, 520);
+    fill(255);
+    textSize(25);
+    text("By: Lydia & Parker", 620, 580);
+
     if (keyPressed){
       if (key == 'p'){
         blnStart = true;
       }
     }
-
     if (blnStart == true){
 
     // Draws background
@@ -128,7 +133,6 @@ public class Sketch2 extends PApplet {
         image(imgBackground, intRow, intColumn);
       }
     }
-    
 
      // Officer image based on which way hes talking 
      if(intGCount == 1) {
@@ -182,7 +186,7 @@ public class Sketch2 extends PApplet {
       grass(63*21, 63*i);
       grass(63*22, 63*i);
     }
-  
+
     /** 
      * Draws Crates (Crates are 63 x 63, top of crate is 40, side is 23)
      * crates(crateX, crateY);
@@ -303,73 +307,20 @@ public class Sketch2 extends PApplet {
       crates(63*14 + 2, 40*9 + 40*i);
     }
 
-    intTimer = second();
-
-    // Timer
-    textSize(60);
-    text(intTimer, 50, 780);
-    
-    if((intTimer + 10) < intTimer){
-      blnEnd = true;
-    }
-    while(blnEnd == true){
-      background(0);
-    }
-
     // Officer movement
     if (keyPressed) {
-      // Move up
-      if (keyCode == UP) {
-        officerY -= 3;
-        intGCount = 1;
-      }
-    }
-    if (keyPressed) {
-      // Move down
-      if (keyCode == DOWN) {
-        officerY += 3;
-        intGCount = 2;
-      }
-    }
-    if (keyPressed) {
-      // Move left
-      if (keyCode == LEFT) {
-        officerX -= 3; 
-      }
-    }
-    if (keyPressed) {
-      // Move right
-      if (keyCode == RIGHT) {
-        officerX += 3;
-      }
+      moveOfficer("UP", 1, 3);
+      moveOfficer("DOWN", 2, 3);
+      moveOfficer("LEFT", 0, 3);
+      moveOfficer("RIGHT", 0, 3);
     }
 
     // Prisoner movement
     if (keyPressed) {
-      // Move up
-      if (key == 'w') {
-        prisonerY -= 4;
-        intPCount = 1;
-       }
-      }
-    if (keyPressed) {
-      // Move down
-      if (key == 's') {
-        prisonerY += 4;
-        intPCount = 2;
-       }
-      }
-    if (keyPressed) {
-      // Move left
-      if (key == 'a') {
-        prisonerX -= 4; 
-       }
-      }
-    if (keyPressed) {
-      // Move right
-      if (key == 'd') {
-        prisonerX += 4; 
-      }
+      movePrisoner("w", 1, 4);
+      movePrisoner("s", 2, 4);
+      movePrisoner("a", 0, 4);
+      movePrisoner("d", 0, 4);
     }
 
    // Border 
@@ -392,22 +343,121 @@ public class Sketch2 extends PApplet {
      prisonerX = 1272;
    } else if (prisonerX < 128){
      prisonerX = 128;
-      }
-     }
     }
-  
-  // Method to create grass
+
+    if((officerY <= prisonerY + 40) && (officerX <= prisonerX + 40)){
+      blnOver = true;
+    }
+
+    if (blnOver == true){
+      image(imgMenu, 0, 0);
+      fill(0);
+      rect(200, 210, 1000, 400);
+      textFont(font);
+      fill(255);
+      textSize(150);
+      text("GAME OVER", 340, 460);
+      fill(255);
+      textSize(60);
+      text("Exit screen", 550, 550);
+    }
+  }
+}
+
+  /**
+   * Method to create grass
+   * @param grassX is a float that reads the x-value of the grass image
+   * @param grassY is a float that reads the y-value of the grass image
+   */
   public void grass(float grassX, float grassY) {
     image(imgGrass, grassX, grassY);
   }
 
-  // Method to create crates (aka, walls)
+  /**
+   * Method to create crates (aka, walls)
+   * @param crateX is a float that reads the x-value of the crate image
+   * @param crateY is a float that reads the y-value of the crate image
+   */
   public void crates(float crateX, float crateY) {
     image(imgCrates, crateX, crateY);
   }
-  
-  // Method to create a key 
+
+  /**
+   * Method to create a key 
+   * @param keyX is a float that reads the x-value of the key image
+   * @param keyY is a float that reads the y-value of the key image
+   */
   public void keys(float keyX, float keyY){
-    image(imgKeys, keyX, keyY);
+    //image(imgKeys, keyX, keyY);
+  }
+
+  /**
+   * Method to make officer move
+   * @param strOfficerDirection is a string that reads the direction of the officer (UP, DOWN, LEFT, RIGHT)
+   * @param intOfficerGCount is a integer that assigns an image to the officer
+   * @param intOfficerSpeed is an integer that assigns a speed to the officer
+   */
+  public void moveOfficer(String strOfficerDirection, int intOfficerGCount, int intOfficerSpeed) {
+    // Move up
+    if (strOfficerDirection == "UP") {
+      if (keyCode == UP) {
+        officerY -= intOfficerSpeed;
+        intGCount = intOfficerGCount;
+      }
+    }
+    // Move down
+    if (strOfficerDirection == "DOWN") {
+      if (keyCode == DOWN) {
+        officerY += intOfficerSpeed;
+        intGCount = intOfficerGCount;
+      }
+    }
+    // Move left
+    if (strOfficerDirection == "LEFT") {
+      if (keyCode == LEFT) {
+        officerX -= intOfficerSpeed;
+      }
+    }
+    // Move right
+    if (strOfficerDirection == "RIGHT") {
+      if (keyCode == RIGHT) {
+        officerX += intOfficerSpeed;
+      }
+    }
+  }
+
+  /**
+   * Method to make prisoner move
+   * @param strPrisonerDirection is a string that reads the direction of the prisoner (w, s, a, d)
+   * @param intPrisonerPCount is a integer that assigns an image to the prisoner
+   * @param intPrisonerSpeed is an integer that assigns a speed to the prisoner
+   */
+  public void movePrisoner(String strPrisonerDirection, int intPrisonerPCount, int intPrisonerSpeed) {
+    // Move up
+    if (strPrisonerDirection == "w") {
+      if (key == 'w') {
+        prisonerY -= intPrisonerSpeed;
+        intPCount = intPrisonerPCount;
+       }
+      }
+    // Move down
+    if (strPrisonerDirection == "s") {
+      if (key == 's') {
+        prisonerY += intPrisonerSpeed;
+        intPCount = intPrisonerPCount;
+       }
+      }
+    // Move left
+    if (strPrisonerDirection == "a") {
+      if (key == 'a') {
+        prisonerX -= intPrisonerSpeed; 
+       }
+      }
+    // Move right
+    if (strPrisonerDirection == "d") {
+      if (key == 'd') {
+        prisonerX += intPrisonerSpeed; 
+      }
+    }
   }
 }
