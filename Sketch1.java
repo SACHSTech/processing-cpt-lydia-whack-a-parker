@@ -227,11 +227,12 @@ public class Sketch1 extends PApplet {
     if (strOfficerDirection == "UP") {
       if (keyCode == UP) {
         intGCount = intOfficerGCount;
-        officerY -= intOfficerSpeed;
         if(officerY > intCrateY) {
           if(officerY < intCrateY + TILE_HEIGHT) {
             officerY += 1;
-          }
+          } 
+        } else {
+          officerY -= intOfficerSpeed;
         }
       }
     }
