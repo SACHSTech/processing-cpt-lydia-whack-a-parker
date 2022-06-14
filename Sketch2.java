@@ -272,7 +272,8 @@ public class Sketch2 extends PApplet {
     }
   }
 }
-}
+  }
+
 
   /**
    * Method to make prisoner move
