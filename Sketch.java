@@ -34,25 +34,29 @@ public class Sketch extends PApplet {
   PImage imgGrass;
   PImage imgKey;
   PFont font;
-  float officerX = 650;
+  float officerX = 700;
   float officerY = 350;
-  float prisonerX = height/2;
-  float prisonerY = width/2;
+  float prisonerX = 640;
+  float prisonerY = 350;
   float officerXspeed = 3;
   float officerYspeed = 3;
   int intGCount;
   int intPCount;
   int SCREEN_WIDTH = 1408;
   int SCREEN_HEIGHT = 850;
+  int ROW_COUNT = 22;
+  int COLUMN_COUNT = 17;
+  int TILE_HEIGHT = 25;
+  int TILE_WIDTH = 32;
+  int intCrateX;
+  int intCrateY;
+  int intOfficer_frames = 8;
   int[][] intArray;
   int intArrayValue;
   boolean blnStart = false;
   boolean blnGuardWin = false;
   boolean blnPrisonerWin = false;
-
-  // Make array
   PImage[] officer_frames;
-  int intOfficer_frames = 8;
 
   public void settings() {
     size(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -219,10 +223,11 @@ public class Sketch extends PApplet {
     // Move up
     if (strOfficerDirection == "UP") {
       if (keyCode == UP) {
-        officerY -= intOfficerSpeed;
         intGCount = intOfficerGCount;
+        officerY -= intOfficerSpeed;
       }
     }
+    
     // Move down
     if (strOfficerDirection == "DOWN") {
       if (keyCode == DOWN) {
@@ -230,19 +235,27 @@ public class Sketch extends PApplet {
         intGCount = intOfficerGCount;
       }
     }
+
     // Move left
     if (strOfficerDirection == "LEFT") {
       if (keyCode == LEFT) {
         officerX -= intOfficerSpeed;
+        if((officerX <= prisonerX + TILE_WIDTH) && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
+          blnPrisonerWin = true;
+        }
       }
     }
+
     // Move right
     if (strOfficerDirection == "RIGHT") {
       if (keyCode == RIGHT) {
         officerX += intOfficerSpeed;
+        if((officerX + TILE_WIDTH >= prisonerX) && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
+          blnPrisonerWin = true;
       }
     }
   }
+}
 
   /**
    * Method to make prisoner move
