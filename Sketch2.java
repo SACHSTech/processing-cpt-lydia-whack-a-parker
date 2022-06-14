@@ -124,6 +124,10 @@ public class Sketch2 extends PApplet {
     textSize(35);
     text("Key Count: " + intKeyCount + "/6", 15, 36);
 
+    if(prisonerX > (TILE_WIDTH * 4) && prisonerX < (TILE_WIDTH * 6) && prisonerY > (TILE_HEIGHT * 10) && prisonerY < (TILE_HEIGHT * 12)){
+      intKeyCount = 1;
+    }
+
     // Officer image based on which way hes walking 
       // Going up
     if(intGCount == 1) {
@@ -166,8 +170,8 @@ public class Sketch2 extends PApplet {
       movePrisoner("a", 3, 4);
       movePrisoner("d", 4, 4);
     }
-    }
-/* 
+  }
+
   if (blnGuardWin == true){
     image(imgMenu, 0, 0);
     fill(0);
@@ -180,7 +184,6 @@ public class Sketch2 extends PApplet {
     textSize(60);
     text("The Guard Won!", 490, 550);
    }
-   */
   }
 
   /**
@@ -239,6 +242,7 @@ public class Sketch2 extends PApplet {
         }
       }
     }
+    
     // Move down
     if (strOfficerDirection == "DOWN") {
       if (keyCode == DOWN) {
@@ -246,19 +250,27 @@ public class Sketch2 extends PApplet {
         intGCount = intOfficerGCount;
       }
     }
+
     // Move left
     if (strOfficerDirection == "LEFT") {
       if (keyCode == LEFT) {
         officerX -= intOfficerSpeed;
+        if((officerX <= prisonerX + TILE_WIDTH) && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
+          blnGuardWin = true;
+        }
       }
     }
+
     // Move right
     if (strOfficerDirection == "RIGHT") {
       if (keyCode == RIGHT) {
         officerX += intOfficerSpeed;
+        if((officerX + TILE_WIDTH >= prisonerX) && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
+          blnGuardWin = true;
       }
     }
   }
+}
 
   /**
    * Method to make prisoner move

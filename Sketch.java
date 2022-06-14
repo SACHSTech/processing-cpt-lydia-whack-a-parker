@@ -167,10 +167,6 @@ public class Sketch extends PApplet {
       movePrisoner("d", 4, 4);
     }
   }
-  
-  if((officerY <= prisonerY + 40) && (officerX <= prisonerX + 40)){
-    blnGuardWin = true;
-  }
 
   if (blnGuardWin == true){
     image(imgMenu, 0, 0);
@@ -256,7 +252,7 @@ public class Sketch extends PApplet {
       if (keyCode == LEFT) {
         officerX -= intOfficerSpeed;
         if((officerX <= prisonerX + TILE_WIDTH) && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
-          blnPrisonerWin = true;
+          blnGuardWin = true;
         }
       }
     }
@@ -266,7 +262,7 @@ public class Sketch extends PApplet {
       if (keyCode == RIGHT) {
         officerX += intOfficerSpeed;
         if((officerX + TILE_WIDTH >= prisonerX) && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
-          blnPrisonerWin = true;
+          blnGuardWin = true;
       }
     }
   }
