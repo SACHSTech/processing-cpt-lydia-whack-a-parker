@@ -242,6 +242,7 @@ public class Sketch extends PApplet {
         }
       }
     }
+    
     // Move down
     if (strOfficerDirection == "DOWN") {
       if (keyCode == DOWN) {
@@ -249,19 +250,27 @@ public class Sketch extends PApplet {
         intGCount = intOfficerGCount;
       }
     }
+
     // Move left
     if (strOfficerDirection == "LEFT") {
       if (keyCode == LEFT) {
         officerX -= intOfficerSpeed;
+        if((officerX <= prisonerX + TILE_WIDTH) && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
+          blnPrisonerWin = true;
+        }
       }
     }
+
     // Move right
     if (strOfficerDirection == "RIGHT") {
       if (keyCode == RIGHT) {
         officerX += intOfficerSpeed;
+        if((officerX + TILE_WIDTH >= prisonerX) && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
+          blnPrisonerWin = true;
       }
     }
   }
+}
 
   /**
    * Method to make prisoner move
