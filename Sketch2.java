@@ -53,9 +53,11 @@ public class Sketch2 extends PApplet {
   int intCrateX;
   int intCrateY;
   int intOfficer_frames = 8;
+  int intTimer = 120000;
   int[][] intArray;
   int intArrayValue;
   int intKeyCount = 0;
+  int intTimerStart; 
   boolean blnStart = false;
   boolean blnGuardWin = false;
   boolean blnPrisonerWin = false;
@@ -122,6 +124,7 @@ public class Sketch2 extends PApplet {
     if (keyPressed){
       if (key == 'p'){
         blnStart = true;
+        intTimerStart = 1;
       }
     }
     if (blnStart == true){
@@ -131,6 +134,11 @@ public class Sketch2 extends PApplet {
     textFont(font);
     textSize(35);
     text("Key Count: " + intKeyCount + "/6", 15, 36);
+
+    fill(0);
+    textFont(font);
+    textSize(35);
+    text("Timer: " + intTimer + "s", 1200, 36);
 
     // Key pick up (bottom left)
     if(blnKey1 == true){
@@ -228,9 +236,16 @@ public class Sketch2 extends PApplet {
       movePrisoner("d", 4, 4);
     }
   }
-  
+
+  if(intTimerStart == 1){
+    intTimer--;
+  }
+  if (intTimer == 0){
+    intTimerStart = 2;
+  }
+
   // Guard win screen
-  if (blnGuardWin == true){
+  if (blnGuardWin == true || intTimer == 0){
     image(imgMenu, 0, 0);
     fill(0);
     rect(200, 210, 1000, 400);
