@@ -278,8 +278,8 @@ public class Lydias_tester_file extends PApplet {
       if (key == 'w') {
         prisonerY -= intPrisonerSpeed;
         intPCount = intPrisonerPCount;
-       }
       }
+    }
     // Move down
     if (strPrisonerDirection == "s") {
       if (key == 's') {

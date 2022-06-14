@@ -278,8 +278,8 @@ public class Sketch1 extends PApplet {
       if (key == 'w') {
         prisonerY -= intPrisonerSpeed;
         intPCount = intPrisonerPCount;
-       }
       }
+    }
     // Move down
     if (strPrisonerDirection == "s") {
       if (key == 's') {
