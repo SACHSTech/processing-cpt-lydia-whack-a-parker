@@ -161,23 +161,6 @@ public class Sketch1 extends PApplet {
       movePrisoner("d", 4, 4);
     }
   }
-
-  /** Collision from top
-  if((officerY + TILE_HEIGHT >= prisonerY) && (officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT)) {
-    blnPrisonerWin = true;
-
-  // Collision from left
-  } else if((officerX + TILE_WIDTH >= prisonerX) && (officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH)) {
-    blnPrisonerWin = true;
-
-  // Collision from right
-  } else if((officerX <= prisonerX + TILE_WIDTH) && (officerX >= prisonerX)) {
-    blnPrisonerWin = true;
-
-  // Collision from bottom
-  } else if((officerY <= prisonerY + TILE_HEIGHT) && (officerY >= prisonerY)) {
-    blnPrisonerWin = true;
-  } */
   
   if (blnPrisonerWin == true){
     image(imgMenu, 0, 0);
