@@ -1,3 +1,5 @@
+import javax.swing.plaf.basic.BasicComboPopup.InvocationKeyHandler;
+
 import processing.core.PApplet;
 import processing.core.PFont;
 import processing.core.PImage;
@@ -48,15 +50,21 @@ public class Sketch2 extends PApplet {
   int COLUMN_COUNT = 17;
   int TILE_HEIGHT = 25;
   int TILE_WIDTH = 32;
-  int intKeyCount = 0;
   int intCrateX;
   int intCrateY;
   int intOfficer_frames = 8;
   int[][] intArray;
   int intArrayValue;
+  int intKeyCount = 0;
   boolean blnStart = false;
   boolean blnGuardWin = false;
   boolean blnPrisonerWin = false;
+  boolean blnKey1 = true; 
+  boolean blnKey2 = true;
+  boolean blnKey3 = true;
+  boolean blnKey4 = true;
+  boolean blnKey5 = true;
+  boolean blnKey6 = true;
   PImage[] officer_frames;
 
   public void settings() {
@@ -124,9 +132,58 @@ public class Sketch2 extends PApplet {
     textSize(35);
     text("Key Count: " + intKeyCount + "/6", 15, 36);
 
-    if(prisonerX > (TILE_WIDTH * 4) && prisonerX < (TILE_WIDTH * 6) && prisonerY > (TILE_HEIGHT * 10) && prisonerY < (TILE_HEIGHT * 12)){
-      intKeyCount = 1;
+    // Key pick up (bottom left)
+    if(blnKey1 == true){
+    if(prisonerX >= (TILE_WIDTH * 7) && prisonerX <= (TILE_WIDTH * 9) && prisonerY >= (TILE_HEIGHT * 22) && prisonerY <= (TILE_HEIGHT * 25)){
+      intKeyCount = intKeyCount + 1; 
+      blnKey1 = false;
+      }
+      keys(TILE_WIDTH * 8, TILE_HEIGHT * 22);
     }
+    
+    // Key pick up (top left)
+    if(blnKey2 == true){
+    if(prisonerX >= (TILE_WIDTH * 7) && prisonerX <= (TILE_WIDTH * 9) && prisonerY >= (TILE_HEIGHT * 6) && prisonerY <= (TILE_HEIGHT * 9)){
+      intKeyCount = intKeyCount + 1; 
+      blnKey2 = false;
+      }
+      keys(TILE_WIDTH * 8, TILE_HEIGHT * 8); 
+    }
+
+    // Key pick up (top middle)
+    if(blnKey3 == true){
+    if(prisonerX >= (TILE_WIDTH * 18) && prisonerX <= (TILE_WIDTH * 21) && prisonerY >= (TILE_HEIGHT * 5) && prisonerY <= (TILE_HEIGHT * 8)){
+      intKeyCount = intKeyCount + 1; 
+      blnKey3 = false;
+      }
+      keys(TILE_WIDTH * 20, TILE_HEIGHT * 6); 
+    }
+
+    // Key pick up (bottom middle)
+    if(blnKey4 == true){
+    if(prisonerX >= (TILE_WIDTH * 22) && prisonerX <= (TILE_WIDTH * 25) && prisonerY >= (TILE_HEIGHT * 25) && prisonerY <= (TILE_HEIGHT * 28)){
+      intKeyCount = intKeyCount + 1;  
+      blnKey4 = false;
+      }
+      keys(TILE_WIDTH * 22, TILE_HEIGHT * 26);
+    }
+
+    // Key pick up (top right)
+    if(blnKey5 == true){
+    if(prisonerX >= (TILE_WIDTH * 33) && prisonerX <= (TILE_WIDTH * 36) && prisonerY >= (TILE_HEIGHT * 6) && prisonerY <= (TILE_HEIGHT * 9)){
+      intKeyCount = intKeyCount + 1; 
+      blnKey5 = false;
+      }
+      keys(TILE_WIDTH * 34, TILE_HEIGHT * 8); 
+    }
+    // Key pick up (bottom right)
+    if(blnKey6 == true){
+    if(prisonerX >= (TILE_WIDTH * 35) && prisonerX <= (TILE_WIDTH * 38) && prisonerY >= (TILE_HEIGHT * 22) && prisonerY <= (TILE_HEIGHT * 25)){
+      intKeyCount = intKeyCount + 1; 
+      blnKey6 = false;
+      }
+      keys(TILE_WIDTH * 36, TILE_HEIGHT * 24); 
+    } 
 
     // Officer image based on which way hes walking 
       // Going up
@@ -171,7 +228,8 @@ public class Sketch2 extends PApplet {
       movePrisoner("d", 4, 4);
     }
   }
-
+  
+  // Guard win screen
   if (blnGuardWin == true){
     image(imgMenu, 0, 0);
     fill(0);
@@ -184,6 +242,19 @@ public class Sketch2 extends PApplet {
     textSize(60);
     text("The Guard Won!", 490, 550);
    }
+   // Prisoner win screen 
+   if (intKeyCount == 6 && (prisonerX < 32 || prisonerX > 1366)){
+    image(imgMenu, 0, 0);
+    fill(0);
+    rect(200, 210, 1000, 400);
+    textFont(font);
+    fill(255);
+    textSize(150);
+    text("GAME OVER", 340, 460);
+    fill(255);
+    textSize(60);
+    text("The Prisoner Won!", 460, 550);
+    } 
   }
 
   /**
@@ -236,7 +307,7 @@ public class Sketch2 extends PApplet {
         officerY -= intOfficerSpeed;
         // Collision under the prisoner
         if((officerY <= prisonerY + TILE_HEIGHT) && officerY >= prisonerY && ((officerX + TILE_WIDTH >= prisonerX && officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + TILE_WIDTH))) {
-          blnPrisonerWin = true;
+          blnGuardWin = true;
         }
       }
     }
@@ -248,15 +319,17 @@ public class Sketch2 extends PApplet {
         intGCount = intOfficerGCount;
         // Collision above the prisoner
         if((officerY + TILE_HEIGHT >= prisonerY) && officerY <= prisonerY + TILE_HEIGHT && ((officerX + TILE_WIDTH >= prisonerX && officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + TILE_WIDTH))) {
-          blnPrisonerWin = true;
+          blnGuardWin = true;
       }
     }
+  }
 
     // Move left
     if (strOfficerDirection == "LEFT") {
       if (keyCode == LEFT) {
         officerX -= intOfficerSpeed;
-        if((officerX <= prisonerX + TILE_WIDTH) && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
+        // Collision on the right side of the prisoner
+        if((officerX <= prisonerX + TILE_WIDTH) && officerX >= prisonerX && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
           blnGuardWin = true;
         }
       }
@@ -266,14 +339,13 @@ public class Sketch2 extends PApplet {
     if (strOfficerDirection == "RIGHT") {
       if (keyCode == RIGHT) {
         officerX += intOfficerSpeed;
-        if((officerX + TILE_WIDTH >= prisonerX) && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
+        // Collision on the left side of the prisoner
+        if((officerX + TILE_WIDTH >= prisonerX) && officerX <= prisonerX + TILE_WIDTH && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
           blnGuardWin = true;
       }
     }
   }
 }
-  }
-
 
   /**
    * Method to make prisoner move
@@ -339,20 +411,20 @@ public class Sketch2 extends PApplet {
       {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
       {1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
       {1,2,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,2,1},
-      {1,2,0,2,2,2,0,0,0,2,3,0,2,0,2,0,2,2,2,0,2,1},
-      {1,2,0,0,3,0,0,2,0,2,2,2,2,0,0,0,2,3,2,0,2,1},
+      {1,2,0,2,2,2,0,0,0,2,0,0,2,0,2,0,2,2,2,0,2,1},
+      {1,2,0,0,0,0,0,2,0,2,2,2,2,0,0,0,2,0,2,0,2,1},
       {1,2,0,2,2,0,2,2,0,0,0,0,0,0,2,0,2,0,2,0,2,1},
       {1,0,0,0,0,0,0,2,0,2,2,2,2,0,2,0,0,0,0,0,2,1},
       {1,2,2,0,2,2,0,2,0,2,0,0,2,0,0,0,2,2,2,2,2,1},
       {1,2,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,1},
       {1,2,0,2,2,2,0,2,0,2,0,0,2,0,2,0,2,2,0,2,2,1},
       {1,2,0,0,0,0,0,0,0,2,2,2,2,0,2,0,0,0,0,0,2,1},
-      {1,2,0,2,3,2,0,2,0,0,0,0,0,0,2,2,0,2,2,0,2,1},
-      {1,2,0,0,0,2,0,2,0,2,2,2,2,0,2,0,0,0,3,0,2,1},
-      {1,2,2,2,0,2,0,0,0,2,0,3,2,0,0,0,2,2,2,0,2,1},
+      {1,2,0,2,0,2,0,2,0,0,0,0,0,0,2,2,0,2,2,0,2,1}, 
+      {1,2,0,0,0,2,0,2,0,2,2,2,2,0,2,0,0,0,0,0,2,1},
+      {1,2,2,2,0,2,0,0,0,2,0,0,2,0,0,0,2,2,2,0,2,1},
       {1,1,1,2,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,2,1},
       {1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
       {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-    };
+    };         
   }
 }
