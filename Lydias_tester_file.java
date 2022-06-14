@@ -54,6 +54,7 @@ public class Lydias_tester_file extends PApplet {
   int intArrayValue;
   int[][] intArray;
   PImage[] officer_frames;
+  // Full Screen variables
   boolean blnStart = false;
   boolean blnGuardWin = false;
   boolean blnPrisonerWin = false;
