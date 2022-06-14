@@ -34,8 +34,8 @@ public class Sketch1 extends PApplet {
   PImage imgGrass;
   PImage imgKey;
   PFont font;
-  float officerX = 130;
-  float officerY = 110;
+  float officerX = 700;
+  float officerY = 350;
   float prisonerX = 640;
   float prisonerY = 350;
   float officerXspeed = 3;
@@ -161,14 +161,24 @@ public class Sketch1 extends PApplet {
       movePrisoner("d", 4, 4);
     }
   }
-  
-  // Player collision
-  if((officerY + 40 >= prisonerY) && (officerY + 40 <= prisonerY + 40)){
-    if((officerX + 40 >= prisonerX) && (officerX + 40 <= prisonerX + 40)){
-      blnPrisonerWin = true;
-    }
-  } 
 
+  /** Collision from top
+  if((officerY + TILE_HEIGHT >= prisonerY) && (officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT)) {
+    blnPrisonerWin = true;
+
+  // Collision from left
+  } else if((officerX + TILE_WIDTH >= prisonerX) && (officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH)) {
+    blnPrisonerWin = true;
+
+  // Collision from right
+  } else if((officerX <= prisonerX + TILE_WIDTH) && (officerX >= prisonerX)) {
+    blnPrisonerWin = true;
+
+  // Collision from bottom
+  } else if((officerY <= prisonerY + TILE_HEIGHT) && (officerY >= prisonerY)) {
+    blnPrisonerWin = true;
+  } */
+  
   if (blnPrisonerWin == true){
     image(imgMenu, 0, 0);
     fill(0);
@@ -230,15 +240,10 @@ public class Sketch1 extends PApplet {
     if (strOfficerDirection == "UP") {
       if (keyCode == UP) {
         intGCount = intOfficerGCount;
-        if(officerY > intCrateY) {
-          if(officerY < intCrateY + TILE_HEIGHT) {
-            officerY += 1;
-          } 
-        } else {
-          officerY -= intOfficerSpeed;
-        }
+        officerY -= intOfficerSpeed;
       }
     }
+    
     // Move down
     if (strOfficerDirection == "DOWN") {
       if (keyCode == DOWN) {
@@ -246,12 +251,17 @@ public class Sketch1 extends PApplet {
         intGCount = intOfficerGCount;
       }
     }
+
     // Move left
     if (strOfficerDirection == "LEFT") {
       if (keyCode == LEFT) {
         officerX -= intOfficerSpeed;
+        if((officerX <= prisonerX + TILE_WIDTH) && (officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT)) {
+          blnPrisonerWin = true;
+        }
       }
     }
+
     // Move right
     if (strOfficerDirection == "RIGHT") {
       if (keyCode == RIGHT) {
