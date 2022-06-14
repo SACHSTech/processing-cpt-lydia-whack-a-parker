@@ -233,12 +233,10 @@ public class Sketch2 extends PApplet {
     if (strOfficerDirection == "UP") {
       if (keyCode == UP) {
         intGCount = intOfficerGCount;
-        if(officerY > intCrateY) {
-          if(officerY < intCrateY + TILE_HEIGHT) {
-            officerY += 1;
-          } 
-        } else {
-          officerY -= intOfficerSpeed;
+        officerY -= intOfficerSpeed;
+        // Collision under the prisoner
+        if((officerY <= prisonerY + TILE_HEIGHT) && officerY >= prisonerY && ((officerX + TILE_WIDTH >= prisonerX && officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + TILE_WIDTH))) {
+          blnPrisonerWin = true;
         }
       }
     }
@@ -248,6 +246,9 @@ public class Sketch2 extends PApplet {
       if (keyCode == DOWN) {
         officerY += intOfficerSpeed;
         intGCount = intOfficerGCount;
+        // Collision above the prisoner
+        if((officerY + TILE_HEIGHT >= prisonerY) && officerY <= prisonerY + TILE_HEIGHT && ((officerX + TILE_WIDTH >= prisonerX && officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + TILE_WIDTH))) {
+          blnPrisonerWin = true;
       }
     }
 
@@ -270,6 +271,7 @@ public class Sketch2 extends PApplet {
       }
     }
   }
+}
 }
 
   /**

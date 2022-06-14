@@ -34,8 +34,8 @@ public class Sketch extends PApplet {
   PImage imgGrass;
   PImage imgKey;
   PFont font;
-  float officerX = 130;
-  float officerY = 110;
+  float officerX = 700;
+  float officerY = 350;
   float prisonerX = 640;
   float prisonerY = 350;
   float officerXspeed = 3;
@@ -48,7 +48,6 @@ public class Sketch extends PApplet {
   int COLUMN_COUNT = 17;
   int TILE_HEIGHT = 25;
   int TILE_WIDTH = 32;
-  int intKeyCount = 0;
   int intCrateX;
   int intCrateY;
   int intOfficer_frames = 8;
@@ -118,11 +117,6 @@ public class Sketch extends PApplet {
     }
     if (blnStart == true){
     drawGame();
-
-    fill(0);
-    textFont(font);
-    textSize(35);
-    text("Key Count: " + intKeyCount + "/6", 15, 36);
 
     // Officer image based on which way hes walking 
       // Going up
@@ -229,12 +223,10 @@ public class Sketch extends PApplet {
     if (strOfficerDirection == "UP") {
       if (keyCode == UP) {
         intGCount = intOfficerGCount;
-        if(officerY > intCrateY) {
-          if(officerY < intCrateY + TILE_HEIGHT) {
-            officerY += 1;
-          } 
-        } else {
-          officerY -= intOfficerSpeed;
+        officerY -= intOfficerSpeed;
+        // Collision under the prisoner
+        if((officerY <= prisonerY + TILE_HEIGHT) && officerY >= prisonerY && ((officerX + TILE_WIDTH >= prisonerX && officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + TILE_WIDTH))) {
+          blnPrisonerWin = true;
         }
       }
     }
@@ -244,8 +236,12 @@ public class Sketch extends PApplet {
       if (keyCode == DOWN) {
         officerY += intOfficerSpeed;
         intGCount = intOfficerGCount;
+        // Collision above the prisoner
+        if((officerY + TILE_HEIGHT >= prisonerY) && officerY <= prisonerY + TILE_HEIGHT && ((officerX + TILE_WIDTH >= prisonerX && officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + TILE_WIDTH))) {
+          blnPrisonerWin = true;
       }
     }
+  }
 
     // Move left
     if (strOfficerDirection == "LEFT") {
@@ -266,9 +262,7 @@ public class Sketch extends PApplet {
       }
     }
   }
-}
-
-  /**
+}  /**
    * Method to make prisoner move
    * @param strPrisonerDirection is a string that reads the direction of the prisoner (w, s, a, d)
    * @param intPrisonerPCount is a integer that assigns an image to the prisoner

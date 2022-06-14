@@ -161,23 +161,6 @@ public class Sketch1 extends PApplet {
       movePrisoner("d", 4, 4);
     }
   }
-
-  /** Collision from top
-  if((officerY + TILE_HEIGHT >= prisonerY) && (officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT)) {
-    blnPrisonerWin = true;
-
-  // Collision from left
-  } else if((officerX + TILE_WIDTH >= prisonerX) && (officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH)) {
-    blnPrisonerWin = true;
-
-  // Collision from right
-  } else if((officerX <= prisonerX + TILE_WIDTH) && (officerX >= prisonerX)) {
-    blnPrisonerWin = true;
-
-  // Collision from bottom
-  } else if((officerY <= prisonerY + TILE_HEIGHT) && (officerY >= prisonerY)) {
-    blnPrisonerWin = true;
-  } */
   
   if (blnPrisonerWin == true){
     image(imgMenu, 0, 0);
@@ -241,6 +224,10 @@ public class Sketch1 extends PApplet {
       if (keyCode == UP) {
         intGCount = intOfficerGCount;
         officerY -= intOfficerSpeed;
+        // Collision under the prisoner
+        if((officerY <= prisonerY + TILE_HEIGHT) && officerY >= prisonerY && ((officerX + TILE_WIDTH >= prisonerX && officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + TILE_WIDTH))) {
+          blnPrisonerWin = true;
+        }
       }
     }
     
@@ -249,14 +236,19 @@ public class Sketch1 extends PApplet {
       if (keyCode == DOWN) {
         officerY += intOfficerSpeed;
         intGCount = intOfficerGCount;
+        // Collision above the prisoner
+        if((officerY + TILE_HEIGHT >= prisonerY) && officerY <= prisonerY + TILE_HEIGHT && ((officerX + TILE_WIDTH >= prisonerX && officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + TILE_WIDTH))) {
+          blnPrisonerWin = true;
       }
     }
+  }
 
     // Move left
     if (strOfficerDirection == "LEFT") {
       if (keyCode == LEFT) {
         officerX -= intOfficerSpeed;
-        if((officerX <= prisonerX + TILE_WIDTH) && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
+        // Collision on the right side of the prisoner
+        if((officerX <= prisonerX + TILE_WIDTH) && officerX >= prisonerX && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
           blnPrisonerWin = true;
         }
       }
@@ -266,7 +258,8 @@ public class Sketch1 extends PApplet {
     if (strOfficerDirection == "RIGHT") {
       if (keyCode == RIGHT) {
         officerX += intOfficerSpeed;
-        if((officerX + TILE_WIDTH >= prisonerX) && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
+        // Collision on the left side of the prisoner
+        if((officerX + TILE_WIDTH >= prisonerX) && officerX <= prisonerX + TILE_WIDTH && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
           blnPrisonerWin = true;
       }
     }
