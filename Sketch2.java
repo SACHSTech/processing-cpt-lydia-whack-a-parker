@@ -18,7 +18,13 @@ public class Sketch2 extends PApplet {
   // Variables
   PImage imgBackground;
   PImage imgOfficerFront1;
+  PImage imgOfficerFront2;
   PImage imgOfficerBack1;
+  PImage imgOfficerBack2;
+  PImage imgOfficerLeft1;
+  PImage imgOfficerLeft2;
+  PImage imgOfficerRight1;
+  PImage imgOfficerRight2;
   PImage imgOfficerStill;
   PImage imgPrisonerFront1;
   PImage imgPrisonerBack1;
@@ -38,15 +44,20 @@ public class Sketch2 extends PApplet {
   int intPCount;
   int SCREEN_WIDTH = 1408;
   int SCREEN_HEIGHT = 850;
+  int ROW_COUNT = 22;
+  int COLUMN_COUNT = 17;
+  int TILE_HEIGHT = 25;
+  int TILE_WIDTH = 32;
+  int intKeyCount = 0;
+  int intCrateX;
+  int intCrateY;
+  int intOfficer_frames = 8;
   int[][] intArray;
   int intArrayValue;
   boolean blnStart = false;
   boolean blnGuardWin = false;
   boolean blnPrisonerWin = false;
-
-  // Make array
   PImage[] officer_frames;
-  int intOfficer_frames = 8;
 
   public void settings() {
     size(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -108,11 +119,25 @@ public class Sketch2 extends PApplet {
     if (blnStart == true){
     drawGame();
 
-     // Officer image based on which way hes talking 
-     if(intGCount == 1) {
+    fill(0);
+    textFont(font);
+    textSize(35);
+    text("Key Count: " + intKeyCount + "/6", 15, 36);
+
+    // Officer image based on which way hes walking 
+      // Going up
+    if(intGCount == 1) {
       image(imgOfficerBack1, officerX, officerY);
+      // Going down
     } else if (intGCount == 2) {
       image(imgOfficerFront1, officerX, officerY);
+      // Going left
+    } else if (intGCount == 3) {
+      image(imgOfficerLeft1, officerX, officerY);
+      // Going right
+    } else if (intGCount == 4) {
+      image(imgOfficerRight1, officerX, officerY);
+      // Standing still
     } else {
       image(imgOfficerStill, officerX, officerY);
     }
@@ -141,15 +166,9 @@ public class Sketch2 extends PApplet {
       movePrisoner("a", 3, 4);
       movePrisoner("d", 4, 4);
     }
-  }
-  // Player collision
-  if((officerY + 40 >= prisonerY) && (officerY + 40 <= prisonerY + 40)){
-    if((officerX + 40 >= prisonerX) && (officerX + 40 <= prisonerX + 40)){
-      blnPrisonerWin = true;
     }
-  } 
-
-  if (blnPrisonerWin == true){
+/* 
+  if (blnGuardWin == true){
     image(imgMenu, 0, 0);
     fill(0);
     rect(200, 210, 1000, 400);
@@ -161,6 +180,7 @@ public class Sketch2 extends PApplet {
     textSize(60);
     text("The Guard Won!", 490, 550);
    }
+   */
   }
 
   /**
@@ -209,8 +229,14 @@ public class Sketch2 extends PApplet {
     // Move up
     if (strOfficerDirection == "UP") {
       if (keyCode == UP) {
-        officerY -= intOfficerSpeed;
         intGCount = intOfficerGCount;
+        if(officerY > intCrateY) {
+          if(officerY < intCrateY + TILE_HEIGHT) {
+            officerY += 1;
+          } 
+        } else {
+          officerY -= intOfficerSpeed;
+        }
       }
     }
     // Move down
@@ -275,20 +301,23 @@ public class Sketch2 extends PApplet {
       for (int x = 0; x < intArray[0].length; x++) {
         // If the array value is 0, draw tiles
         if (intArray[y][x] == 0) {
-          tiles((SCREEN_WIDTH / 22) * x, (SCREEN_HEIGHT / 17) * y);
+          tiles((SCREEN_WIDTH / ROW_COUNT) * x, (SCREEN_HEIGHT / COLUMN_COUNT) * y);
         // If the array value is 1, draw grass
         } else if (intArray[y][x] == 1) {
-          grass((SCREEN_WIDTH / 22) * x, (SCREEN_HEIGHT / 17) * y);
+          grass((SCREEN_WIDTH / ROW_COUNT) * x, (SCREEN_HEIGHT / COLUMN_COUNT) * y);
         // If the array value is 2, draw wall
         } else if (intArray[y][x] == 2) {
-          crates((SCREEN_WIDTH / 22) * x, (SCREEN_HEIGHT / 17) * y);
+          crates((SCREEN_WIDTH / ROW_COUNT) * x, (SCREEN_HEIGHT / COLUMN_COUNT) * y);
+          intCrateX = (SCREEN_WIDTH / ROW_COUNT) * x;
+          intCrateY = (SCREEN_HEIGHT / COLUMN_COUNT) * y;
         // If the array value is 3, draw key
         } else if (intArray[y][x] == 3) {
-          keys((SCREEN_WIDTH / 22) * x, (SCREEN_HEIGHT / 17) * y);
+          keys((SCREEN_WIDTH / ROW_COUNT) * x, (SCREEN_HEIGHT / COLUMN_COUNT) * y);
         }
       }
     }
   }
+
   // Array for drawing everything
   public int[][] arrayGame() {
     return new int[][] {
