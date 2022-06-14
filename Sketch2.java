@@ -237,6 +237,7 @@ public class Sketch2 extends PApplet {
     }
   }
 
+  // Timer
   if(intTimerStart == 1){
     intTimer--;
   }
