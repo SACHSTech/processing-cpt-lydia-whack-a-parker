@@ -253,9 +253,12 @@ public class Sketch1 extends PApplet {
       if (keyCode == DOWN) {
         officerY += intOfficerSpeed;
         intGCount = intOfficerGCount;
-
+        // Collision above the prisoner
+        if((officerY + TILE_HEIGHT >= prisonerY) && ((officerX + TILE_WIDTH >= prisonerX && officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + TILE_WIDTH))) {
+          blnPrisonerWin = true;
       }
     }
+  }
 
     // Move left
     if (strOfficerDirection == "LEFT") {
