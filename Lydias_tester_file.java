@@ -215,7 +215,7 @@ public class Lydias_tester_file extends PApplet {
     // Officer speed
     // UP 
     if (blnOfficerUp == true) {
-      image(imgOfficerBack1, officerX, officerY);
+      image(imgOfficerFront1, officerX, officerY);
       officerY -= intOfficerSpeed;
       // Player-Player Collision under the prisoner
       if((officerY <= prisonerY + PLAYER_HEIGHT) && officerY >= prisonerY && ((officerX + PLAYER_WIDTH >= prisonerX && officerX + PLAYER_WIDTH <= prisonerX + PLAYER_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + PLAYER_WIDTH))) {
@@ -326,9 +326,22 @@ public class Lydias_tester_file extends PApplet {
   if (intTimer == 0){
     intTimerStart = 2;
   }
-        
-  // Prisoner win screen 
-  if (intKeyCount == 6 && (prisonerX < 32 || prisonerX > 1366)){
+    
+  // Guard win screen
+  if (blnGuardWin == true || intTimer == 0){
+    image(imgMenu, 0, 0);
+    fill(0);
+    rect(200, 210, 1000, 400);
+    textFont(font);
+    fill(255);
+    textSize(150);
+    text("GAME OVER", 340, 460);
+    fill(13, 5, 247);
+    textSize(60);
+    text("The Guard Won!", 490, 550);
+    }
+    // Prisoner win screen 
+    if (intKeyCount == 6 && (prisonerX < 32 || prisonerX > 1366)){
     image(imgMenu, 0, 0);
     fill(0);
     rect(200, 210, 1000, 400);
