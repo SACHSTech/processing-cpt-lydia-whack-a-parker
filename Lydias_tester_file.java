@@ -399,8 +399,10 @@ public class Lydias_tester_file extends PApplet {
   public void officerCollisionUp() {
     // from (1, 1) to (1, 20)
     if((officerY <= TILE_HEIGHT * 2) 
-    // Left exit: from (7, 1) going right 3 tiles
+    // Left exit botton: from (7, 1) going right 3 tiles
     || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 7) && (officerY <= TILE_HEIGHT * 8) && (officerX <= TILE_WIDTH * 3))
+    // Left exit top: from (6, 1) going right 1 tile
+    || ((officerY <= TILE_HEIGHT * 6) && officerX <= TILE_HEIGHT * 2)
     // Right exit: from (7, 16) going right 7 tiles
     || ((officerY <= TILE_HEIGHT * 8) && (officerY >= TILE_HEIGHT * 7) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 16))
     // Top of jail cell from (6, 9) going right 3 tiles
