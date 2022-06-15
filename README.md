@@ -8,8 +8,12 @@
 
 <font color="orange">
 
-Collect all 6 keys and escape… or get caught and lose. Prison Escape is a two-player minigame where you could play as the officer or the prisoner in the setting of a jail maze. As the prisoner, you must navigate and collect all 5 keys within the maze and escape through one of two doors to achieve victory. On the other hand, the prison guard must tag the prisoner before they escape. 
-Sounds easy, but the guard broke his leg so he walks super slow. Luckily, the prisoner has been spending his cell days getting built so he can run a bit lot faster than the guard. 
+Collect all 6 keys and escape… or get caught and lose. Prison Escape is a two-player minigame where you could play as the officer or the prisoner in the setting of a jail maze. As the prisoner, you must navigate and collect all 6 keys within the maze and escape through one of two doors to achieve victory. On the other hand, the prison guard must tag the prisoner before they escape. 
+
+The prison suffered an earthquake recently. Some of the walls have fallen down. These walls will not block you; you can run over them. These are the darker walls. 
+
+Also, a wall fell on the guard so he broke his leg and he walks super slow. Luckily, the prisoner has been spending his cell days getting built so he can run a lot faster than the guard. 
+
 
 <font color="sky blue">
 
@@ -17,7 +21,7 @@ Sounds easy, but the guard broke his leg so he walks super slow. Luckily, the pr
 
 <font color="orange">
 
-Being in a maze, the walls cannot be travelled through. If the prisoner tries to escape without collecting all 5 keys, it is impossible to win. The prisoner is controlled by WASD, and the guard is controlled by a virtual arrow keypad on the screen. The winner is determined by whichever player first meets their objective. 
+Being in a maze, the walls cannot be travelled through. If the prisoner tries to escape without collecting all 6 keys, it is impossible to win. The prisoner is controlled by WASD, and the guard is controlled by a virtual arrow keypad on the screen. The winner is determined by whichever player first meets their objective. 
 
 <font color="sky blue">
 

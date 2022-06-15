@@ -55,7 +55,7 @@ public class Sketch1 extends PApplet {
   int intCrateY;
   int intOfficer_frames = 8;
   int intArrayValue;
-  int intTimer = 120000;
+  int intTimer = 3529; // Around 1 minute
   int intKeyCount = 0;
   int intTimerStart; 
   int[][] intArray;
@@ -321,7 +321,7 @@ public class Sketch1 extends PApplet {
   if (intTimer == 0){
     intTimerStart = 2;
   }
-  
+    
   // Guard win screen
   if (blnGuardWin == true || intTimer == 0){
     image(imgMenu, 0, 0);
@@ -331,12 +331,12 @@ public class Sketch1 extends PApplet {
     fill(255);
     textSize(150);
     text("GAME OVER", 340, 460);
-    fill(255);
+    fill(21, 255, 0);
     textSize(60);
     text("The Guard Won!", 490, 550);
-   }
-   // Prisoner win screen 
-   if (intKeyCount == 6 && (prisonerX < 32 || prisonerX > 1366)){
+    }
+    // Prisoner win screen 
+    if (intKeyCount == 6 && (prisonerX < 32 || prisonerX > 1366)){
     image(imgMenu, 0, 0);
     fill(0);
     rect(200, 210, 1000, 400);
@@ -344,11 +344,11 @@ public class Sketch1 extends PApplet {
     fill(255);
     textSize(150);
     text("GAME OVER", 340, 460);
-    fill(255);
+    fill(250, 126, 2);
     textSize(60);
     text("The Prisoner Won!", 460, 550);
     } 
-  }
+  }  
 
   /**
    * Method to create grass
@@ -411,8 +411,14 @@ public class Sketch1 extends PApplet {
     || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 10) && (officerY <= TILE_HEIGHT * 11) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13))
     // 3 block horizontals middle left
     || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (officerY <= TILE_HEIGHT * 10))
+    // 3 block horizontals on bottom right
+    || ((officerX >= TILE_WIDTH * 15.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 13) && (officerY <= TILE_HEIGHT * 14))
+    // 3 block horizontals on middle right
+    || ((officerX >= TILE_WIDTH * 15.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (officerY <= TILE_HEIGHT * 10))
     // 3 block horizontals on top left
-    || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4)))
+    || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4))
+    // 3 block horizontals on top right
+    || ((officerX >= TILE_WIDTH * 15.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4)))
     { 
       officerY += intOfficerSpeed;
     }
@@ -434,7 +440,13 @@ public class Sketch1 extends PApplet {
     // 3 block horizontals middle left
     || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (officerY <= TILE_HEIGHT * 10))
     // 3 block horizontals on top left
-    || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4)))
+    || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4))
+    // 3 block horizontals on bottom right
+    || ((officerX >= TILE_WIDTH * 15.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 13) && (officerY <= TILE_HEIGHT * 14))
+    // 3 block horizontals on middle right
+    || ((officerX >= TILE_WIDTH * 15.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (officerY <= TILE_HEIGHT * 10))
+    // 3 block horizontals on top right
+    || ((officerX >= TILE_WIDTH * 15.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4)))
     { 
       officerY -= intOfficerSpeed;
     }
@@ -454,7 +466,13 @@ public class Sketch1 extends PApplet {
     // 3 block horizontals middle left
     || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (officerY <= TILE_HEIGHT * 10))
     // 3 block horizontals on top left
-    || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4)))
+    || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4))
+    // 3 block horizontals on bottom right
+    || ((officerX >= TILE_WIDTH * 15.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 13) && (officerY <= TILE_HEIGHT * 14))
+    // 3 block horizontals on middle right
+    || ((officerX >= TILE_WIDTH * 15.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (officerY <= TILE_HEIGHT * 10))
+    // 3 block horizontals on top right
+    || ((officerX >= TILE_WIDTH * 15.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4)))
     {
       officerX += intOfficerSpeed;
     }
@@ -474,7 +492,13 @@ public class Sketch1 extends PApplet {
     // 3 block horizontals middle left
     || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (officerY <= TILE_HEIGHT * 10))
     // 3 block horizontals on top left
-    || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4)))
+    || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4))
+    // 3 block horizontals on bottom right
+    || ((officerX >= TILE_WIDTH * 15.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 13) && (officerY <= TILE_HEIGHT * 14))
+    // 3 block horizontals on middle right
+    || ((officerX >= TILE_WIDTH * 15.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (officerY <= TILE_HEIGHT * 10))
+    // 3 block horizontals on top right
+    || ((officerX >= TILE_WIDTH * 15.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4)))
     {
       officerX -= intOfficerSpeed;
     }
@@ -525,17 +549,17 @@ public class Sketch1 extends PApplet {
       {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
       {1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
       {1,2,0,0,0,0,0,4,0,0,0,0,0,0,4,0,0,0,0,0,2,1},
-      {1,2,0,2,2,2,0,0,0,4,0,0,4,0,4,0,4,4,4,0,2,1},
+      {1,2,0,2,2,2,0,0,0,4,0,0,4,0,4,0,2,2,2,0,2,1},
       {1,2,0,0,0,0,0,4,0,4,4,4,4,0,0,0,4,0,4,0,2,1},
       {1,2,0,4,4,0,4,4,0,0,0,0,0,0,4,0,4,0,4,0,2,1},
       {1,0,0,0,0,0,0,4,0,2,2,2,2,0,4,0,0,0,0,0,2,1},
       {1,2,2,0,4,4,0,4,0,4,0,0,2,0,0,0,2,2,2,2,2,1},
       {1,2,0,0,0,0,0,4,0,4,0,0,2,0,4,0,0,0,0,0,0,1},
-      {1,2,0,2,2,2,0,4,0,4,0,0,2,0,4,0,4,4,4,0,2,1},
+      {1,2,0,2,2,2,0,4,0,4,0,0,2,0,4,0,2,2,2,0,2,1},
       {1,2,0,0,0,0,0,0,0,2,2,2,2,0,4,0,0,0,0,0,2,1},
       {1,2,0,4,0,4,0,4,0,0,0,0,0,0,4,4,0,4,4,0,2,1}, 
       {1,2,0,4,0,4,0,4,0,4,4,4,4,0,4,0,0,0,0,0,2,1},
-      {1,2,0,4,0,4,0,0,0,4,0,0,4,0,0,0,4,4,4,0,2,1},
+      {1,2,0,4,0,4,0,0,0,4,0,0,4,0,0,0,2,2,2,0,2,1},
       {1,2,0,0,0,0,0,4,0,0,0,0,0,0,4,0,0,0,0,0,2,1},
       {1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
       {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
