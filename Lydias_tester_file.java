@@ -438,7 +438,9 @@ public class Lydias_tester_file extends PApplet {
     // Top of jail cell from (6, 9) going right 3 tiles
     || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 6) && (officerY + PLAYER_HEIGHT <= TILE_HEIGHT * 7) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13))
     // Bottom of jail cell from (10, 9) going right 3 tiles
-    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 10) && (officerY <= TILE_HEIGHT * 11) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13)))
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 10) && (officerY <= TILE_HEIGHT * 11) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13))
+    // Right of jail cell from (6, 12) going right 3 tiles
+    || ((officerX + PLAYER_WIDTH >= TILE_WIDTH * 12) && (officerX <= TILE_WIDTH * 13) && (officerY >= TILE_HEIGHT * 6) && (officerY <= TILE_HEIGHT * 11)))
     {
       officerX += intOfficerSpeed;
     }
@@ -452,7 +454,9 @@ public class Lydias_tester_file extends PApplet {
     // Top of jail cell from (6, 9) going right 3 tiles
     || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 6) && (officerY + PLAYER_HEIGHT <= TILE_HEIGHT * 7) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13))
     // Bottom of jail cell from (10, 9) going right 3 tiles
-    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 10) && (officerY <= TILE_HEIGHT * 11) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13)))
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 10) && (officerY <= TILE_HEIGHT * 11) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13))
+    // Right of jail cell from (6, 12) going right 3 tiles
+    || ((officerX + PLAYER_WIDTH >= TILE_WIDTH * 12) && (officerX + PLAYER_WIDTH <= TILE_WIDTH * 13) && (officerY >= TILE_HEIGHT * 6) && (officerY <= TILE_HEIGHT * 11)))
     {
       officerX -= intOfficerSpeed;
     }
