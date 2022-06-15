@@ -53,9 +53,9 @@ public class Sketch2 extends PApplet {
   int intCrateX;
   int intCrateY;
   int intOfficer_frames = 8;
-  int intTimer = 120000;
   int[][] intArray;
   int intArrayValue;
+  int intTimer = 120000;
   int intKeyCount = 0;
   int intTimerStart; 
   boolean blnStart = false;
@@ -237,6 +237,7 @@ public class Sketch2 extends PApplet {
     }
   }
 
+  // Timer
   if(intTimerStart == 1){
     intTimer--;
   }
