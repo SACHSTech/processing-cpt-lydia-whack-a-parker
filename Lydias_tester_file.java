@@ -321,7 +321,7 @@ public class Lydias_tester_file extends PApplet {
   if (intTimer == 0){
     intTimerStart = 2;
   }
-  
+    
   // Guard win screen
   if (blnGuardWin == true || intTimer == 0){
     image(imgMenu, 0, 0);
@@ -331,12 +331,12 @@ public class Lydias_tester_file extends PApplet {
     fill(255);
     textSize(150);
     text("GAME OVER", 340, 460);
-    fill(255);
+    fill(21, 255, 0);
     textSize(60);
     text("The Guard Won!", 490, 550);
-   }
-   // Prisoner win screen 
-   if (intKeyCount == 6 && (prisonerX < 32 || prisonerX > 1366)){
+    }
+    // Prisoner win screen 
+    if (intKeyCount == 6 && (prisonerX < 32 || prisonerX > 1366)){
     image(imgMenu, 0, 0);
     fill(0);
     rect(200, 210, 1000, 400);
@@ -344,11 +344,11 @@ public class Lydias_tester_file extends PApplet {
     fill(255);
     textSize(150);
     text("GAME OVER", 340, 460);
-    fill(255);
+    fill(250, 126, 2);
     textSize(60);
     text("The Prisoner Won!", 460, 550);
     } 
-  }
+  }  
 
   /**
    * Method to create grass
