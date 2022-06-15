@@ -138,7 +138,7 @@ public class Sketch2 extends PApplet {
     fill(0);
     textFont(font);
     textSize(35);
-    text("Timer: " + intTimer + "s", 1200, 36);
+    text("Timer: " + intTimer + "s", 1120, 36);
 
     // Key pick up (bottom left)
     if(blnKey1 == true){
