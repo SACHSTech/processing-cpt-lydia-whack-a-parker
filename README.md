@@ -14,6 +14,8 @@ The prison suffered an earthquake recently. Some of the walls have fallen down. 
 
 Also, a wall fell on the guard so he broke his leg and he walks super slow. Luckily, the prisoner has been spending his cell days getting built so he can run a lot faster than the guard. 
 
+The prisoner only has a minute or two to escape - otherwise, the officer knows something is suspicious and closes all the doors. When the time runs out and the prisoner has not escaped, the officer wins. 
+
 
 <font color="sky blue">
 

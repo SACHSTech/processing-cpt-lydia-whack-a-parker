@@ -55,7 +55,7 @@ public class Sketch1 extends PApplet {
   int intCrateY;
   int intOfficer_frames = 8;
   int intArrayValue;
-  int intTimer = 3529; // Around 1 minute
+  int intTimer = 3000; // 3529: Around 1 minute
   int intKeyCount = 0;
   int intTimerStart; 
   int[][] intArray;
@@ -267,6 +267,7 @@ public class Sketch1 extends PApplet {
       }
       // Player-Wall Collision
       officerCollisionRight();
+
     // STILL
     } else {
       image(imgOfficerStill, officerX, officerY);
@@ -280,6 +281,7 @@ public class Sketch1 extends PApplet {
       // Player-Wall Collision
       prisonerCollisionUp();
     }
+    
     // DOWN
     if (blnPrisonerDown == true) {
       image(imgPrisonerFront1, prisonerX, prisonerY);
@@ -287,6 +289,7 @@ public class Sketch1 extends PApplet {
       // Player-Wall Collision
       prisonerCollisionDown();
     }
+
     // LEFT
     if (blnPrisonerLeft == true) {
       image(imgPrisonerFront1, prisonerX, prisonerY);
@@ -298,6 +301,7 @@ public class Sketch1 extends PApplet {
       // Player-Wall Collision
       prisonerCollisionLeft();
     }
+
     // RIGHT
     if (blnPrisonerRight == true) {
       image(imgPrisonerFront1, prisonerX, prisonerY);
@@ -308,6 +312,7 @@ public class Sketch1 extends PApplet {
       }
       // Player-Wall Collision
       prisonerCollisionRight();
+
     // STILL
     } else {
       image(imgPrisonerStill, prisonerX, prisonerY);
@@ -321,22 +326,9 @@ public class Sketch1 extends PApplet {
   if (intTimer == 0){
     intTimerStart = 2;
   }
-    
-  // Guard win screen
-  if (blnGuardWin == true || intTimer == 0){
-    image(imgMenu, 0, 0);
-    fill(0);
-    rect(200, 210, 1000, 400);
-    textFont(font);
-    fill(255);
-    textSize(150);
-    text("GAME OVER", 340, 460);
-    fill(21, 255, 0);
-    textSize(60);
-    text("The Guard Won!", 490, 550);
-    }
-    // Prisoner win screen 
-    if (intKeyCount == 6 && (prisonerX < 32 || prisonerX > 1366)){
+        
+  // Prisoner win screen 
+  if (intKeyCount == 6 && (prisonerX < 32 || prisonerX > 1366)){
     image(imgMenu, 0, 0);
     fill(0);
     rect(200, 210, 1000, 400);
@@ -348,8 +340,37 @@ public class Sketch1 extends PApplet {
     textSize(60);
     text("The Prisoner Won!", 460, 550);
     } 
-  }  
 
+  // Guard win screen
+  if (blnGuardWin == true){
+    image(imgMenu, 0, 0);
+    fill(0);
+    rect(200, 210, 1000, 400);
+    textFont(font);
+    fill(255);
+    textSize(150);
+    text("GAME OVER", 340, 460);
+    fill(21, 255, 0);
+    textSize(60);
+    text("The Officer Won!", 490, 550);
+    }
+
+  // Time's up screen
+  if (intTimer == 0){
+    image(imgMenu, 0, 0);
+    fill(0);
+    rect(200, 210, 1000, 400);
+    textFont(font);
+    fill(255);
+    textSize(150);
+    text("GAME OVER", 340, 460);
+    fill(21, 255, 0);
+    textSize(60);
+    text("Time's up! The Officer wins!", 330, 550);
+    }
+
+  }
+  
   /**
    * Method to create grass
    * @param grassX is a float that reads the x-value of the grass image
