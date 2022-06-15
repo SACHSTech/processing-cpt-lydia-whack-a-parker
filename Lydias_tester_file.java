@@ -30,6 +30,7 @@ public class Lydias_tester_file extends PApplet {
   PImage imgPrisonerBack1;
   PImage imgPrisonerStill;
   PImage imgCrates;
+  PImage imgDarkCrates;
   PImage imgMenu;
   PImage imgGrass;
   PImage imgKey;
@@ -97,6 +98,7 @@ public class Lydias_tester_file extends PApplet {
     imgPrisonerStill = loadImage("prisoner_03.png");
     imgGrass = loadImage("ground_03.png");
     imgCrates = loadImage("crate_19.png");
+    imgDarkCrates = loadImage("darkcrate.png");
     imgKey = loadImage("key_on_tile.png");
     imgMenu = loadImage("menu.png");
 
@@ -333,6 +335,15 @@ public class Lydias_tester_file extends PApplet {
   public void crates(float crateX, float crateY) {
     image(imgCrates, crateX, crateY);
   }
+
+  /**
+   * Method to create dark crates
+   * @param darkCrateX is a float that reads the x-value of the darker crate image
+   * @param darkCrateY is a float that reads the y-value of the darker crate image
+   */
+  public void darkCrates(float darkCrateX, float darkCrateY) {
+    image(imgCrates, darkCrateX, darkCrateY);
+  }
   
   /**
    * Method to create tiles (aka, background)
@@ -372,7 +383,7 @@ public class Lydias_tester_file extends PApplet {
         // If the array value is 1, draw grass
         } else if (intArray[y][x] == 1) {
           grass((TILE_WIDTH) * x, (TILE_HEIGHT) * y);
-        // If the array value is 2, draw wall
+        // If the array value is 2, draw crates
         } else if (intArray[y][x] == 2) {
           crates((TILE_WIDTH) * x, (TILE_HEIGHT) * y);
           intCrateX = (TILE_WIDTH) * x;
@@ -380,7 +391,7 @@ public class Lydias_tester_file extends PApplet {
         // If the array value is 3, draw key
         } else if (intArray[y][x] == 3) {
           keys((TILE_WIDTH) * x, (TILE_HEIGHT) * y);
-        }
+        } 
       }
     }
   } 
