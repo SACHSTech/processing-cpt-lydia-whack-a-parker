@@ -39,7 +39,7 @@ public class Sketch1 extends PApplet {
   float officerY = 110;
   float prisonerX = 640;
   float prisonerY = 350;
-  int intOfficerSpeed = 6;
+  int intOfficerSpeed = 8;
   int intPrisonerSpeed = 5;
   int intGCount;
   int intPCount;
@@ -111,12 +111,12 @@ public class Sketch1 extends PApplet {
     imgDarkCrates.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgBackground.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgKey.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
-    imgOfficerBack1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
-    imgOfficerFront1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
-    imgOfficerStill.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
-    imgPrisonerBack1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
-    imgPrisonerFront1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
-    imgPrisonerStill.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
+    imgOfficerBack1.resize(SCREEN_WIDTH / 30, SCREEN_HEIGHT / 24);
+    imgOfficerFront1.resize(SCREEN_WIDTH / 30, SCREEN_HEIGHT / 24);
+    imgOfficerStill.resize(SCREEN_WIDTH / 30, SCREEN_HEIGHT / 24);
+    imgPrisonerBack1.resize(SCREEN_WIDTH / 30, SCREEN_HEIGHT / 24);
+    imgPrisonerFront1.resize(SCREEN_WIDTH / 30, SCREEN_HEIGHT / 24);
+    imgPrisonerStill.resize(SCREEN_WIDTH / 30, SCREEN_HEIGHT / 24);
     imgMenu.resize(SCREEN_WIDTH, SCREEN_HEIGHT);
   }
 
@@ -221,6 +221,8 @@ public class Sketch1 extends PApplet {
       if((officerY <= prisonerY + PLAYER_HEIGHT) && officerY >= prisonerY && ((officerX + PLAYER_WIDTH >= prisonerX && officerX + PLAYER_WIDTH <= prisonerX + PLAYER_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + PLAYER_WIDTH))) {
         blnGuardWin = true;
       }
+      // Player-Wall Collision
+      officerCollisionUp();
     }
 
     // DOWN
@@ -231,6 +233,8 @@ public class Sketch1 extends PApplet {
       if((officerY + PLAYER_HEIGHT >= prisonerY) && officerY <= prisonerY + PLAYER_HEIGHT && ((officerX + PLAYER_WIDTH >= prisonerX && officerX + PLAYER_WIDTH <= prisonerX + PLAYER_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + PLAYER_WIDTH))) {
         blnGuardWin = true;
       }
+      // Player-Wall Collision
+      officerCollisionDown();
     }
 
     // LEFT
@@ -241,6 +245,12 @@ public class Sketch1 extends PApplet {
       if((officerX <= prisonerX + PLAYER_WIDTH) && officerX >= prisonerX && ((officerY >= prisonerY && officerY <= prisonerY + PLAYER_HEIGHT) || (officerY + PLAYER_HEIGHT >= prisonerY && officerY + PLAYER_HEIGHT <= prisonerY + PLAYER_HEIGHT))) {
         blnGuardWin = true;
       }
+      // Out-of-bounds Collision
+      if(officerX <= 0) {
+        officerX += intOfficerSpeed;
+      }
+      // Player-Wall Collision
+      officerCollisionLeft();
     }
 
     // RIGHT
@@ -251,6 +261,12 @@ public class Sketch1 extends PApplet {
       if((officerX + PLAYER_WIDTH >= prisonerX) && officerX <= prisonerX + PLAYER_WIDTH && ((officerY >= prisonerY && officerY <= prisonerY + PLAYER_HEIGHT) || (officerY + PLAYER_HEIGHT >= prisonerY && officerY + PLAYER_HEIGHT <= prisonerY + PLAYER_HEIGHT))) {
         blnGuardWin = true;
       }
+      // Out-of-bounds Collision
+      if(officerX + PLAYER_WIDTH >= SCREEN_WIDTH) {
+        officerX -= intOfficerSpeed;
+      }
+      // Player-Wall Collision
+      officerCollisionRight();
     // STILL
     } else {
       image(imgOfficerStill, officerX, officerY);
@@ -261,21 +277,37 @@ public class Sketch1 extends PApplet {
     if (blnPrisonerUp == true) {
       image(imgPrisonerFront1, prisonerX, prisonerY);
       prisonerY -= intPrisonerSpeed;
+      // Player-Wall Collision
+      prisonerCollisionUp();
     }
     // DOWN
     if (blnPrisonerDown == true) {
       image(imgPrisonerFront1, prisonerX, prisonerY);
       prisonerY += intPrisonerSpeed;
+      // Player-Wall Collision
+      prisonerCollisionDown();
     }
     // LEFT
     if (blnPrisonerLeft == true) {
       image(imgPrisonerFront1, prisonerX, prisonerY);
       prisonerX -= intPrisonerSpeed;
+      // Out-of-bounds Collision
+      if(prisonerX <= 0) {
+        prisonerX += intPrisonerSpeed;
+      }
+      // Player-Wall Collision
+      prisonerCollisionLeft();
     }
     // RIGHT
     if (blnPrisonerRight == true) {
       image(imgPrisonerFront1, prisonerX, prisonerY);
       prisonerX += intPrisonerSpeed;
+      // Out-of-bounds Collision
+      if(prisonerX + PLAYER_WIDTH >= SCREEN_WIDTH) {
+        prisonerX -= intPrisonerSpeed;
+      }
+      // Player-Wall Collision
+      prisonerCollisionRight();
     // STILL
     } else {
       image(imgPrisonerStill, prisonerX, prisonerY);
@@ -363,14 +395,52 @@ public class Sketch1 extends PApplet {
     image(imgKey, keyX, keyY);
   }
   
-  // Method for collission // Trying Collision
-  // Player-Wall bouncing collision
-  public void collision() {
-    if((officerY <= PLAYER_HEIGHT * 4) && (officerX >= PLAYER_WIDTH - 10) && (officerX <= PLAYER_WIDTH * 45)) { 
+  // Officer-Wall collision when moving up
+  public void officerCollisionUp() {
+    // from (1, 1) to (1, 20)
+    if((officerY <= TILE_HEIGHT * 2)) 
+    { 
       officerY += intOfficerSpeed;
-      //officerX += intOfficerSpeed;
-      //officerX -= intOfficerSpeed;
     }
+  }
+  // Officer-Wall collision when moving down
+  public void officerCollisionDown() {
+    // from (15, 1) to (1, 20)
+    if((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 15) 
+    // Right exit
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 20)))
+    { 
+      officerY -= intOfficerSpeed;
+    }
+  }
+  // Officer-Wall collision when moving left
+  public void officerCollisionLeft() {
+    // from (1, 1) to (15, 1) not including (5, 1)
+    if ((officerX <= TILE_WIDTH * 2) && ((officerY <= TILE_HEIGHT * 6) || (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 7) )) 
+    {
+      officerX += intOfficerSpeed;
+    }
+  }
+  // Officer-Wall collision when moving right
+  public void officerCollisionRight() {
+    // from (1, 20) to (15, 20) not including (8, 20)
+    if ((officerX + PLAYER_WIDTH >= TILE_WIDTH * 20) && ((officerY <= TILE_HEIGHT * 8) || (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) )) 
+    {
+      officerX -= intOfficerSpeed;
+    }
+  }
+
+  // Prisoner-Wall collision when moving up
+  public void prisonerCollisionUp() {
+  }
+  // Prisoner-Wall collision when moving down
+  public void prisonerCollisionDown() {
+  }
+  // Prisoner-Wall collision when moving left
+  public void prisonerCollisionLeft() {
+  }
+  // Prisoner-Wall collision when moving right
+  public void prisonerCollisionRight() {
   }
 
   // Method for 2d array
@@ -404,19 +474,19 @@ public class Sketch1 extends PApplet {
     return new int[][] {
       {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
       {1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
-      {1,2,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,2,1},
-      {1,2,0,2,2,2,0,0,0,2,0,0,2,0,2,0,2,2,2,0,2,1},
-      {1,2,0,0,0,0,0,2,0,2,2,2,2,0,0,0,2,0,2,0,2,1},
-      {1,2,0,2,2,0,2,2,0,0,0,0,0,0,2,0,2,0,2,0,2,1},
-      {1,0,0,0,0,0,0,2,0,2,2,2,2,0,2,0,0,0,0,0,2,1},
-      {1,2,2,0,2,2,0,2,0,2,0,0,2,0,0,0,2,2,2,2,2,1},
-      {1,2,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,1},
-      {1,2,0,2,2,2,0,2,0,2,0,0,2,0,2,0,2,2,0,2,2,1},
-      {1,2,0,0,0,0,0,0,0,2,2,2,2,0,2,0,0,0,0,0,2,1},
-      {1,2,0,2,0,2,0,2,0,0,0,0,0,0,2,2,0,2,2,0,2,1}, 
-      {1,2,0,2,0,2,0,2,0,2,2,2,2,0,2,0,0,0,0,0,2,1},
-      {1,2,0,2,0,2,0,0,0,2,0,0,2,0,0,0,2,2,2,0,2,1},
-      {1,2,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,2,1},
+      {1,2,0,0,0,0,0,4,0,0,0,0,0,0,4,0,0,0,0,0,2,1},
+      {1,2,0,4,4,4,0,0,0,4,0,0,4,0,4,0,4,4,4,0,2,1},
+      {1,2,0,0,0,0,0,4,0,4,4,4,4,0,0,0,4,0,4,0,2,1},
+      {1,2,0,4,4,0,4,4,0,0,0,0,0,0,4,0,4,0,4,0,2,1},
+      {1,0,0,0,0,0,0,4,0,4,4,4,4,0,4,0,0,0,0,0,2,1},
+      {1,2,4,0,4,4,0,4,0,4,0,0,4,0,0,0,4,4,4,4,2,1},
+      {1,2,0,0,0,0,0,4,0,0,0,0,0,0,4,0,0,0,0,0,0,1},
+      {1,2,0,4,4,4,0,4,0,4,0,0,4,0,4,0,4,4,0,4,2,1},
+      {1,2,0,0,0,0,0,0,0,4,4,4,4,0,4,0,0,0,0,0,2,1},
+      {1,2,0,4,0,4,0,4,0,0,0,0,0,0,4,4,0,4,4,0,2,1}, 
+      {1,2,0,4,0,4,0,4,0,4,4,4,4,0,4,0,0,0,0,0,2,1},
+      {1,2,0,4,0,4,0,0,0,4,0,0,4,0,0,0,4,4,4,0,2,1},
+      {1,2,0,0,0,0,0,4,0,0,0,0,0,0,4,0,0,0,0,0,2,1},
       {1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
       {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
     };
