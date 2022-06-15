@@ -30,15 +30,16 @@ public class Sketch extends PApplet {
   PImage imgPrisonerBack1;
   PImage imgPrisonerStill;
   PImage imgCrates;
+  PImage imgDarkCrates;
   PImage imgMenu;
   PImage imgGrass;
   PImage imgKey;
   PFont font;
-  float officerX = 130;
+  float officerX = 1408 - 64 * 3;
   float officerY = 110;
   float prisonerX = 640;
   float prisonerY = 350;
-  int intOfficerSpeed = 3;
+  int intOfficerSpeed = 6;
   int intPrisonerSpeed = 5;
   int intGCount;
   int intPCount;
@@ -46,8 +47,10 @@ public class Sketch extends PApplet {
   int SCREEN_HEIGHT = 850;
   int ROW_COUNT = 22;
   int COLUMN_COUNT = 17;
-  int TILE_HEIGHT = 25;
-  int TILE_WIDTH = 32;
+  int PLAYER_HEIGHT = 25;
+  int PLAYER_WIDTH = 32;
+  int TILE_WIDTH = SCREEN_WIDTH / ROW_COUNT; // 64
+  int TILE_HEIGHT = SCREEN_HEIGHT / COLUMN_COUNT; // 50
   int intCrateX;
   int intCrateY;
   int intOfficer_frames = 8;
@@ -95,6 +98,7 @@ public class Sketch extends PApplet {
     imgPrisonerStill = loadImage("prisoner_03.png");
     imgGrass = loadImage("ground_03.png");
     imgCrates = loadImage("crate_19.png");
+    imgDarkCrates = loadImage("darkcrate.png");
     imgKey = loadImage("key_on_tile.png");
     imgMenu = loadImage("menu.png");
 
@@ -104,6 +108,7 @@ public class Sketch extends PApplet {
     // Resize images
     imgGrass.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgCrates.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
+    imgDarkCrates.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgBackground.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgKey.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgOfficerBack1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
@@ -131,6 +136,7 @@ public class Sketch extends PApplet {
     textSize(25);
     text("By: Lydia & Parker", 620, 580);
 
+    // Press p to start the game
     if (keyPressed){
       if (key == 'p'){
         blnStart = true;
@@ -140,11 +146,13 @@ public class Sketch extends PApplet {
     if (blnStart == true){
     drawGame();
 
+    // Key count text top left corner
     fill(0);
     textFont(font);
     textSize(35);
     text("Key Count: " + intKeyCount + "/6", 15, 36);
 
+    // Timer text top right corner
     fill(0);
     textFont(font);
     textSize(35);
@@ -152,56 +160,56 @@ public class Sketch extends PApplet {
 
     // Key pick up (bottom left)
     if(blnKey1 == true){
-      if(prisonerX >= (TILE_WIDTH * 7) && prisonerX <= (TILE_WIDTH * 9) && prisonerY >= (TILE_HEIGHT * 22) && prisonerY <= (TILE_HEIGHT * 25)){
+      if(prisonerX >= (TILE_WIDTH * 3) && prisonerX <= (TILE_WIDTH * 5) && prisonerY >= (TILE_HEIGHT * 10) && prisonerY <= (TILE_HEIGHT * 12)){
         intKeyCount = intKeyCount + 1; 
         blnKey1 = false;
         }
-      keys(TILE_WIDTH * 8, TILE_HEIGHT * 22);
+      keys(TILE_WIDTH * 4, TILE_HEIGHT * 11);
     }
       
     // Key pick up (top left)
     if(blnKey2 == true){
-      if(prisonerX >= (TILE_WIDTH * 7) && prisonerX <= (TILE_WIDTH * 9) && prisonerY >= (TILE_HEIGHT * 6) && prisonerY <= (TILE_HEIGHT * 9)){
+      if(prisonerX >= (TILE_WIDTH * 3) && prisonerX <= (TILE_WIDTH * 5) && prisonerY >= (TILE_HEIGHT * 3) && prisonerY <= (TILE_HEIGHT * 5)){
         intKeyCount = intKeyCount + 1; 
         blnKey2 = false;
         }
-      keys(TILE_WIDTH * 8, TILE_HEIGHT * 8); 
+      keys(TILE_WIDTH * 4, TILE_HEIGHT * 4); 
     }
   
     // Key pick up (top middle)
     if(blnKey3 == true){
-      if(prisonerX >= (TILE_WIDTH * 18) && prisonerX <= (TILE_WIDTH * 21) && prisonerY >= (TILE_HEIGHT * 5) && prisonerY <= (TILE_HEIGHT * 8)){
+      if(prisonerX >= (TILE_WIDTH * 9) && prisonerX <= (TILE_WIDTH * 11) && prisonerY >= (TILE_HEIGHT * 2) && prisonerY <= (TILE_HEIGHT * 4)){
         intKeyCount = intKeyCount + 1; 
         blnKey3 = false;
         }
-      keys(TILE_WIDTH * 20, TILE_HEIGHT * 6); 
+      keys(TILE_WIDTH * 10, TILE_HEIGHT * 3); 
     }
   
     // Key pick up (bottom middle)
     if(blnKey4 == true){
-      if(prisonerX >= (TILE_WIDTH * 22) && prisonerX <= (TILE_WIDTH * 25) && prisonerY >= (TILE_HEIGHT * 25) && prisonerY <= (TILE_HEIGHT * 28)){
+      if(prisonerX >= (TILE_WIDTH * 10) && prisonerX <= (TILE_WIDTH * 12) && prisonerY >= (TILE_HEIGHT * 12) && prisonerY <= (TILE_HEIGHT * 14)){
         intKeyCount = intKeyCount + 1;  
         blnKey4 = false;
         }
-      keys(TILE_WIDTH * 22, TILE_HEIGHT * 26);
+      keys(TILE_WIDTH * 11, TILE_HEIGHT * 13);
     }
   
     // Key pick up (top right)
     if(blnKey5 == true){
-      if(prisonerX >= (TILE_WIDTH * 33) && prisonerX <= (TILE_WIDTH * 36) && prisonerY >= (TILE_HEIGHT * 6) && prisonerY <= (TILE_HEIGHT * 9)){
+      if(prisonerX >= (TILE_WIDTH * 16) && prisonerX <= (TILE_WIDTH * 18) && prisonerY >= (TILE_HEIGHT * 3) && prisonerY <= (TILE_HEIGHT * 5)){
         intKeyCount = intKeyCount + 1; 
         blnKey5 = false;
         }
-      keys(TILE_WIDTH * 34, TILE_HEIGHT * 8); 
+      keys(TILE_WIDTH * 17, TILE_HEIGHT * 4); 
     }
 
     // Key pick up (bottom right)
     if(blnKey6 == true){
-      if(prisonerX >= (TILE_WIDTH * 35) && prisonerX <= (TILE_WIDTH * 38) && prisonerY >= (TILE_HEIGHT * 22) && prisonerY <= (TILE_HEIGHT * 25)){
+      if(prisonerX >= (TILE_WIDTH * 17) && prisonerX <= (TILE_WIDTH * 19) && prisonerY >= (TILE_HEIGHT * 11) && prisonerY <= (TILE_HEIGHT * 13)){
         intKeyCount = intKeyCount + 1; 
         blnKey6 = false;
         }
-      keys(TILE_WIDTH * 36, TILE_HEIGHT * 24); 
+      keys(TILE_WIDTH * 18, TILE_HEIGHT * 12); 
     } 
 
     // Officer speed
@@ -209,34 +217,38 @@ public class Sketch extends PApplet {
     if (blnOfficerUp == true) {
       image(imgOfficerBack1, officerX, officerY);
       officerY -= intOfficerSpeed;
-      // Collision under the prisoner
-      if((officerY <= prisonerY + TILE_HEIGHT) && officerY >= prisonerY && ((officerX + TILE_WIDTH >= prisonerX && officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + TILE_WIDTH))) {
+      // Player-Player Collision under the prisoner
+      if((officerY <= prisonerY + PLAYER_HEIGHT) && officerY >= prisonerY && ((officerX + PLAYER_WIDTH >= prisonerX && officerX + PLAYER_WIDTH <= prisonerX + PLAYER_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + PLAYER_WIDTH))) {
         blnGuardWin = true;
       }
     }
+
     // DOWN
     if (blnOfficerDown == true) {
       image(imgOfficerFront1, officerX, officerY);
       officerY += intOfficerSpeed;
-      // Collision above the prisoner
-      if((officerY + TILE_HEIGHT >= prisonerY) && officerY <= prisonerY + TILE_HEIGHT && ((officerX + TILE_WIDTH >= prisonerX && officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + TILE_WIDTH))) {
+      // Player-Player Collision above the prisoner
+      if((officerY + PLAYER_HEIGHT >= prisonerY) && officerY <= prisonerY + PLAYER_HEIGHT && ((officerX + PLAYER_WIDTH >= prisonerX && officerX + PLAYER_WIDTH <= prisonerX + PLAYER_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + PLAYER_WIDTH))) {
         blnGuardWin = true;
       }
     }
+
     // LEFT
     if (blnOfficerLeft == true) {
       image(imgOfficerFront1, officerX, officerY);
       officerX -= intOfficerSpeed;
-      // Collision on the right side of the prisoner
-      if((officerX <= prisonerX + TILE_WIDTH) && officerX >= prisonerX && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
+      // Player-Player Collision on the right of the prisoner
+      if((officerX <= prisonerX + PLAYER_WIDTH) && officerX >= prisonerX && ((officerY >= prisonerY && officerY <= prisonerY + PLAYER_HEIGHT) || (officerY + PLAYER_HEIGHT >= prisonerY && officerY + PLAYER_HEIGHT <= prisonerY + PLAYER_HEIGHT))) {
         blnGuardWin = true;
       }
     }
+
     // RIGHT
     if (blnOfficerRight == true) {
       image(imgOfficerFront1, officerX, officerY);
       officerX += intOfficerSpeed;
-      if((officerX + TILE_WIDTH >= prisonerX) && officerX <= prisonerX + TILE_WIDTH && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
+      // Player-Player Collision to the left of the player
+      if((officerX + PLAYER_WIDTH >= prisonerX) && officerX <= prisonerX + PLAYER_WIDTH && ((officerY >= prisonerY && officerY <= prisonerY + PLAYER_HEIGHT) || (officerY + PLAYER_HEIGHT >= prisonerY && officerY + PLAYER_HEIGHT <= prisonerY + PLAYER_HEIGHT))) {
         blnGuardWin = true;
       }
     // STILL
@@ -269,7 +281,7 @@ public class Sketch extends PApplet {
       image(imgPrisonerStill, prisonerX, prisonerY);
     }
   }
-
+  
   // Timer (TOP RIGHT CORNER!!!!!)
   if(intTimerStart == 1){
     intTimer--;
@@ -324,6 +336,15 @@ public class Sketch extends PApplet {
   public void crates(float crateX, float crateY) {
     image(imgCrates, crateX, crateY);
   }
+
+  /**
+   * Method to create dark crates
+   * @param darkCrateX is a float that reads the x-value of the darker crate image
+   * @param darkCrateY is a float that reads the y-value of the darker crate image
+   */
+  public void darkCrates(float darkCrateX, float darkCrateY) {
+    image(imgDarkCrates, darkCrateX, darkCrateY);
+  }
   
   /**
    * Method to create tiles (aka, background)
@@ -343,24 +364,37 @@ public class Sketch extends PApplet {
     image(imgKey, keyX, keyY);
   }
   
+  // Method for collission // Trying Collision
+  // Player-Wall bouncing collision
+  public void collision() {
+    if((officerY <= PLAYER_HEIGHT * 4) && (officerX >= PLAYER_WIDTH - 10) && (officerX <= PLAYER_WIDTH * 45)) { 
+      officerY += intOfficerSpeed;
+      //officerX += intOfficerSpeed;
+      //officerX -= intOfficerSpeed;
+    }
+  }
+
   // Method for 2d array
   public void drawGame() {
     for (int y = 0; y < intArray.length; y++) {
       for (int x = 0; x < intArray[0].length; x++) {
         // If the array value is 0, draw tiles
         if (intArray[y][x] == 0) {
-          tiles((SCREEN_WIDTH / ROW_COUNT) * x, (SCREEN_HEIGHT / COLUMN_COUNT) * y);
+          tiles((TILE_WIDTH) * x, (TILE_HEIGHT) * y);
         // If the array value is 1, draw grass
         } else if (intArray[y][x] == 1) {
-          grass((SCREEN_WIDTH / ROW_COUNT) * x, (SCREEN_HEIGHT / COLUMN_COUNT) * y);
-        // If the array value is 2, draw wall
+          grass((TILE_WIDTH) * x, (TILE_HEIGHT) * y);
+        // If the array value is 2, draw crates
         } else if (intArray[y][x] == 2) {
-          crates((SCREEN_WIDTH / ROW_COUNT) * x, (SCREEN_HEIGHT / COLUMN_COUNT) * y);
-          intCrateX = (SCREEN_WIDTH / ROW_COUNT) * x;
-          intCrateY = (SCREEN_HEIGHT / COLUMN_COUNT) * y;
+          crates((TILE_WIDTH) * x, (TILE_HEIGHT) * y);
+          intCrateX = (TILE_WIDTH) * x;
+          intCrateY = (TILE_HEIGHT) * y;
         // If the array value is 3, draw key
         } else if (intArray[y][x] == 3) {
-          keys((SCREEN_WIDTH / ROW_COUNT) * x, (SCREEN_HEIGHT / COLUMN_COUNT) * y);
+          keys((TILE_WIDTH) * x, (TILE_HEIGHT) * y);
+        // If the array value is 4, draw dark crates
+        } else if (intArray[y][x] == 4) {
+          darkCrates((TILE_WIDTH) * x, (TILE_HEIGHT) * y);
         }
       }
     }
@@ -381,10 +415,10 @@ public class Sketch extends PApplet {
       {1,2,0,2,2,2,0,2,0,2,0,0,2,0,2,0,2,2,0,2,2,1},
       {1,2,0,0,0,0,0,0,0,2,2,2,2,0,2,0,0,0,0,0,2,1},
       {1,2,0,2,0,2,0,2,0,0,0,0,0,0,2,2,0,2,2,0,2,1}, 
-      {1,2,0,0,0,2,0,2,0,2,2,2,2,0,2,0,0,0,0,0,2,1},
-      {1,2,2,2,0,2,0,0,0,2,0,0,2,0,0,0,2,2,2,0,2,1},
-      {1,1,1,2,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,2,1},
-      {1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
+      {1,2,0,2,0,2,0,2,0,2,2,2,2,0,2,0,0,0,0,0,2,1},
+      {1,2,0,2,0,2,0,0,0,2,0,0,2,0,0,0,2,2,2,0,2,1},
+      {1,2,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,2,1},
+      {1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
       {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
     };
   }
