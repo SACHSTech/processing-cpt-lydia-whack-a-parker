@@ -321,22 +321,9 @@ public class Lydias_tester_file extends PApplet {
   if (intTimer == 0){
     intTimerStart = 2;
   }
-    
-  // Guard win screen
-  if (blnGuardWin == true || intTimer == 0){
-    image(imgMenu, 0, 0);
-    fill(0);
-    rect(200, 210, 1000, 400);
-    textFont(font);
-    fill(255);
-    textSize(150);
-    text("GAME OVER", 340, 460);
-    fill(21, 255, 0);
-    textSize(60);
-    text("The Guard Won!", 490, 550);
-    }
-    // Prisoner win screen 
-    if (intKeyCount == 6 && (prisonerX < 32 || prisonerX > 1366)){
+        
+  // Prisoner win screen 
+  if (intKeyCount == 6 && (prisonerX < 32 || prisonerX > 1366)){
     image(imgMenu, 0, 0);
     fill(0);
     rect(200, 210, 1000, 400);
@@ -348,8 +335,37 @@ public class Lydias_tester_file extends PApplet {
     textSize(60);
     text("The Prisoner Won!", 460, 550);
     } 
-  }  
 
+  // Guard win screen
+  if (blnGuardWin == true){
+    image(imgMenu, 0, 0);
+    fill(0);
+    rect(200, 210, 1000, 400);
+    textFont(font);
+    fill(255);
+    textSize(150);
+    text("GAME OVER", 340, 460);
+    fill(21, 255, 0);
+    textSize(60);
+    text("The Officer Won!", 490, 550);
+    }
+
+  // Time's up screen
+  if (intTimer == 0){
+    image(imgMenu, 0, 0);
+    fill(0);
+    rect(200, 210, 1000, 400);
+    textFont(font);
+    fill(255);
+    textSize(150);
+    text("GAME OVER", 340, 460);
+    fill(21, 255, 0);
+    textSize(60);
+    text("Time's up! The Officer wins!", 490, 550);
+    }
+
+  }
+  
   /**
    * Method to create grass
    * @param grassX is a float that reads the x-value of the grass image
