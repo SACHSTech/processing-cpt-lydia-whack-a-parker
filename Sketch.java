@@ -39,8 +39,8 @@ public class Sketch extends PApplet {
   float officerY = 110;
   float prisonerX = 640;
   float prisonerY = 350;
-  int intOfficerSpeed = 8;
-  int intPrisonerSpeed = 5;
+  int intOfficerSpeed = 3;
+  int intPrisonerSpeed = 8;
   int intGCount;
   int intPCount;
   int SCREEN_WIDTH = 1408;
@@ -556,15 +556,127 @@ public class Sketch extends PApplet {
 
   // Prisoner-Wall collision when moving up
   public void prisonerCollisionUp() {
+    // from (1, 1) to (1, 20)
+    if((prisonerY <= TILE_HEIGHT * 2) 
+    // Left exit botton: from (7, 1) going right 3 tiles
+    || ((prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 7) && (prisonerY <= TILE_HEIGHT * 8) && (prisonerX <= TILE_WIDTH * 3))
+    // Left exit top: from (6, 1) going right 1 tile
+    || ((prisonerY <= TILE_HEIGHT * 6) && prisonerX <= TILE_HEIGHT * 2)
+    // Right exit: from (7, 16) going right 7 tiles
+    || ((prisonerY <= TILE_HEIGHT * 8) && (prisonerY >= TILE_HEIGHT * 7) && (prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 16))
+    // Top of jail cell from (6, 9) going right 3 tiles
+    || ((prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 6) && (prisonerY <= TILE_HEIGHT * 7) && (prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13))
+    // Bottom of jail cell from (10, 9) going right 3 tiles
+    || ((prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 10) && (prisonerY <= TILE_HEIGHT * 11) && (prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13))
+    // 5 block vertical middle bottom right 
+    || ((prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 14) && (prisonerX <= TILE_WIDTH * 15) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 8) && (prisonerY <= TILE_HEIGHT * 13))
+    // 6 block vertical top middle left 
+    || ((prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 7) && (prisonerX <= TILE_WIDTH * 8) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 4) && (prisonerY <= TILE_HEIGHT * 10))
+    // 3 block horizontals middle left
+    || ((prisonerX >= TILE_WIDTH * 2.5) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (prisonerY <= TILE_HEIGHT * 10))
+    // 3 block horizontals on bottom right
+    || ((prisonerX >= TILE_WIDTH * 15.5) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 13) && (prisonerY <= TILE_HEIGHT * 14))
+    // 3 block horizontals on middle right
+    || ((prisonerX >= TILE_WIDTH * 15.5) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (prisonerY <= TILE_HEIGHT * 10))
+    // 3 block horizontals on top left
+    || ((prisonerX >= TILE_WIDTH * 2.5) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (prisonerY <= TILE_HEIGHT * 4))
+    // 3 block horizontals on top right
+    || ((prisonerX >= TILE_WIDTH * 15.5) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (prisonerY <= TILE_HEIGHT * 4)))
+    { 
+      prisonerY += intPrisonerSpeed;
+    }
   }
   // Prisoner-Wall collision when moving down
   public void prisonerCollisionDown() {
+    // from (15, 1) to (1, 20)
+    if((prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 15) 
+    // Right exit
+    || ((prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 20))
+    // Left exit: from (7, 1) going right 3 tiles
+    || ((prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 7) && (prisonerY + PLAYER_HEIGHT <= TILE_HEIGHT * 8) && (prisonerX <= TILE_WIDTH * 3))
+    // from (7, 16) going right 5 tiles
+    || ((prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 7) && (prisonerY <= TILE_HEIGHT * 8) && (prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 16))
+    // Top of jail cell from (6, 9) going right 3 tiles
+    || ((prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 6) && (prisonerY + PLAYER_HEIGHT <= TILE_HEIGHT * 7) && (prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13))
+    // Bottom of jail cell from (10, 9) going right 3 tiles
+    || ((prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 10) && (prisonerY <= TILE_HEIGHT * 11) && (prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13))
+    // 5 block vertical middle bottom right 
+    || ((prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 14) && (prisonerX <= TILE_WIDTH * 15) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 8) && (prisonerY <= TILE_HEIGHT * 13))
+    // 6 block vertical top middle left 
+    || ((prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 7) && (prisonerX <= TILE_WIDTH * 8) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 4) && (prisonerY <= TILE_HEIGHT * 10))
+    // 3 block horizontals middle left
+    || ((prisonerX >= TILE_WIDTH * 2.5) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (prisonerY <= TILE_HEIGHT * 10))
+    // 3 block horizontals on top left
+    || ((prisonerX >= TILE_WIDTH * 2.5) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (prisonerY <= TILE_HEIGHT * 4))
+    // 3 block horizontals on bottom right
+    || ((prisonerX >= TILE_WIDTH * 15.5) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 13) && (prisonerY <= TILE_HEIGHT * 14))
+    // 3 block horizontals on middle right
+    || ((prisonerX >= TILE_WIDTH * 15.5) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (prisonerY <= TILE_HEIGHT * 10))
+    // 3 block horizontals on top right
+    || ((prisonerX >= TILE_WIDTH * 15.5) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (prisonerY <= TILE_HEIGHT * 4)))
+    { 
+      prisonerY -= intPrisonerSpeed;
+    }
   }
   // Prisoner-Wall collision when moving left
   public void prisonerCollisionLeft() {
+    // from (1, 1) to (15, 1) not including (5, 1)
+    if ((prisonerX <= TILE_WIDTH * 2) && ((prisonerY <= TILE_HEIGHT * 6) || (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 7))
+    // Left exit: from (7, 1) going right 3 tiles
+    || ((prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 7) && (prisonerY + PLAYER_HEIGHT <= TILE_HEIGHT * 8) && (prisonerX <= TILE_WIDTH * 3))
+    // Top of jail cell from (6, 9) going right 3 tiles
+    || ((prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 6) && (prisonerY + PLAYER_HEIGHT <= TILE_HEIGHT * 7) && (prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13))
+    // Bottom of jail cell from (10, 9) going right 3 tiles
+    || ((prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 10) && (prisonerY <= TILE_HEIGHT * 11) && (prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13))
+    // Right of jail cell from (6, 12) going right 3 tiles
+    || ((prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 12) && (prisonerX <= TILE_WIDTH * 13) && (prisonerY >= TILE_HEIGHT * 6) && (prisonerY <= TILE_HEIGHT * 11))
+    // 5 block vertical middle bottom right 
+    || ((prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 14) && (prisonerX <= TILE_WIDTH * 15) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 8) && (prisonerY <= TILE_HEIGHT * 13))
+    // 6 block vertical top middle left 
+    || ((prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 7) && (prisonerX <= TILE_WIDTH * 8) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 4) && (prisonerY <= TILE_HEIGHT * 10))
+    // 3 block horizontals middle left
+    || ((prisonerX >= TILE_WIDTH * 2.5) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (prisonerY <= TILE_HEIGHT * 10))
+    // 3 block horizontals on top left
+    || ((prisonerX >= TILE_WIDTH * 2.5) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (prisonerY <= TILE_HEIGHT * 4))
+    // 3 block horizontals on bottom right
+    || ((prisonerX >= TILE_WIDTH * 15.5) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 13) && (prisonerY <= TILE_HEIGHT * 14))
+    // 3 block horizontals on middle right
+    || ((prisonerX >= TILE_WIDTH * 15.5) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (prisonerY <= TILE_HEIGHT * 10))
+    // 3 block horizontals on top right
+    || ((prisonerX >= TILE_WIDTH * 15.5) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (prisonerY <= TILE_HEIGHT * 4)))
+    {
+      prisonerX += intPrisonerSpeed;
+    }
   }
   // Prisoner-Wall collision when moving right
   public void prisonerCollisionRight() {
+    // from (1, 20) to (15, 20) not including (8, 20)
+    if ((prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 20) && ((prisonerY <= TILE_HEIGHT * 8) || (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9))
+    // Right exit: from (7, 16) going right 7 tiles
+    || ((prisonerY <= TILE_HEIGHT * 8) && (prisonerY >= TILE_HEIGHT * 7) && (prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 16))
+    // Top of jail cell from (6, 9) going right 3 tiles
+    || ((prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 6) && (prisonerY + PLAYER_HEIGHT <= TILE_HEIGHT * 7) && (prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13))
+    // Bottom of jail cell from (10, 9) going right 3 tiles
+    || ((prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 10) && (prisonerY <= TILE_HEIGHT * 11) && (prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13))
+    // Right of jail cell from (6, 12) going right 3 tiles
+    || ((prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 12) && (prisonerX + PLAYER_WIDTH <= TILE_WIDTH * 13) && (prisonerY >= TILE_HEIGHT * 6) && (prisonerY <= TILE_HEIGHT * 11))
+    // 5 block vertical middle bottom right 
+    || ((prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 14) && (prisonerX <= TILE_WIDTH * 15) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 8) && (prisonerY <= TILE_HEIGHT * 13))
+    // 6 block vertical top middle left 
+    || ((prisonerX + PLAYER_WIDTH >= TILE_WIDTH * 7) && (prisonerX <= TILE_WIDTH * 8) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 4) && (prisonerY <= TILE_HEIGHT * 10))
+    // 3 block horizontals middle left
+    || ((prisonerX >= TILE_WIDTH * 2.5) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (prisonerY <= TILE_HEIGHT * 10))
+    // 3 block horizontals on top left
+    || ((prisonerX >= TILE_WIDTH * 2.5) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (prisonerY <= TILE_HEIGHT * 4))
+    // 3 block horizontals on bottom right
+    || ((prisonerX >= TILE_WIDTH * 15.5) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 13) && (prisonerY <= TILE_HEIGHT * 14))
+    // 3 block horizontals on middle right
+    || ((prisonerX >= TILE_WIDTH * 15.5) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (prisonerY <= TILE_HEIGHT * 10))
+    // 3 block horizontals on top right
+    || ((prisonerX >= TILE_WIDTH * 15.5) && (prisonerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (prisonerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (prisonerY <= TILE_HEIGHT * 4)))
+    {
+      prisonerX -= intPrisonerSpeed;
+    }
   }
 
   // Method for 2d array
