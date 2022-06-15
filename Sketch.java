@@ -331,7 +331,7 @@ public class Sketch extends PApplet {
     fill(255);
     textSize(150);
     text("GAME OVER", 340, 460);
-    fill(21, 255, 0);
+    fill(13, 5, 247);
     textSize(60);
     text("The Guard Won!", 490, 550);
     }
