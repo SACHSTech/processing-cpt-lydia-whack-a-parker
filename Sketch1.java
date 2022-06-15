@@ -131,6 +131,7 @@ public class Sketch1 extends PApplet {
     textSize(25);
     text("By: Lydia & Parker", 620, 580);
 
+    // Press p to start the game
     if (keyPressed){
       if (key == 'p'){
         blnStart = true;
@@ -140,11 +141,13 @@ public class Sketch1 extends PApplet {
     if (blnStart == true){
     drawGame();
 
+    // Key count text top left corner
     fill(0);
     textFont(font);
     textSize(35);
     text("Key Count: " + intKeyCount + "/6", 15, 36);
 
+    // Timer text top right corner
     fill(0);
     textFont(font);
     textSize(35);
