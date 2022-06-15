@@ -21,7 +21,7 @@ Also, a wall fell on the guard so he broke his leg and he walks super slow. Luck
 
 <font color="orange">
 
-Being in a maze, the walls cannot be travelled through. If the prisoner tries to escape without collecting all 5 keys, it is impossible to win. The prisoner is controlled by WASD, and the guard is controlled by a virtual arrow keypad on the screen. The winner is determined by whichever player first meets their objective. 
+Being in a maze, the walls cannot be travelled through. If the prisoner tries to escape without collecting all 6 keys, it is impossible to win. The prisoner is controlled by WASD, and the guard is controlled by a virtual arrow keypad on the screen. The winner is determined by whichever player first meets their objective. 
 
 <font color="sky blue">
 
