@@ -55,7 +55,7 @@ public class Sketch extends PApplet {
   int intCrateY;
   int intOfficer_frames = 8;
   int intArrayValue;
-  int intTimer = 120000;
+  int intTimer = 3529; // Around 1 minute
   int intKeyCount = 0;
   int intTimerStart; 
   int[][] intArray;
