@@ -108,6 +108,7 @@ public class Lydias_tester_file extends PApplet {
     // Resize images
     imgGrass.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgCrates.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
+    imgDarkCrates.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgBackground.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgKey.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgOfficerBack1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
@@ -220,7 +221,6 @@ public class Lydias_tester_file extends PApplet {
       if((officerY <= prisonerY + PLAYER_HEIGHT) && officerY >= prisonerY && ((officerX + PLAYER_WIDTH >= prisonerX && officerX + PLAYER_WIDTH <= prisonerX + PLAYER_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + PLAYER_WIDTH))) {
         blnGuardWin = true;
       }
-      collision();
     }
 
     // DOWN
@@ -342,7 +342,7 @@ public class Lydias_tester_file extends PApplet {
    * @param darkCrateY is a float that reads the y-value of the darker crate image
    */
   public void darkCrates(float darkCrateX, float darkCrateY) {
-    image(imgCrates, darkCrateX, darkCrateY);
+    image(imgDarkCrates, darkCrateX, darkCrateY);
   }
   
   /**
@@ -391,7 +391,10 @@ public class Lydias_tester_file extends PApplet {
         // If the array value is 3, draw key
         } else if (intArray[y][x] == 3) {
           keys((TILE_WIDTH) * x, (TILE_HEIGHT) * y);
-        } 
+        // If the array value is 4, draw dark crates
+        } else if (intArray[y][x] == 4) {
+          darkCrates((TILE_WIDTH) * x, (TILE_HEIGHT) * y);
+        }
       }
     }
   } 

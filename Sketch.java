@@ -108,6 +108,7 @@ public class Sketch extends PApplet {
     // Resize images
     imgGrass.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgCrates.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
+    imgDarkCrates.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgBackground.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgKey.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgOfficerBack1.resize(SCREEN_WIDTH / 25, SCREEN_HEIGHT / 18);
@@ -341,7 +342,7 @@ public class Sketch extends PApplet {
    * @param darkCrateY is a float that reads the y-value of the darker crate image
    */
   public void darkCrates(float darkCrateX, float darkCrateY) {
-    image(imgCrates, darkCrateX, darkCrateY);
+    image(imgDarkCrates, darkCrateX, darkCrateY);
   }
   
   /**
@@ -362,6 +363,16 @@ public class Sketch extends PApplet {
     image(imgKey, keyX, keyY);
   }
   
+  // Method for collission // Trying Collision
+  // Player-Wall bouncing collision
+  public void collision() {
+    if((officerY <= PLAYER_HEIGHT * 4) && (officerX >= PLAYER_WIDTH - 10) && (officerX <= PLAYER_WIDTH * 45)) { 
+      officerY += intOfficerSpeed;
+      //officerX += intOfficerSpeed;
+      //officerX -= intOfficerSpeed;
+    }
+  }
+
   // Method for 2d array
   public void drawGame() {
     for (int y = 0; y < intArray.length; y++) {
@@ -380,7 +391,10 @@ public class Sketch extends PApplet {
         // If the array value is 3, draw key
         } else if (intArray[y][x] == 3) {
           keys((TILE_WIDTH) * x, (TILE_HEIGHT) * y);
-        } 
+        // If the array value is 4, draw dark crates
+        } else if (intArray[y][x] == 4) {
+          darkCrates((TILE_WIDTH) * x, (TILE_HEIGHT) * y);
+        }
       }
     }
   } 
