@@ -402,7 +402,9 @@ public class Lydias_tester_file extends PApplet {
     // Left exit: from (7, 1) going right 3 tiles
     || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 7) && (officerY <= TILE_HEIGHT * 8) && (officerX <= TILE_WIDTH * 3))
     // Right exit: from (7, 16) going right 7 tiles
-    || ((officerY <= TILE_HEIGHT * 8) && (officerY >= TILE_HEIGHT * 7) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 16)))
+    || ((officerY <= TILE_HEIGHT * 8) && (officerY >= TILE_HEIGHT * 7) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 16))
+    // Top of jail cell from (6, 9) going right 3 tiles
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 6) && (officerY <= TILE_HEIGHT * 7) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13)))
     { 
       officerY += intOfficerSpeed;
     }
@@ -416,7 +418,9 @@ public class Lydias_tester_file extends PApplet {
     // Left exit: from (7, 1) going right 3 tiles
     || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 7) && (officerY + PLAYER_HEIGHT <= TILE_HEIGHT * 8) && (officerX <= TILE_WIDTH * 3))
     // from (7, 16) going right 5 tiles
-    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 7) && (officerY <= TILE_HEIGHT * 8) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 16)))
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 7) && (officerY <= TILE_HEIGHT * 8) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 16))
+    // Top of jail cell from (6, 9) going right 3 tiles
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 6) && (officerY + PLAYER_HEIGHT <= TILE_HEIGHT * 7) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13)))
     { 
       officerY -= intOfficerSpeed;
     }
@@ -426,7 +430,9 @@ public class Lydias_tester_file extends PApplet {
     // from (1, 1) to (15, 1) not including (5, 1)
     if ((officerX <= TILE_WIDTH * 2) && ((officerY <= TILE_HEIGHT * 6) || (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 7))
     // Left exit: from (7, 1) going right 3 tiles
-    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 7) && (officerY + PLAYER_HEIGHT <= TILE_HEIGHT * 8) && (officerX <= TILE_WIDTH * 3)))
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 7) && (officerY + PLAYER_HEIGHT <= TILE_HEIGHT * 8) && (officerX <= TILE_WIDTH * 3))
+    // Top of jail cell from (6, 9) going right 3 tiles
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 6) && (officerY + PLAYER_HEIGHT <= TILE_HEIGHT * 7) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13)))
     {
       officerX += intOfficerSpeed;
     }
@@ -436,7 +442,9 @@ public class Lydias_tester_file extends PApplet {
     // from (1, 20) to (15, 20) not including (8, 20)
     if ((officerX + PLAYER_WIDTH >= TILE_WIDTH * 20) && ((officerY <= TILE_HEIGHT * 8) || (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9))
     // Right exit: from (7, 16) going right 7 tiles
-    || ((officerY <= TILE_HEIGHT * 8) && (officerY >= TILE_HEIGHT * 7) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 16)))
+    || ((officerY <= TILE_HEIGHT * 8) && (officerY >= TILE_HEIGHT * 7) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 16))
+    // Top of jail cell from (6, 9) going right 3 tiles
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 6) && (officerY + PLAYER_HEIGHT <= TILE_HEIGHT * 7) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13)))
     {
       officerX -= intOfficerSpeed;
     }
@@ -490,11 +498,11 @@ public class Lydias_tester_file extends PApplet {
       {1,2,0,4,4,4,0,0,0,4,0,0,4,0,4,0,4,4,4,0,2,1},
       {1,2,0,0,0,0,0,4,0,4,4,4,4,0,0,0,4,0,4,0,2,1},
       {1,2,0,4,4,0,4,4,0,0,0,0,0,0,4,0,4,0,4,0,2,1},
-      {1,0,0,0,0,0,0,4,0,4,4,4,4,0,4,0,0,0,0,0,2,1},
-      {1,2,2,0,4,4,0,4,0,4,0,0,4,0,0,0,2,2,2,2,2,1},
-      {1,2,0,0,0,0,0,4,0,0,0,0,0,0,4,0,0,0,0,0,0,1},
-      {1,2,0,4,4,4,0,4,0,4,0,0,4,0,4,0,4,4,0,4,2,1},
-      {1,2,0,0,0,0,0,0,0,4,4,4,4,0,4,0,0,0,0,0,2,1},
+      {1,0,0,0,0,0,0,4,0,2,2,2,2,0,4,0,0,0,0,0,2,1},
+      {1,2,2,0,4,4,0,4,0,4,0,0,2,0,0,0,2,2,2,2,2,1},
+      {1,2,0,0,0,0,0,4,0,4,0,0,2,0,4,0,0,0,0,0,0,1},
+      {1,2,0,4,4,4,0,4,0,4,0,0,2,0,4,0,4,4,4,0,2,1},
+      {1,2,0,0,0,0,0,0,0,2,2,2,2,0,4,0,0,0,0,0,2,1},
       {1,2,0,4,0,4,0,4,0,0,0,0,0,0,4,4,0,4,4,0,2,1}, 
       {1,2,0,4,0,4,0,4,0,4,4,4,4,0,4,0,0,0,0,0,2,1},
       {1,2,0,4,0,4,0,0,0,4,0,0,4,0,0,0,4,4,4,0,2,1},
