@@ -221,6 +221,7 @@ public class Lydias_tester_file extends PApplet {
       if((officerY <= prisonerY + PLAYER_HEIGHT) && officerY >= prisonerY && ((officerX + PLAYER_WIDTH >= prisonerX && officerX + PLAYER_WIDTH <= prisonerX + PLAYER_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + PLAYER_WIDTH))) {
         blnGuardWin = true;
       }
+      collisionUp();
     }
 
     // DOWN
@@ -363,13 +364,11 @@ public class Lydias_tester_file extends PApplet {
     image(imgKey, keyX, keyY);
   }
   
-  // Method for collission // Trying Collision
+  // Method for collission // trying Collision
   // Player-Wall bouncing collision
-  public void collision() {
-    if((officerY <= PLAYER_HEIGHT * 4) && (officerX >= PLAYER_WIDTH - 10) && (officerX <= PLAYER_WIDTH * 45)) { 
+  public void collisionUp() {
+    if((officerY <= TILE_HEIGHT * 2) && (officerX >= TILE_WIDTH) && (officerX <= TILE_WIDTH * 20)) { 
       officerY += intOfficerSpeed;
-      //officerX += intOfficerSpeed;
-      //officerX -= intOfficerSpeed;
     }
   }
 
@@ -405,17 +404,17 @@ public class Lydias_tester_file extends PApplet {
       {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
       {1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
       {1,2,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,2,1},
-      {1,2,0,2,2,2,0,0,0,2,0,0,2,0,2,0,2,2,2,0,2,1},
-      {1,2,0,0,0,0,0,2,0,2,2,2,2,0,0,0,2,0,2,0,2,1},
-      {1,2,0,2,2,0,2,2,0,0,0,0,0,0,2,0,2,0,2,0,2,1},
-      {1,0,0,0,0,0,0,2,0,2,2,2,2,0,2,0,0,0,0,0,2,1},
-      {1,2,2,0,2,2,0,2,0,2,0,0,2,0,0,0,2,2,2,2,2,1},
+      {1,2,0,4,4,4,0,0,0,4,0,0,4,0,2,0,4,4,4,0,2,1},
+      {1,2,0,0,0,0,0,2,0,4,4,4,4,0,0,0,4,0,4,0,2,1},
+      {1,2,0,4,4,0,2,2,0,0,0,0,0,0,2,0,4,0,4,0,2,1},
+      {1,0,0,0,0,0,0,2,0,4,4,4,4,0,2,0,0,0,0,0,2,1},
+      {1,2,2,0,4,4,0,2,0,4,0,0,4,0,0,0,2,2,2,2,2,1},
       {1,2,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,1},
-      {1,2,0,2,2,2,0,2,0,2,0,0,2,0,2,0,2,2,0,2,2,1},
-      {1,2,0,0,0,0,0,0,0,2,2,2,2,0,2,0,0,0,0,0,2,1},
-      {1,2,0,2,0,2,0,2,0,0,0,0,0,0,2,2,0,2,2,0,2,1}, 
-      {1,2,0,2,0,2,0,2,0,2,2,2,2,0,2,0,0,0,0,0,2,1},
-      {1,2,0,2,0,2,0,0,0,2,0,0,2,0,0,0,2,2,2,0,2,1},
+      {1,2,0,4,4,4,0,2,0,4,0,0,4,0,2,0,4,4,0,2,2,1},
+      {1,2,0,0,0,0,0,0,0,4,4,4,4,0,2,0,0,0,0,0,2,1},
+      {1,2,0,4,0,4,0,2,0,0,0,0,0,0,2,2,0,4,4,0,2,1}, 
+      {1,2,0,4,0,4,0,2,0,4,4,4,4,0,2,0,0,0,0,0,2,1},
+      {1,2,0,4,0,4,0,0,0,4,0,0,4,0,0,0,4,4,4,0,2,1},
       {1,2,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,2,1},
       {1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
       {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
