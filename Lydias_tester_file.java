@@ -55,7 +55,7 @@ public class Lydias_tester_file extends PApplet {
   int intCrateY;
   int intOfficer_frames = 8;
   int intArrayValue;
-  int intTimer = 3529; // Around 1 minute
+  int intTimer = 3000; // 3529: Around 1 minute
   int intKeyCount = 0;
   int intTimerStart; 
   int[][] intArray;
@@ -361,7 +361,7 @@ public class Lydias_tester_file extends PApplet {
     text("GAME OVER", 340, 460);
     fill(21, 255, 0);
     textSize(60);
-    text("Time's up! The Officer wins!", 490, 550);
+    text("Time's up! The Officer wins!", 330, 550);
     }
 
   }
