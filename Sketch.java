@@ -6,7 +6,7 @@ public class Sketch extends PApplet {
   
 	/**
    * Assignment: 6.1 Processing in Java CPT
-   * Author: Lydia He, Parker Yang
+   * Author: Lydia He and Parker Yang
    * Due Jun 13, 11:59 PM
    * Description: Prison Escape is a 2-player minigame where the police officer tries 
    * to stop the prisoner from escaping. You can play as either the prisoner (using WASD) 
