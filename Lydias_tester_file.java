@@ -412,7 +412,9 @@ public class Lydias_tester_file extends PApplet {
     // 3 block horizontals middle left
     || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (officerY <= TILE_HEIGHT * 10))
     // 3 block horizontals on top left
-    || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4)))
+    || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4))
+    // 3 block horizontals on top right
+    || ((officerX >= TILE_WIDTH * 15.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4)))
     { 
       officerY += intOfficerSpeed;
     }
@@ -434,7 +436,9 @@ public class Lydias_tester_file extends PApplet {
     // 3 block horizontals middle left
     || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (officerY <= TILE_HEIGHT * 10))
     // 3 block horizontals on top left
-    || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4)))
+    || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4))
+    // 3 block horizontals on top right
+    || ((officerX >= TILE_WIDTH * 15.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4)))
     { 
       officerY -= intOfficerSpeed;
     }
@@ -454,7 +458,9 @@ public class Lydias_tester_file extends PApplet {
     // 3 block horizontals middle left
     || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (officerY <= TILE_HEIGHT * 10))
     // 3 block horizontals on top left
-    || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4)))
+    || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4))
+    // 3 block horizontals on top right
+    || ((officerX >= TILE_WIDTH * 15.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4)))
     {
       officerX += intOfficerSpeed;
     }
@@ -474,7 +480,9 @@ public class Lydias_tester_file extends PApplet {
     // 3 block horizontals middle left
     || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (officerY <= TILE_HEIGHT * 10))
     // 3 block horizontals on top left
-    || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4)))
+    || ((officerX >= TILE_WIDTH * 2.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 6) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4))
+    // 3 block horizontals on top right
+    || ((officerX >= TILE_WIDTH * 15.5) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 19) && (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 3) && (officerY <= TILE_HEIGHT * 4)))
     {
       officerX -= intOfficerSpeed;
     }
