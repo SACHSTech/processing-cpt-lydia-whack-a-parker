@@ -131,6 +131,7 @@ public class Lydias_tester_file extends PApplet {
     textSize(25);
     text("By: Lydia & Parker", 620, 580);
 
+    // Press p to start the game
     if (keyPressed){
       if (key == 'p'){
         blnStart = true;
@@ -140,11 +141,13 @@ public class Lydias_tester_file extends PApplet {
     if (blnStart == true){
     drawGame();
 
+    // Key count text top left corner
     fill(0);
     textFont(font);
     textSize(35);
     text("Key Count: " + intKeyCount + "/6", 15, 36);
 
+    // Timer text top right corner
     fill(0);
     textFont(font);
     textSize(35);
@@ -209,7 +212,7 @@ public class Lydias_tester_file extends PApplet {
     if (blnOfficerUp == true) {
       image(imgOfficerBack1, officerX, officerY);
       officerY -= intOfficerSpeed;
-      // Collision under the prisoner
+      // Player-Player Collision under the prisoner
       if((officerY <= prisonerY + TILE_HEIGHT) && officerY >= prisonerY && ((officerX + TILE_WIDTH >= prisonerX && officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + TILE_WIDTH))) {
         blnGuardWin = true;
       }
@@ -218,7 +221,7 @@ public class Lydias_tester_file extends PApplet {
     if (blnOfficerDown == true) {
       image(imgOfficerFront1, officerX, officerY);
       officerY += intOfficerSpeed;
-      // Collision above the prisoner
+      // Player-Player Collision above the prisoner
       if((officerY + TILE_HEIGHT >= prisonerY) && officerY <= prisonerY + TILE_HEIGHT && ((officerX + TILE_WIDTH >= prisonerX && officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + TILE_WIDTH))) {
         blnGuardWin = true;
       }
@@ -227,7 +230,7 @@ public class Lydias_tester_file extends PApplet {
     if (blnOfficerLeft == true) {
       image(imgOfficerFront1, officerX, officerY);
       officerX -= intOfficerSpeed;
-      // Collision on the right side of the prisoner
+      // Player-Player Collision on the right of the prisoner
       if((officerX <= prisonerX + TILE_WIDTH) && officerX >= prisonerX && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
         blnGuardWin = true;
       }
@@ -236,6 +239,7 @@ public class Lydias_tester_file extends PApplet {
     if (blnOfficerRight == true) {
       image(imgOfficerFront1, officerX, officerY);
       officerX += intOfficerSpeed;
+      // Player-Player Collision to the left of the player
       if((officerX + TILE_WIDTH >= prisonerX) && officerX <= prisonerX + TILE_WIDTH && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
         blnGuardWin = true;
       }
@@ -243,6 +247,7 @@ public class Lydias_tester_file extends PApplet {
     } else {
       image(imgOfficerStill, officerX, officerY);
     }
+
 
     // Prisoner speed
     // UP 
