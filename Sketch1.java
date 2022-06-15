@@ -267,6 +267,7 @@ public class Sketch1 extends PApplet {
       }
       // Player-Wall Collision
       officerCollisionRight();
+
     // STILL
     } else {
       image(imgOfficerStill, officerX, officerY);
@@ -280,6 +281,7 @@ public class Sketch1 extends PApplet {
       // Player-Wall Collision
       prisonerCollisionUp();
     }
+    
     // DOWN
     if (blnPrisonerDown == true) {
       image(imgPrisonerFront1, prisonerX, prisonerY);
@@ -287,6 +289,7 @@ public class Sketch1 extends PApplet {
       // Player-Wall Collision
       prisonerCollisionDown();
     }
+
     // LEFT
     if (blnPrisonerLeft == true) {
       image(imgPrisonerFront1, prisonerX, prisonerY);
@@ -298,6 +301,7 @@ public class Sketch1 extends PApplet {
       // Player-Wall Collision
       prisonerCollisionLeft();
     }
+
     // RIGHT
     if (blnPrisonerRight == true) {
       image(imgPrisonerFront1, prisonerX, prisonerY);
@@ -308,6 +312,7 @@ public class Sketch1 extends PApplet {
       }
       // Player-Wall Collision
       prisonerCollisionRight();
+
     // STILL
     } else {
       image(imgPrisonerStill, prisonerX, prisonerY);
