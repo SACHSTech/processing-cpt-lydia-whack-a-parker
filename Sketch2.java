@@ -39,8 +39,8 @@ public class Sketch2 extends PApplet {
   float officerY = 110;
   float prisonerX = 640;
   float prisonerY = 350;
-  int intOfficerSpeed = 8;
-  int intPrisonerSpeed = 5;
+  int intOfficerSpeed = 4;
+  int intPrisonerSpeed = 4;
   int intGCount;
   int intPCount;
   int SCREEN_WIDTH = 1408;
