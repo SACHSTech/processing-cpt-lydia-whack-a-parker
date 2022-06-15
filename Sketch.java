@@ -50,7 +50,7 @@ public class Sketch extends PApplet {
   int PLAYER_HEIGHT = 25;
   int PLAYER_WIDTH = 32;
   int TILE_WIDTH = SCREEN_WIDTH / ROW_COUNT; // 64
-  int TILE_HEIGHT = SCREEN_HEIGHT / COLUMN_COUNT; // 50
+  int TILE_HEIGHT = SCREEN_HEIGHT / COLUMN_COUNT; // 50 
   int intCrateX;
   int intCrateY;
   int intOfficer_frames = 8;
@@ -340,6 +340,7 @@ public class Sketch extends PApplet {
     textSize(60);
     text("The Guard Won!", 490, 550);
     }
+    
     // Prisoner win screen 
     if (intKeyCount == 6 && (prisonerX < 32 || prisonerX > 1366)){
     image(imgMenu, 0, 0);
