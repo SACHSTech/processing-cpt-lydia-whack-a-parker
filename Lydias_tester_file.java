@@ -34,8 +34,8 @@ public class Lydias_tester_file extends PApplet {
   PImage imgGrass;
   PImage imgKey;
   PFont font;
-  float officerX = 700;
-  float officerY = 350;
+  float officerX = 130;
+  float officerY = 110;
   float prisonerX = 640;
   float prisonerY = 350;
   int intOfficerSpeed = 3;
@@ -52,6 +52,9 @@ public class Lydias_tester_file extends PApplet {
   int intCrateY;
   int intOfficer_frames = 8;
   int intArrayValue;
+  int intTimer = 120000;
+  int intKeyCount = 0;
+  int intTimerStart; 
   int[][] intArray;
   PImage[] officer_frames;
   // End Screen variables
@@ -68,6 +71,13 @@ public class Lydias_tester_file extends PApplet {
   boolean blnPrisonerDown = false;
   boolean blnPrisonerLeft = false;
   boolean blnPrisonerRight = false;
+  // Key pickup booleans
+  boolean blnKey1 = true; 
+  boolean blnKey2 = true;
+  boolean blnKey3 = true;
+  boolean blnKey4 = true;
+  boolean blnKey5 = true;
+  boolean blnKey6 = true;
 
   public void settings() {
     size(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -124,10 +134,75 @@ public class Lydias_tester_file extends PApplet {
     if (keyPressed){
       if (key == 'p'){
         blnStart = true;
+        intTimerStart = 1;
       }
     }
     if (blnStart == true){
     drawGame();
+
+    fill(0);
+    textFont(font);
+    textSize(35);
+    text("Key Count: " + intKeyCount + "/6", 15, 36);
+
+    fill(0);
+    textFont(font);
+    textSize(35);
+    text("Timer: " + intTimer + "s", 1120, 36);
+
+    // Key pick up (bottom left)
+    if(blnKey1 == true){
+      if(prisonerX >= (TILE_WIDTH * 7) && prisonerX <= (TILE_WIDTH * 9) && prisonerY >= (TILE_HEIGHT * 22) && prisonerY <= (TILE_HEIGHT * 25)){
+        intKeyCount = intKeyCount + 1; 
+        blnKey1 = false;
+        }
+      keys(TILE_WIDTH * 8, TILE_HEIGHT * 22);
+    }
+      
+    // Key pick up (top left)
+    if(blnKey2 == true){
+      if(prisonerX >= (TILE_WIDTH * 7) && prisonerX <= (TILE_WIDTH * 9) && prisonerY >= (TILE_HEIGHT * 6) && prisonerY <= (TILE_HEIGHT * 9)){
+        intKeyCount = intKeyCount + 1; 
+        blnKey2 = false;
+        }
+      keys(TILE_WIDTH * 8, TILE_HEIGHT * 8); 
+    }
+  
+    // Key pick up (top middle)
+    if(blnKey3 == true){
+      if(prisonerX >= (TILE_WIDTH * 18) && prisonerX <= (TILE_WIDTH * 21) && prisonerY >= (TILE_HEIGHT * 5) && prisonerY <= (TILE_HEIGHT * 8)){
+        intKeyCount = intKeyCount + 1; 
+        blnKey3 = false;
+        }
+      keys(TILE_WIDTH * 20, TILE_HEIGHT * 6); 
+    }
+  
+    // Key pick up (bottom middle)
+    if(blnKey4 == true){
+      if(prisonerX >= (TILE_WIDTH * 22) && prisonerX <= (TILE_WIDTH * 25) && prisonerY >= (TILE_HEIGHT * 25) && prisonerY <= (TILE_HEIGHT * 28)){
+        intKeyCount = intKeyCount + 1;  
+        blnKey4 = false;
+        }
+      keys(TILE_WIDTH * 22, TILE_HEIGHT * 26);
+    }
+  
+    // Key pick up (top right)
+    if(blnKey5 == true){
+      if(prisonerX >= (TILE_WIDTH * 33) && prisonerX <= (TILE_WIDTH * 36) && prisonerY >= (TILE_HEIGHT * 6) && prisonerY <= (TILE_HEIGHT * 9)){
+        intKeyCount = intKeyCount + 1; 
+        blnKey5 = false;
+        }
+      keys(TILE_WIDTH * 34, TILE_HEIGHT * 8); 
+    }
+
+    // Key pick up (bottom right)
+    if(blnKey6 == true){
+      if(prisonerX >= (TILE_WIDTH * 35) && prisonerX <= (TILE_WIDTH * 38) && prisonerY >= (TILE_HEIGHT * 22) && prisonerY <= (TILE_HEIGHT * 25)){
+        intKeyCount = intKeyCount + 1; 
+        blnKey6 = false;
+        }
+      keys(TILE_WIDTH * 36, TILE_HEIGHT * 24); 
+    } 
 
     // Officer speed
     // UP 
@@ -136,7 +211,7 @@ public class Lydias_tester_file extends PApplet {
       officerY -= intOfficerSpeed;
       // Collision under the prisoner
       if((officerY <= prisonerY + TILE_HEIGHT) && officerY >= prisonerY && ((officerX + TILE_WIDTH >= prisonerX && officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + TILE_WIDTH))) {
-        blnPrisonerWin = true;
+        blnGuardWin = true;
       }
     }
     // DOWN
@@ -145,7 +220,7 @@ public class Lydias_tester_file extends PApplet {
       officerY += intOfficerSpeed;
       // Collision above the prisoner
       if((officerY + TILE_HEIGHT >= prisonerY) && officerY <= prisonerY + TILE_HEIGHT && ((officerX + TILE_WIDTH >= prisonerX && officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + TILE_WIDTH))) {
-        blnPrisonerWin = true;
+        blnGuardWin = true;
       }
     }
     // LEFT
@@ -154,7 +229,7 @@ public class Lydias_tester_file extends PApplet {
       officerX -= intOfficerSpeed;
       // Collision on the right side of the prisoner
       if((officerX <= prisonerX + TILE_WIDTH) && officerX >= prisonerX && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
-        blnPrisonerWin = true;
+        blnGuardWin = true;
       }
     }
     // RIGHT
@@ -162,7 +237,7 @@ public class Lydias_tester_file extends PApplet {
       image(imgOfficerFront1, officerX, officerY);
       officerX += intOfficerSpeed;
       if((officerX + TILE_WIDTH >= prisonerX) && officerX <= prisonerX + TILE_WIDTH && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
-        blnPrisonerWin = true;
+        blnGuardWin = true;
       }
     // STILL
     } else {
@@ -194,8 +269,17 @@ public class Lydias_tester_file extends PApplet {
       image(imgPrisonerStill, prisonerX, prisonerY);
     }
   }
+
+  // Timer (TOP RIGHT CORNER!!!!!)
+  if(intTimerStart == 1){
+    intTimer--;
+  }
+  if (intTimer == 0){
+    intTimerStart = 2;
+  }
   
-  if (blnPrisonerWin == true){
+  // Guard win screen
+  if (blnGuardWin == true || intTimer == 0){
     image(imgMenu, 0, 0);
     fill(0);
     rect(200, 210, 1000, 400);
@@ -207,6 +291,19 @@ public class Lydias_tester_file extends PApplet {
     textSize(60);
     text("The Guard Won!", 490, 550);
    }
+   // Prisoner win screen 
+   if (intKeyCount == 6 && (prisonerX < 32 || prisonerX > 1366)){
+    image(imgMenu, 0, 0);
+    fill(0);
+    rect(200, 210, 1000, 400);
+    textFont(font);
+    fill(255);
+    textSize(150);
+    text("GAME OVER", 340, 460);
+    fill(255);
+    textSize(60);
+    text("The Prisoner Won!", 460, 550);
+    } 
   }
 
   /**
@@ -274,17 +371,17 @@ public class Lydias_tester_file extends PApplet {
       {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
       {1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
       {1,2,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,2,1},
-      {1,2,0,2,2,2,0,0,0,2,3,0,2,0,2,0,2,2,2,0,2,1},
-      {1,2,0,0,3,0,0,2,0,2,2,2,2,0,0,0,2,3,2,0,2,1},
+      {1,2,0,2,2,2,0,0,0,2,0,0,2,0,2,0,2,2,2,0,2,1},
+      {1,2,0,0,0,0,0,2,0,2,2,2,2,0,0,0,2,0,2,0,2,1},
       {1,2,0,2,2,0,2,2,0,0,0,0,0,0,2,0,2,0,2,0,2,1},
       {1,0,0,0,0,0,0,2,0,2,2,2,2,0,2,0,0,0,0,0,2,1},
       {1,2,2,0,2,2,0,2,0,2,0,0,2,0,0,0,2,2,2,2,2,1},
       {1,2,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,1},
       {1,2,0,2,2,2,0,2,0,2,0,0,2,0,2,0,2,2,0,2,2,1},
       {1,2,0,0,0,0,0,0,0,2,2,2,2,0,2,0,0,0,0,0,2,1},
-      {1,2,0,2,3,2,0,2,0,0,0,0,0,0,2,2,0,2,2,0,2,1},
-      {1,2,0,0,0,2,0,2,0,2,2,2,2,0,2,0,0,0,3,0,2,1},
-      {1,2,2,2,0,2,0,0,0,2,0,3,2,0,0,0,2,2,2,0,2,1},
+      {1,2,0,2,0,2,0,2,0,0,0,0,0,0,2,2,0,2,2,0,2,1}, 
+      {1,2,0,0,0,2,0,2,0,2,2,2,2,0,2,0,0,0,0,0,2,1},
+      {1,2,2,2,0,2,0,0,0,2,0,0,2,0,0,0,2,2,2,0,2,1},
       {1,1,1,2,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,2,1},
       {1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
       {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
