@@ -215,7 +215,7 @@ public class Sketch extends PApplet {
     // Officer speed
     // UP 
     if (blnOfficerUp == true) {
-      image(imgOfficerBack1, officerX, officerY);
+      image(imgOfficerFront1, officerX, officerY);
       officerY -= intOfficerSpeed;
       // Player-Player Collision under the prisoner
       if((officerY <= prisonerY + PLAYER_HEIGHT) && officerY >= prisonerY && ((officerX + PLAYER_WIDTH >= prisonerX && officerX + PLAYER_WIDTH <= prisonerX + PLAYER_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + PLAYER_WIDTH))) {
