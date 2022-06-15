@@ -1,5 +1,3 @@
-import javax.swing.plaf.basic.BasicComboPopup.InvocationKeyHandler;
-
 import processing.core.PApplet;
 import processing.core.PFont;
 import processing.core.PImage;
@@ -40,8 +38,8 @@ public class Sketch2 extends PApplet {
   float officerY = 110;
   float prisonerX = 640;
   float prisonerY = 350;
-  float officerXspeed = 3;
-  float officerYspeed = 3;
+  int intOfficerSpeed = 3;
+  int intPrisonerSpeed = 5;
   int intGCount;
   int intPCount;
   int SCREEN_WIDTH = 1408;
@@ -53,21 +51,33 @@ public class Sketch2 extends PApplet {
   int intCrateX;
   int intCrateY;
   int intOfficer_frames = 8;
-  int[][] intArray;
   int intArrayValue;
   int intTimer = 120000;
   int intKeyCount = 0;
   int intTimerStart; 
+  int[][] intArray;
+  PImage[] officer_frames;
+  // End Screen variables
   boolean blnStart = false;
   boolean blnGuardWin = false;
   boolean blnPrisonerWin = false;
+  // Officer movement booleans
+  boolean blnOfficerUp = false;
+  boolean blnOfficerDown = false;
+  boolean blnOfficerLeft = false;
+  boolean blnOfficerRight = false;
+  // Prisoner movement booleans
+  boolean blnPrisonerUp = false;
+  boolean blnPrisonerDown = false;
+  boolean blnPrisonerLeft = false;
+  boolean blnPrisonerRight = false;
+  // Key pickup booleans
   boolean blnKey1 = true; 
   boolean blnKey2 = true;
   boolean blnKey3 = true;
   boolean blnKey4 = true;
   boolean blnKey5 = true;
   boolean blnKey6 = true;
-  PImage[] officer_frames;
 
   public void settings() {
     size(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -142,109 +152,132 @@ public class Sketch2 extends PApplet {
 
     // Key pick up (bottom left)
     if(blnKey1 == true){
-    if(prisonerX >= (TILE_WIDTH * 7) && prisonerX <= (TILE_WIDTH * 9) && prisonerY >= (TILE_HEIGHT * 22) && prisonerY <= (TILE_HEIGHT * 25)){
-      intKeyCount = intKeyCount + 1; 
-      blnKey1 = false;
-      }
+      if(prisonerX >= (TILE_WIDTH * 7) && prisonerX <= (TILE_WIDTH * 9) && prisonerY >= (TILE_HEIGHT * 22) && prisonerY <= (TILE_HEIGHT * 25)){
+        intKeyCount = intKeyCount + 1; 
+        blnKey1 = false;
+        }
       keys(TILE_WIDTH * 8, TILE_HEIGHT * 22);
     }
-    
+      
     // Key pick up (top left)
     if(blnKey2 == true){
-    if(prisonerX >= (TILE_WIDTH * 7) && prisonerX <= (TILE_WIDTH * 9) && prisonerY >= (TILE_HEIGHT * 6) && prisonerY <= (TILE_HEIGHT * 9)){
-      intKeyCount = intKeyCount + 1; 
-      blnKey2 = false;
-      }
+      if(prisonerX >= (TILE_WIDTH * 7) && prisonerX <= (TILE_WIDTH * 9) && prisonerY >= (TILE_HEIGHT * 6) && prisonerY <= (TILE_HEIGHT * 9)){
+        intKeyCount = intKeyCount + 1; 
+        blnKey2 = false;
+        }
       keys(TILE_WIDTH * 8, TILE_HEIGHT * 8); 
     }
-
+  
     // Key pick up (top middle)
     if(blnKey3 == true){
-    if(prisonerX >= (TILE_WIDTH * 18) && prisonerX <= (TILE_WIDTH * 21) && prisonerY >= (TILE_HEIGHT * 5) && prisonerY <= (TILE_HEIGHT * 8)){
-      intKeyCount = intKeyCount + 1; 
-      blnKey3 = false;
-      }
+      if(prisonerX >= (TILE_WIDTH * 18) && prisonerX <= (TILE_WIDTH * 21) && prisonerY >= (TILE_HEIGHT * 5) && prisonerY <= (TILE_HEIGHT * 8)){
+        intKeyCount = intKeyCount + 1; 
+        blnKey3 = false;
+        }
       keys(TILE_WIDTH * 20, TILE_HEIGHT * 6); 
     }
-
+  
     // Key pick up (bottom middle)
     if(blnKey4 == true){
-    if(prisonerX >= (TILE_WIDTH * 22) && prisonerX <= (TILE_WIDTH * 25) && prisonerY >= (TILE_HEIGHT * 25) && prisonerY <= (TILE_HEIGHT * 28)){
-      intKeyCount = intKeyCount + 1;  
-      blnKey4 = false;
-      }
+      if(prisonerX >= (TILE_WIDTH * 22) && prisonerX <= (TILE_WIDTH * 25) && prisonerY >= (TILE_HEIGHT * 25) && prisonerY <= (TILE_HEIGHT * 28)){
+        intKeyCount = intKeyCount + 1;  
+        blnKey4 = false;
+        }
       keys(TILE_WIDTH * 22, TILE_HEIGHT * 26);
     }
-
+  
     // Key pick up (top right)
     if(blnKey5 == true){
-    if(prisonerX >= (TILE_WIDTH * 33) && prisonerX <= (TILE_WIDTH * 36) && prisonerY >= (TILE_HEIGHT * 6) && prisonerY <= (TILE_HEIGHT * 9)){
-      intKeyCount = intKeyCount + 1; 
-      blnKey5 = false;
-      }
+      if(prisonerX >= (TILE_WIDTH * 33) && prisonerX <= (TILE_WIDTH * 36) && prisonerY >= (TILE_HEIGHT * 6) && prisonerY <= (TILE_HEIGHT * 9)){
+        intKeyCount = intKeyCount + 1; 
+        blnKey5 = false;
+        }
       keys(TILE_WIDTH * 34, TILE_HEIGHT * 8); 
     }
+
     // Key pick up (bottom right)
     if(blnKey6 == true){
-    if(prisonerX >= (TILE_WIDTH * 35) && prisonerX <= (TILE_WIDTH * 38) && prisonerY >= (TILE_HEIGHT * 22) && prisonerY <= (TILE_HEIGHT * 25)){
-      intKeyCount = intKeyCount + 1; 
-      blnKey6 = false;
-      }
+      if(prisonerX >= (TILE_WIDTH * 35) && prisonerX <= (TILE_WIDTH * 38) && prisonerY >= (TILE_HEIGHT * 22) && prisonerY <= (TILE_HEIGHT * 25)){
+        intKeyCount = intKeyCount + 1; 
+        blnKey6 = false;
+        }
       keys(TILE_WIDTH * 36, TILE_HEIGHT * 24); 
     } 
 
-    // Officer image based on which way hes walking 
-      // Going up
-    if(intGCount == 1) {
+    // Officer speed
+    // UP 
+    if (blnOfficerUp == true) {
       image(imgOfficerBack1, officerX, officerY);
-      // Going down
-    } else if (intGCount == 2) {
+      officerY -= intOfficerSpeed;
+      // Collision under the prisoner
+      if((officerY <= prisonerY + TILE_HEIGHT) && officerY >= prisonerY && ((officerX + TILE_WIDTH >= prisonerX && officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + TILE_WIDTH))) {
+        blnGuardWin = true;
+      }
+    }
+    // DOWN
+    if (blnOfficerDown == true) {
       image(imgOfficerFront1, officerX, officerY);
-      // Going left
-    } else if (intGCount == 3) {
-      image(imgOfficerLeft1, officerX, officerY);
-      // Going right
-    } else if (intGCount == 4) {
-      image(imgOfficerRight1, officerX, officerY);
-      // Standing still
+      officerY += intOfficerSpeed;
+      // Collision above the prisoner
+      if((officerY + TILE_HEIGHT >= prisonerY) && officerY <= prisonerY + TILE_HEIGHT && ((officerX + TILE_WIDTH >= prisonerX && officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + TILE_WIDTH))) {
+        blnGuardWin = true;
+      }
+    }
+    // LEFT
+    if (blnOfficerLeft == true) {
+      image(imgOfficerFront1, officerX, officerY);
+      officerX -= intOfficerSpeed;
+      // Collision on the right side of the prisoner
+      if((officerX <= prisonerX + TILE_WIDTH) && officerX >= prisonerX && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
+        blnGuardWin = true;
+      }
+    }
+    // RIGHT
+    if (blnOfficerRight == true) {
+      image(imgOfficerFront1, officerX, officerY);
+      officerX += intOfficerSpeed;
+      if((officerX + TILE_WIDTH >= prisonerX) && officerX <= prisonerX + TILE_WIDTH && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
+        blnGuardWin = true;
+      }
+    // STILL
     } else {
       image(imgOfficerStill, officerX, officerY);
     }
-    
-    // Prisoner image based on which way hes talking 
-    if(intPCount == 1) {
-      image(imgPrisonerBack1, prisonerX, prisonerY);
-    } else if (intPCount == 2) {
+
+    // Prisoner speed
+    // UP 
+    if (blnPrisonerUp == true) {
       image(imgPrisonerFront1, prisonerX, prisonerY);
+      prisonerY -= intPrisonerSpeed;
+    }
+    // DOWN
+    if (blnPrisonerDown == true) {
+      image(imgPrisonerFront1, prisonerX, prisonerY);
+      prisonerY += intPrisonerSpeed;
+    }
+    // LEFT
+    if (blnPrisonerLeft == true) {
+      image(imgPrisonerFront1, prisonerX, prisonerY);
+      prisonerX -= intPrisonerSpeed;
+    }
+    // RIGHT
+    if (blnPrisonerRight == true) {
+      image(imgPrisonerFront1, prisonerX, prisonerY);
+      prisonerX += intPrisonerSpeed;
+    // STILL
     } else {
       image(imgPrisonerStill, prisonerX, prisonerY);
     }
-
-    // Officer movement
-    if (keyPressed) {
-      moveOfficer("UP", 1, 3);
-      moveOfficer("DOWN", 2, 3);
-      moveOfficer("LEFT", 3, 3);
-      moveOfficer("RIGHT", 4, 3);
-    }
-
-    // Prisoner movement
-    if (keyPressed) {
-      movePrisoner("w", 1, 4);
-      movePrisoner("s", 2, 4);
-      movePrisoner("a", 3, 4);
-      movePrisoner("d", 4, 4);
-    }
   }
 
-  // Timer
+  // Timer (TOP RIGHT CORNER!!!!!)
   if(intTimerStart == 1){
     intTimer--;
   }
   if (intTimer == 0){
     intTimerStart = 2;
   }
-
+  
   // Guard win screen
   if (blnGuardWin == true || intTimer == 0){
     image(imgMenu, 0, 0);
@@ -254,7 +287,7 @@ public class Sketch2 extends PApplet {
     fill(255);
     textSize(150);
     text("GAME OVER", 340, 460);
-    fill(255);
+    fill(21, 255, 0);
     textSize(60);
     text("The Guard Won!", 490, 550);
    }
@@ -267,7 +300,7 @@ public class Sketch2 extends PApplet {
     fill(255);
     textSize(150);
     text("GAME OVER", 340, 460);
-    fill(255);
+    fill(250, 126, 2);
     textSize(60);
     text("The Prisoner Won!", 460, 550);
     } 
@@ -309,95 +342,6 @@ public class Sketch2 extends PApplet {
     image(imgKey, keyX, keyY);
   }
   
-  /**
-   * Method to make officer move
-   * @param strOfficerDirection is a string that reads the direction of the officer (UP, DOWN, LEFT, RIGHT)
-   * @param intOfficerGCount is a integer that assigns an image to the officer
-   * @param intOfficerSpeed is an integer that assigns a speed to the officer
-   */
-  public void moveOfficer(String strOfficerDirection, int intOfficerGCount, int intOfficerSpeed) {
-    // Move up
-    if (strOfficerDirection == "UP") {
-      if (keyCode == UP) {
-        intGCount = intOfficerGCount;
-        officerY -= intOfficerSpeed;
-        // Collision under the prisoner
-        if((officerY <= prisonerY + TILE_HEIGHT) && officerY >= prisonerY && ((officerX + TILE_WIDTH >= prisonerX && officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + TILE_WIDTH))) {
-          blnGuardWin = true;
-        }
-      }
-    }
-    
-    // Move down
-    if (strOfficerDirection == "DOWN") {
-      if (keyCode == DOWN) {
-        officerY += intOfficerSpeed;
-        intGCount = intOfficerGCount;
-        // Collision above the prisoner
-        if((officerY + TILE_HEIGHT >= prisonerY) && officerY <= prisonerY + TILE_HEIGHT && ((officerX + TILE_WIDTH >= prisonerX && officerX + TILE_WIDTH <= prisonerX + TILE_WIDTH) || (officerX >= prisonerX && officerX <= prisonerX + TILE_WIDTH))) {
-          blnGuardWin = true;
-      }
-    }
-  }
-
-    // Move left
-    if (strOfficerDirection == "LEFT") {
-      if (keyCode == LEFT) {
-        officerX -= intOfficerSpeed;
-        // Collision on the right side of the prisoner
-        if((officerX <= prisonerX + TILE_WIDTH) && officerX >= prisonerX && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
-          blnGuardWin = true;
-        }
-      }
-    }
-
-    // Move right
-    if (strOfficerDirection == "RIGHT") {
-      if (keyCode == RIGHT) {
-        officerX += intOfficerSpeed;
-        // Collision on the left side of the prisoner
-        if((officerX + TILE_WIDTH >= prisonerX) && officerX <= prisonerX + TILE_WIDTH && ((officerY >= prisonerY && officerY <= prisonerY + TILE_HEIGHT) || (officerY + TILE_HEIGHT >= prisonerY && officerY + TILE_HEIGHT <= prisonerY + TILE_HEIGHT))) {
-          blnGuardWin = true;
-      }
-    }
-  }
-}
-
-  /**
-   * Method to make prisoner move
-   * @param strPrisonerDirection is a string that reads the direction of the prisoner (w, s, a, d)
-   * @param intPrisonerPCount is a integer that assigns an image to the prisoner
-   * @param intPrisonerSpeed is an integer that assigns a speed to the prisoner
-   */
-  public void movePrisoner(String strPrisonerDirection, int intPrisonerPCount, int intPrisonerSpeed) {
-    // Move up
-    if (strPrisonerDirection == "w") {
-      if (key == 'w') {
-        prisonerY -= intPrisonerSpeed;
-        intPCount = intPrisonerPCount;
-       }
-      }
-    // Move down
-    if (strPrisonerDirection == "s") {
-      if (key == 's') {
-        prisonerY += intPrisonerSpeed;
-        intPCount = intPrisonerPCount;
-       }
-      }
-    // Move left
-    if (strPrisonerDirection == "a") {
-      if (key == 'a') {
-        prisonerX -= intPrisonerSpeed; 
-       }
-      }
-    // Move right
-    if (strPrisonerDirection == "d") {
-      if (key == 'd') {
-        prisonerX += intPrisonerSpeed; 
-      }
-    }
-  }
-
   // Method for 2d array
   public void drawGame() {
     for (int y = 0; y < intArray.length; y++) {
@@ -419,7 +363,7 @@ public class Sketch2 extends PApplet {
         }
       }
     }
-  }
+  } 
 
   // Array for drawing everything
   public int[][] arrayGame() {
@@ -441,6 +385,54 @@ public class Sketch2 extends PApplet {
       {1,1,1,2,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,2,1},
       {1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1},
       {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-    };         
+    };
+  }
+
+  public void keyPressed() {
+    // Officer movement
+    if (keyCode == UP) {
+      blnOfficerUp = true;
+    } else if (keyCode == DOWN) {
+      blnOfficerDown = true;
+    } else if (keyCode == LEFT) {
+      blnOfficerLeft = true;
+    } else if (keyCode == RIGHT) {
+      blnOfficerRight = true;
+    }
+
+    // Prisoner movement
+    if (key == 'w') {
+      blnPrisonerUp = true;
+    } else if (key == 's') {
+      blnPrisonerDown = true;
+    } else if (key == 'a') {
+      blnPrisonerLeft = true;
+    } else if (key == 'd') {
+      blnPrisonerRight = true;
+    }
+  }
+
+  public void keyReleased() {
+    // Officer movement
+    if (keyCode == UP) {
+      blnOfficerUp = false;
+    } else if (keyCode == DOWN) {
+      blnOfficerDown = false;
+    } else if (keyCode == LEFT) {
+      blnOfficerLeft = false;
+    } else if (keyCode == RIGHT) {
+      blnOfficerRight = false;
+    }
+
+    // Prisoner movement
+    if (key == 'w') {
+      blnPrisonerUp = false;
+    } else if (key == 's') {
+      blnPrisonerDown = false;
+    } else if (key == 'a') {
+      blnPrisonerLeft = false;
+    } else if (key == 'd') {
+      blnPrisonerRight = false;
+    }
   }
 }
