@@ -10,7 +10,7 @@
 
 Collect all 6 keys and escape… or get caught and lose. Prison Escape is a two-player minigame where you could play as the officer or the prisoner in the setting of a jail maze. As the prisoner, you must navigate and collect all 6 keys within the maze and escape through one of two doors to achieve victory. On the other hand, the prison guard must tag the prisoner before they escape. 
 
-The prison suffered an earthquake recently. Some of the walls have fallen down. These walls will not block you; you can run over the. These are the darker walls. 
+The prison suffered an earthquake recently. Some of the walls have fallen down. These walls will not block you; you can run over them. These are the darker walls. 
 
 Also, a wall fell on the guard so he broke his leg and he walks super slow. Luckily, the prisoner has been spending his cell days getting built so he can run a lot faster than the guard. 
 
