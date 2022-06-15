@@ -398,7 +398,15 @@ public class Sketch1 extends PApplet {
   // Officer-Wall collision when moving up
   public void officerCollisionUp() {
     // from (1, 1) to (1, 20)
-    if((officerY <= TILE_HEIGHT * 2)) 
+    if((officerY <= TILE_HEIGHT * 2) 
+    // Left exit: from (7, 1) going right 3 tiles
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 7) && (officerY <= TILE_HEIGHT * 8) && (officerX <= TILE_WIDTH * 3))
+    // Right exit: from (7, 16) going right 7 tiles
+    || ((officerY <= TILE_HEIGHT * 8) && (officerY >= TILE_HEIGHT * 7) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 16))
+    // Top of jail cell from (6, 9) going right 3 tiles
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 6) && (officerY <= TILE_HEIGHT * 7) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13))
+    // Bottom of jail cell from (10, 9) going right 3 tiles
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 10) && (officerY <= TILE_HEIGHT * 11) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13)))
     { 
       officerY += intOfficerSpeed;
     }
@@ -408,7 +416,15 @@ public class Sketch1 extends PApplet {
     // from (15, 1) to (1, 20)
     if((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 15) 
     // Right exit
-    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 20)))
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 20))
+    // Left exit: from (7, 1) going right 3 tiles
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 7) && (officerY + PLAYER_HEIGHT <= TILE_HEIGHT * 8) && (officerX <= TILE_WIDTH * 3))
+    // from (7, 16) going right 5 tiles
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 7) && (officerY <= TILE_HEIGHT * 8) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 16))
+    // Top of jail cell from (6, 9) going right 3 tiles
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 6) && (officerY + PLAYER_HEIGHT <= TILE_HEIGHT * 7) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13))
+    // Bottom of jail cell from (10, 9) going right 3 tiles
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 10) && (officerY <= TILE_HEIGHT * 11) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13)))
     { 
       officerY -= intOfficerSpeed;
     }
@@ -416,7 +432,15 @@ public class Sketch1 extends PApplet {
   // Officer-Wall collision when moving left
   public void officerCollisionLeft() {
     // from (1, 1) to (15, 1) not including (5, 1)
-    if ((officerX <= TILE_WIDTH * 2) && ((officerY <= TILE_HEIGHT * 6) || (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 7) )) 
+    if ((officerX <= TILE_WIDTH * 2) && ((officerY <= TILE_HEIGHT * 6) || (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 7))
+    // Left exit: from (7, 1) going right 3 tiles
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 7) && (officerY + PLAYER_HEIGHT <= TILE_HEIGHT * 8) && (officerX <= TILE_WIDTH * 3))
+    // Top of jail cell from (6, 9) going right 3 tiles
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 6) && (officerY + PLAYER_HEIGHT <= TILE_HEIGHT * 7) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13))
+    // Bottom of jail cell from (10, 9) going right 3 tiles
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 10) && (officerY <= TILE_HEIGHT * 11) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13))
+    // Right of jail cell from (6, 12) going right 3 tiles
+    || ((officerX + PLAYER_WIDTH >= TILE_WIDTH * 12) && (officerX <= TILE_WIDTH * 13) && (officerY >= TILE_HEIGHT * 6) && (officerY <= TILE_HEIGHT * 11)))
     {
       officerX += intOfficerSpeed;
     }
@@ -424,7 +448,15 @@ public class Sketch1 extends PApplet {
   // Officer-Wall collision when moving right
   public void officerCollisionRight() {
     // from (1, 20) to (15, 20) not including (8, 20)
-    if ((officerX + PLAYER_WIDTH >= TILE_WIDTH * 20) && ((officerY <= TILE_HEIGHT * 8) || (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9) )) 
+    if ((officerX + PLAYER_WIDTH >= TILE_WIDTH * 20) && ((officerY <= TILE_HEIGHT * 8) || (officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 9))
+    // Right exit: from (7, 16) going right 7 tiles
+    || ((officerY <= TILE_HEIGHT * 8) && (officerY >= TILE_HEIGHT * 7) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 16))
+    // Top of jail cell from (6, 9) going right 3 tiles
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 6) && (officerY + PLAYER_HEIGHT <= TILE_HEIGHT * 7) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13))
+    // Bottom of jail cell from (10, 9) going right 3 tiles
+    || ((officerY + PLAYER_HEIGHT >= TILE_HEIGHT * 10) && (officerY <= TILE_HEIGHT * 11) && (officerX + PLAYER_WIDTH >= TILE_WIDTH * 9) && (officerX + PLAYER_WIDTH/2 <= TILE_WIDTH * 13))
+    // Right of jail cell from (6, 12) going right 3 tiles
+    || ((officerX + PLAYER_WIDTH >= TILE_WIDTH * 12) && (officerX + PLAYER_WIDTH <= TILE_WIDTH * 13) && (officerY >= TILE_HEIGHT * 6) && (officerY <= TILE_HEIGHT * 11)))
     {
       officerX -= intOfficerSpeed;
     }
@@ -478,11 +510,11 @@ public class Sketch1 extends PApplet {
       {1,2,0,4,4,4,0,0,0,4,0,0,4,0,4,0,4,4,4,0,2,1},
       {1,2,0,0,0,0,0,4,0,4,4,4,4,0,0,0,4,0,4,0,2,1},
       {1,2,0,4,4,0,4,4,0,0,0,0,0,0,4,0,4,0,4,0,2,1},
-      {1,0,0,0,0,0,0,4,0,4,4,4,4,0,4,0,0,0,0,0,2,1},
-      {1,2,4,0,4,4,0,4,0,4,0,0,4,0,0,0,4,4,4,4,2,1},
-      {1,2,0,0,0,0,0,4,0,0,0,0,0,0,4,0,0,0,0,0,0,1},
-      {1,2,0,4,4,4,0,4,0,4,0,0,4,0,4,0,4,4,0,4,2,1},
-      {1,2,0,0,0,0,0,0,0,4,4,4,4,0,4,0,0,0,0,0,2,1},
+      {1,0,0,0,0,0,0,4,0,2,2,2,2,0,4,0,0,0,0,0,2,1},
+      {1,2,2,0,4,4,0,4,0,4,0,0,2,0,0,0,2,2,2,2,2,1},
+      {1,2,0,0,0,0,0,4,0,4,0,0,2,0,4,0,0,0,0,0,0,1},
+      {1,2,0,4,4,4,0,4,0,4,0,0,2,0,4,0,4,4,4,0,2,1},
+      {1,2,0,0,0,0,0,0,0,2,2,2,2,0,4,0,0,0,0,0,2,1},
       {1,2,0,4,0,4,0,4,0,0,0,0,0,0,4,4,0,4,4,0,2,1}, 
       {1,2,0,4,0,4,0,4,0,4,4,4,4,0,4,0,0,0,0,0,2,1},
       {1,2,0,4,0,4,0,0,0,4,0,0,4,0,0,0,4,4,4,0,2,1},
