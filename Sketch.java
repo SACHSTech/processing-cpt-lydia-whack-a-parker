@@ -6,7 +6,7 @@ public class Sketch extends PApplet {
   
 	/**
    * Assignment: 6.1 Processing in Java CPT
-   * Author: Lydia He and Parker Yang
+   * Author: Lydia He, Parker Yang
    * Due Jun 13, 11:59 PM
    * Description: Prison Escape is a 2-player minigame where the police officer tries 
    * to stop the prisoner from escaping. You can play as either the prisoner (using WASD) 
@@ -18,16 +18,8 @@ public class Sketch extends PApplet {
   // Variables
   PImage imgBackground;
   PImage imgOfficerFront1;
-  PImage imgOfficerFront2;
-  PImage imgOfficerBack1;
-  PImage imgOfficerBack2;
-  PImage imgOfficerLeft1;
-  PImage imgOfficerLeft2;
-  PImage imgOfficerRight1;
-  PImage imgOfficerRight2;
   PImage imgOfficerStill;
   PImage imgPrisonerFront1;
-  PImage imgPrisonerBack1;
   PImage imgPrisonerStill;
   PImage imgCrates;
   PImage imgDarkCrates;
@@ -50,7 +42,7 @@ public class Sketch extends PApplet {
   int PLAYER_HEIGHT = 25;
   int PLAYER_WIDTH = 32;
   int TILE_WIDTH = SCREEN_WIDTH / ROW_COUNT; // 64
-  int TILE_HEIGHT = SCREEN_HEIGHT / COLUMN_COUNT; // 50 
+  int TILE_HEIGHT = SCREEN_HEIGHT / COLUMN_COUNT; // 50
   int intCrateX;
   int intCrateY;
   int intOfficer_frames = 8;
@@ -90,11 +82,9 @@ public class Sketch extends PApplet {
   public void setup() {
     // Import images
     imgBackground = loadImage("ground_04.png");
-    imgOfficerBack1 = loadImage("player_01.png");
     imgOfficerFront1 = loadImage("player_04.png");
     imgOfficerStill = loadImage("player_03.png");
     imgPrisonerFront1 = loadImage("prisoner_04.png");
-    imgPrisonerBack1 = loadImage("prisoner_01.png");
     imgPrisonerStill = loadImage("prisoner_03.png");
     imgGrass = loadImage("ground_03.png");
     imgCrates = loadImage("crate_19.png");
@@ -111,10 +101,8 @@ public class Sketch extends PApplet {
     imgDarkCrates.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgBackground.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
     imgKey.resize(SCREEN_WIDTH / 22, SCREEN_HEIGHT / 17);
-    imgOfficerBack1.resize(SCREEN_WIDTH / 30, SCREEN_HEIGHT / 24);
     imgOfficerFront1.resize(SCREEN_WIDTH / 30, SCREEN_HEIGHT / 24);
     imgOfficerStill.resize(SCREEN_WIDTH / 30, SCREEN_HEIGHT / 24);
-    imgPrisonerBack1.resize(SCREEN_WIDTH / 30, SCREEN_HEIGHT / 24);
     imgPrisonerFront1.resize(SCREEN_WIDTH / 30, SCREEN_HEIGHT / 24);
     imgPrisonerStill.resize(SCREEN_WIDTH / 30, SCREEN_HEIGHT / 24);
     imgMenu.resize(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -328,7 +316,7 @@ public class Sketch extends PApplet {
   }
     
   // Guard win screen
-  if (blnGuardWin == true || intTimer == 0){
+  if (blnGuardWin == true){
     image(imgMenu, 0, 0);
     fill(0);
     rect(200, 210, 1000, 400);
@@ -340,7 +328,7 @@ public class Sketch extends PApplet {
     textSize(60);
     text("The Guard Won!", 490, 550);
     }
-    
+
     // Prisoner win screen 
     if (intKeyCount == 6 && (prisonerX < 32 || prisonerX > 1366)){
     image(imgMenu, 0, 0);
@@ -355,20 +343,6 @@ public class Sketch extends PApplet {
     text("The Prisoner Won!", 460, 550);
     } 
 
-  // Guard win screen
-  if (blnGuardWin == true){
-    image(imgMenu, 0, 0);
-    fill(0);
-    rect(200, 210, 1000, 400);
-    textFont(font);
-    fill(255);
-    textSize(150);
-    text("GAME OVER", 340, 460);
-    fill(21, 255, 0);
-    textSize(60);
-    text("The Officer Won!", 490, 550);
-    }
-
   // Time's up screen
   if (intTimer == 0){
     image(imgMenu, 0, 0);
@@ -378,7 +352,7 @@ public class Sketch extends PApplet {
     fill(255);
     textSize(150);
     text("GAME OVER", 340, 460);
-    fill(21, 255, 0);
+    fill(13, 5, 247);
     textSize(60);
     text("Time's up! The Officer wins!", 330, 550);
     }
