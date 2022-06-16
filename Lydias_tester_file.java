@@ -34,6 +34,7 @@ public class Lydias_tester_file extends PApplet {
   PImage imgMenu;
   PImage imgGrass;
   PImage imgKey;
+  PImage[] officer_frames;
   PFont font;
   float officerX = 1408 - 64 * 3;
   float officerY = 110;
@@ -43,6 +44,12 @@ public class Lydias_tester_file extends PApplet {
   int intPrisonerSpeed = 5;
   int intGCount;
   int intPCount;
+  int intOfficer_frames = 8;
+  int intArrayValue;
+  int intTimer = 3000; // 3529: Around 1 minute
+  int intKeyCount = 0;
+  int intTimerStart; 
+  // Measurement variables
   int SCREEN_WIDTH = 1408;
   int SCREEN_HEIGHT = 850;
   int ROW_COUNT = 22;
@@ -53,13 +60,7 @@ public class Lydias_tester_file extends PApplet {
   int TILE_HEIGHT = SCREEN_HEIGHT / COLUMN_COUNT; // 50
   int intCrateX;
   int intCrateY;
-  int intOfficer_frames = 8;
-  int intArrayValue;
-  int intTimer = 3000; // 3529: Around 1 minute
-  int intKeyCount = 0;
-  int intTimerStart; 
   int[][] intArray;
-  PImage[] officer_frames;
   // End Screen variables
   boolean blnStart = false;
   boolean blnGuardWin = false;
